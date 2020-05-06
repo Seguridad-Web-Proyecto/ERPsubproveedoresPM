@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PagoventaViewDlg" widgetVar="PagoventaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPagoventaTitle}">
+            <h:form id="PagoventaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pagoventaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPagoventaLabel_pagoventaid}"/>
+                        <h:outputText value="#{pagoventaController.selected.pagoventaid}" title="#{bundle.ViewPagoventaTitle_pagoventaid}"/>
+                        <h:outputText value="#{bundle.ViewPagoventaLabel_fechaPago}"/>
+                        <h:outputText value="#{pagoventaController.selected.fechaPago}" title="#{bundle.ViewPagoventaTitle_fechaPago}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPagoventaLabel_monto}"/>
+                        <h:outputText value="#{pagoventaController.selected.monto}" title="#{bundle.ViewPagoventaTitle_monto}"/>
+                        <h:outputText value="#{bundle.ViewPagoventaLabel_estado}"/>
+                        <h:outputText value="#{pagoventaController.selected.estado}" title="#{bundle.ViewPagoventaTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewPagoventaLabel_tarjetacreditoid}"/>
+                        <h:outputText value="#{pagoventaController.selected.tarjetacreditoid}" title="#{bundle.ViewPagoventaTitle_tarjetacreditoid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PagoventaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdencompraViewDlg" widgetVar="OrdencompraViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewOrdencompraTitle}">
+            <h:form id="OrdencompraViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ordencompraController.selected != null}">
+                        <h:outputText value="#{bundle.ViewOrdencompraLabel_ordencompraid}"/>
+                        <h:outputText value="#{ordencompraController.selected.ordencompraid}" title="#{bundle.ViewOrdencompraTitle_ordencompraid}"/>
+                        <h:outputText value="#{bundle.ViewOrdencompraLabel_fechaCompra}"/>
+                        <h:outputText value="#{ordencompraController.selected.fechaCompra}" title="#{bundle.ViewOrdencompraTitle_fechaCompra}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewOrdencompraLabel_status}"/>
+                        <h:outputText value="#{ordencompraController.selected.status}" title="#{bundle.ViewOrdencompraTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewOrdencompraLabel_iva}"/>
+                        <h:outputText value="#{ordencompraController.selected.iva}" title="#{bundle.ViewOrdencompraTitle_iva}"/>
+                        <h:outputText value="#{bundle.ViewOrdencompraLabel_subtotal}"/>
+                        <h:outputText value="#{ordencompraController.selected.subtotal}" title="#{bundle.ViewOrdencompraTitle_subtotal}"/>
+                        <h:outputText value="#{bundle.ViewOrdencompraLabel_total}"/>
+                        <h:outputText value="#{ordencompraController.selected.total}" title="#{bundle.ViewOrdencompraTitle_total}"/>
+                        <h:outputText value="#{bundle.ViewOrdencompraLabel_descripcion}"/>
+                        <h:outputText value="#{ordencompraController.selected.descripcion}" title="#{bundle.ViewOrdencompraTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewOrdencompraLabel_facturaid}"/>
+                        <h:outputText value="#{ordencompraController.selected.facturaid}" title="#{bundle.ViewOrdencompraTitle_facturaid}"/>
+                        <h:outputText value="#{bundle.ViewOrdencompraLabel_proveedorid}"/>
+                        <h:outputText value="#{ordencompraController.selected.proveedorid}" title="#{bundle.ViewOrdencompraTitle_proveedorid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="OrdencompraViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

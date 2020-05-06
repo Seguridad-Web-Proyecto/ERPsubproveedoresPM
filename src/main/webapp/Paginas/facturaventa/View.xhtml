@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturaventaViewDlg" widgetVar="FacturaventaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFacturaventaTitle}">
+            <h:form id="FacturaventaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturaventaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFacturaventaLabel_facturaventaid}"/>
+                        <h:outputText value="#{facturaventaController.selected.facturaventaid}" title="#{bundle.ViewFacturaventaTitle_facturaventaid}"/>
+                        <h:outputText value="#{bundle.ViewFacturaventaLabel_fechaEmision}"/>
+                        <h:outputText value="#{facturaventaController.selected.fechaEmision}" title="#{bundle.ViewFacturaventaTitle_fechaEmision}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewFacturaventaLabel_fechaVencimientoPago}"/>
+                        <h:outputText value="#{facturaventaController.selected.fechaVencimientoPago}" title="#{bundle.ViewFacturaventaTitle_fechaVencimientoPago}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewFacturaventaLabel_descripcion}"/>
+                        <h:outputText value="#{facturaventaController.selected.descripcion}" title="#{bundle.ViewFacturaventaTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewFacturaventaLabel_pagoid}"/>
+                        <h:outputText value="#{facturaventaController.selected.pagoid}" title="#{bundle.ViewFacturaventaTitle_pagoid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FacturaventaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

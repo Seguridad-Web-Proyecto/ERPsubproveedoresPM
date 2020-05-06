@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpleadoViewDlg" widgetVar="EmpleadoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEmpleadoTitle}">
+            <h:form id="EmpleadoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empleadoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEmpleadoLabel_empleadoid}"/>
+                        <h:outputText value="#{empleadoController.selected.empleadoid}" title="#{bundle.ViewEmpleadoTitle_empleadoid}"/>
+                        <h:outputText value="#{bundle.ViewEmpleadoLabel_fechaVinculo}"/>
+                        <h:outputText value="#{empleadoController.selected.fechaVinculo}" title="#{bundle.ViewEmpleadoTitle_fechaVinculo}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEmpleadoLabel_fechaRetiro}"/>
+                        <h:outputText value="#{empleadoController.selected.fechaRetiro}" title="#{bundle.ViewEmpleadoTitle_fechaRetiro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEmpleadoLabel_persona}"/>
+                        <h:outputText value="#{empleadoController.selected.persona}" title="#{bundle.ViewEmpleadoTitle_persona}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EmpleadoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

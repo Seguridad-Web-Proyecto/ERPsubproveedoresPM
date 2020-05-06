@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProveedorViewDlg" widgetVar="ProveedorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProveedorTitle}">
+            <h:form id="ProveedorViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{proveedorController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProveedorLabel_proveedorid}"/>
+                        <h:outputText value="#{proveedorController.selected.proveedorid}" title="#{bundle.ViewProveedorTitle_proveedorid}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_empresa}"/>
+                        <h:outputText value="#{proveedorController.selected.empresa}" title="#{bundle.ViewProveedorTitle_empresa}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_nombreContacto}"/>
+                        <h:outputText value="#{proveedorController.selected.nombreContacto}" title="#{bundle.ViewProveedorTitle_nombreContacto}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_area}"/>
+                        <h:outputText value="#{proveedorController.selected.area}" title="#{bundle.ViewProveedorTitle_area}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_telefono}"/>
+                        <h:outputText value="#{proveedorController.selected.telefono}" title="#{bundle.ViewProveedorTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_rfc}"/>
+                        <h:outputText value="#{proveedorController.selected.rfc}" title="#{bundle.ViewProveedorTitle_rfc}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_email}"/>
+                        <h:outputText value="#{proveedorController.selected.email}" title="#{bundle.ViewProveedorTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_activo}"/>
+                        <p:selectBooleanCheckbox value="#{proveedorController.selected.activo}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_paginaWeb}"/>
+                        <h:outputText value="#{proveedorController.selected.paginaWeb}" title="#{bundle.ViewProveedorTitle_paginaWeb}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_domicilioFiscal}"/>
+                        <h:outputText value="#{proveedorController.selected.domicilioFiscal}" title="#{bundle.ViewProveedorTitle_domicilioFiscal}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProveedorViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

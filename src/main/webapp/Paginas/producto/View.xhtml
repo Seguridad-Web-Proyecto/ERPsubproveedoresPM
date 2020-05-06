@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProductoViewDlg" widgetVar="ProductoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProductoTitle}">
+            <h:form id="ProductoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{productoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProductoLabel_productoid}"/>
+                        <h:outputText value="#{productoController.selected.productoid}" title="#{bundle.ViewProductoTitle_productoid}"/>
+                        <h:outputText value="#{bundle.ViewProductoLabel_nombre}"/>
+                        <h:outputText value="#{productoController.selected.nombre}" title="#{bundle.ViewProductoTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewProductoLabel_descripcion}"/>
+                        <h:outputText value="#{productoController.selected.descripcion}" title="#{bundle.ViewProductoTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewProductoLabel_unidadMedida}"/>
+                        <h:outputText value="#{productoController.selected.unidadMedida}" title="#{bundle.ViewProductoTitle_unidadMedida}"/>
+                        <h:outputText value="#{bundle.ViewProductoLabel_precioUnitario}"/>
+                        <h:outputText value="#{productoController.selected.precioUnitario}" title="#{bundle.ViewProductoTitle_precioUnitario}"/>
+                        <h:outputText value="#{bundle.ViewProductoLabel_categoriaid}"/>
+                        <h:outputText value="#{productoController.selected.categoriaid}" title="#{bundle.ViewProductoTitle_categoriaid}"/>
+                        <h:outputText value="#{bundle.ViewProductoLabel_ganancia}"/>
+                        <h:outputText value="#{productoController.selected.ganancia}" title="#{bundle.ViewProductoTitle_ganancia}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProductoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

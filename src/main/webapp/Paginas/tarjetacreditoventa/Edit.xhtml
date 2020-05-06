@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TarjetacreditoventaEditDlg" widgetVar="TarjetacreditoventaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTarjetacreditoventaTitle}">
+            <h:form id="TarjetacreditoventaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tarjetacreditoventaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_tarjetacreditoventaid}" for="tarjetacreditoventaid" />
+                        <p:inputText id="tarjetacreditoventaid" value="#{tarjetacreditoventaController.selected.tarjetacreditoventaid}" title="#{bundle.EditTarjetacreditoventaTitle_tarjetacreditoventaid}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_tarjetacreditoventaid}"/>
+                        <p:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_numero}" for="numero" />
+                        <p:inputText id="numero" value="#{tarjetacreditoventaController.selected.numero}" title="#{bundle.EditTarjetacreditoventaTitle_numero}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_numero}"/>
+                        <p:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_cvc}" for="cvc" />
+                        <p:inputText id="cvc" value="#{tarjetacreditoventaController.selected.cvc}" title="#{bundle.EditTarjetacreditoventaTitle_cvc}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_cvc}"/>
+                        <p:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_nombreTitular}" for="nombreTitular" />
+                        <p:inputText id="nombreTitular" value="#{tarjetacreditoventaController.selected.nombreTitular}" title="#{bundle.EditTarjetacreditoventaTitle_nombreTitular}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_nombreTitular}"/>
+                        <p:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_fechaExpiracion}" for="fechaExpiracion" />
+                        <p:inputText id="fechaExpiracion" value="#{tarjetacreditoventaController.selected.fechaExpiracion}" title="#{bundle.EditTarjetacreditoventaTitle_fechaExpiracion}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_fechaExpiracion}"/>
+                        <p:outputLabel value="#{bundle.EditTarjetacreditoventaLabel_lugarFacturacion}" for="lugarFacturacion" />
+                        <p:inputText id="lugarFacturacion" value="#{tarjetacreditoventaController.selected.lugarFacturacion}" title="#{bundle.EditTarjetacreditoventaTitle_lugarFacturacion}" required="true" requiredMessage="#{bundle.EditTarjetacreditoventaRequiredMessage_lugarFacturacion}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tarjetacreditoventaController.update}" value="#{bundle.Save}" update="display,:TarjetacreditoventaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TarjetacreditoventaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TarjetacreditoventaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

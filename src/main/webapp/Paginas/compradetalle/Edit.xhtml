@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CompradetalleEditDlg" widgetVar="CompradetalleEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCompradetalleTitle}">
+            <h:form id="CompradetalleEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{compradetalleController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCompradetalleLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{compradetalleController.selected.cantidad}" title="#{bundle.EditCompradetalleTitle_cantidad}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_cantidad}"/>
+                        <p:outputLabel value="#{bundle.EditCompradetalleLabel_precioUnitario}" for="precioUnitario" />
+                        <p:inputText id="precioUnitario" value="#{compradetalleController.selected.precioUnitario}" title="#{bundle.EditCompradetalleTitle_precioUnitario}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_precioUnitario}"/>
+                        <p:outputLabel value="#{bundle.EditCompradetalleLabel_importe}" for="importe" />
+                        <p:inputText id="importe" value="#{compradetalleController.selected.importe}" title="#{bundle.EditCompradetalleTitle_importe}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_importe}"/>
+                        <p:outputLabel value="#{bundle.EditCompradetalleLabel_ordencompra}" for="ordencompra" />
+                        <p:selectOneMenu id="ordencompra" value="#{compradetalleController.selected.ordencompra}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_ordencompra}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{ordencompraController.itemsAvailableSelectOne}"
+                                           var="ordencompraItem"
+                                           itemValue="#{ordencompraItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditCompradetalleLabel_producto}" for="producto" />
+                        <p:selectOneMenu id="producto" value="#{compradetalleController.selected.producto}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_producto}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{productoController.itemsAvailableSelectOne}"
+                                           var="productoItem"
+                                           itemValue="#{productoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{compradetalleController.update}" value="#{bundle.Save}" update="display,:CompradetalleListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CompradetalleEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CompradetalleEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

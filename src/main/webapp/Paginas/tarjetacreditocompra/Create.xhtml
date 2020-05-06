@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TarjetacreditocompraCreateDlg" widgetVar="TarjetacreditocompraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTarjetacreditocompraTitle}">
+            <h:form id="TarjetacreditocompraCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tarjetacreditocompraController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTarjetacreditocompraLabel_tarjetacreditocompraid}" for="tarjetacreditocompraid" />
+                        <p:inputText id="tarjetacreditocompraid" value="#{tarjetacreditocompraController.selected.tarjetacreditocompraid}" title="#{bundle.CreateTarjetacreditocompraTitle_tarjetacreditocompraid}" required="true" requiredMessage="#{bundle.CreateTarjetacreditocompraRequiredMessage_tarjetacreditocompraid}"/>
+                        <p:outputLabel value="#{bundle.CreateTarjetacreditocompraLabel_numero}" for="numero" />
+                        <p:inputText id="numero" value="#{tarjetacreditocompraController.selected.numero}" title="#{bundle.CreateTarjetacreditocompraTitle_numero}" required="true" requiredMessage="#{bundle.CreateTarjetacreditocompraRequiredMessage_numero}"/>
+                        <p:outputLabel value="#{bundle.CreateTarjetacreditocompraLabel_cvc}" for="cvc" />
+                        <p:inputText id="cvc" value="#{tarjetacreditocompraController.selected.cvc}" title="#{bundle.CreateTarjetacreditocompraTitle_cvc}" required="true" requiredMessage="#{bundle.CreateTarjetacreditocompraRequiredMessage_cvc}"/>
+                        <p:outputLabel value="#{bundle.CreateTarjetacreditocompraLabel_nombreTitular}" for="nombreTitular" />
+                        <p:inputText id="nombreTitular" value="#{tarjetacreditocompraController.selected.nombreTitular}" title="#{bundle.CreateTarjetacreditocompraTitle_nombreTitular}" required="true" requiredMessage="#{bundle.CreateTarjetacreditocompraRequiredMessage_nombreTitular}"/>
+                        <p:outputLabel value="#{bundle.CreateTarjetacreditocompraLabel_fechaExpiracion}" for="fechaExpiracion" />
+                        <p:inputText id="fechaExpiracion" value="#{tarjetacreditocompraController.selected.fechaExpiracion}" title="#{bundle.CreateTarjetacreditocompraTitle_fechaExpiracion}" required="true" requiredMessage="#{bundle.CreateTarjetacreditocompraRequiredMessage_fechaExpiracion}"/>
+                        <p:outputLabel value="#{bundle.CreateTarjetacreditocompraLabel_lugarFacturacion}" for="lugarFacturacion" />
+                        <p:inputText id="lugarFacturacion" value="#{tarjetacreditocompraController.selected.lugarFacturacion}" title="#{bundle.CreateTarjetacreditocompraTitle_lugarFacturacion}" required="true" requiredMessage="#{bundle.CreateTarjetacreditocompraRequiredMessage_lugarFacturacion}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tarjetacreditocompraController.create}" value="#{bundle.Save}" update="display,:TarjetacreditocompraListForm:datalist,:growl" oncomplete="handleSubmit(args,'TarjetacreditocompraCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TarjetacreditocompraCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

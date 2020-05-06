@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InventarioCreateDlg" widgetVar="InventarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateInventarioTitle}">
+            <h:form id="InventarioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{inventarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateInventarioLabel_inventarioid}" for="inventarioid" />
+                        <p:inputText id="inventarioid" value="#{inventarioController.selected.inventarioid}" title="#{bundle.CreateInventarioTitle_inventarioid}" required="true" requiredMessage="#{bundle.CreateInventarioRequiredMessage_inventarioid}"/>
+                        <p:outputLabel value="#{bundle.CreateInventarioLabel_existencias}" for="existencias" />
+                        <p:inputText id="existencias" value="#{inventarioController.selected.existencias}" title="#{bundle.CreateInventarioTitle_existencias}" required="true" requiredMessage="#{bundle.CreateInventarioRequiredMessage_existencias}"/>
+                        <p:outputLabel value="#{bundle.CreateInventarioLabel_productoid}" for="productoid" />
+                        <p:selectOneMenu id="productoid" value="#{inventarioController.selected.productoid}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_productoid}">
+                            <f:selectItems value="#{productoController.itemsAvailableSelectOne}"
+                                           var="productoidItem"
+                                           itemValue="#{productoidItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{inventarioController.create}" value="#{bundle.Save}" update="display,:InventarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'InventarioCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InventarioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

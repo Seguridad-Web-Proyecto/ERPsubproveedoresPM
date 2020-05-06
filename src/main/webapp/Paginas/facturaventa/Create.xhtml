@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturaventaCreateDlg" widgetVar="FacturaventaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateFacturaventaTitle}">
+            <h:form id="FacturaventaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturaventaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateFacturaventaLabel_facturaventaid}" for="facturaventaid" />
+                        <p:inputText id="facturaventaid" value="#{facturaventaController.selected.facturaventaid}" title="#{bundle.CreateFacturaventaTitle_facturaventaid}" required="true" requiredMessage="#{bundle.CreateFacturaventaRequiredMessage_facturaventaid}"/>
+                        <p:outputLabel value="#{bundle.CreateFacturaventaLabel_fechaEmision}" for="fechaEmision" />
+                        <p:calendar id="fechaEmision" pattern="MM/dd/yyyy" value="#{facturaventaController.selected.fechaEmision}" title="#{bundle.EditFacturaventaTitle_fechaEmision}" required="true" requiredMessage="#{bundle.EditFacturaventaRequiredMessage_fechaEmision}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateFacturaventaLabel_fechaVencimientoPago}" for="fechaVencimientoPago" />
+                        <p:calendar id="fechaVencimientoPago" pattern="MM/dd/yyyy" value="#{facturaventaController.selected.fechaVencimientoPago}" title="#{bundle.EditFacturaventaTitle_fechaVencimientoPago}" required="true" requiredMessage="#{bundle.EditFacturaventaRequiredMessage_fechaVencimientoPago}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateFacturaventaLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{facturaventaController.selected.descripcion}" title="#{bundle.CreateFacturaventaTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateFacturaventaRequiredMessage_descripcion}"/>
+                        <p:outputLabel value="#{bundle.CreateFacturaventaLabel_pagoid}" for="pagoid" />
+                        <p:selectOneMenu id="pagoid" value="#{facturaventaController.selected.pagoid}" >
+                            <f:selectItems value="#{pagoventaController.itemsAvailableSelectOne}"
+                                           var="pagoidItem"
+                                           itemValue="#{pagoidItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{facturaventaController.create}" value="#{bundle.Save}" update="display,:FacturaventaListForm:datalist,:growl" oncomplete="handleSubmit(args,'FacturaventaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FacturaventaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdenventaViewDlg" widgetVar="OrdenventaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewOrdenventaTitle}">
+            <h:form id="OrdenventaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ordenventaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewOrdenventaLabel_ordenventaid}"/>
+                        <h:outputText value="#{ordenventaController.selected.ordenventaid}" title="#{bundle.ViewOrdenventaTitle_ordenventaid}"/>
+                        <h:outputText value="#{bundle.ViewOrdenventaLabel_fechaVenta}"/>
+                        <h:outputText value="#{ordenventaController.selected.fechaVenta}" title="#{bundle.ViewOrdenventaTitle_fechaVenta}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewOrdenventaLabel_status}"/>
+                        <h:outputText value="#{ordenventaController.selected.status}" title="#{bundle.ViewOrdenventaTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewOrdenventaLabel_iva}"/>
+                        <h:outputText value="#{ordenventaController.selected.iva}" title="#{bundle.ViewOrdenventaTitle_iva}"/>
+                        <h:outputText value="#{bundle.ViewOrdenventaLabel_subtotal}"/>
+                        <h:outputText value="#{ordenventaController.selected.subtotal}" title="#{bundle.ViewOrdenventaTitle_subtotal}"/>
+                        <h:outputText value="#{bundle.ViewOrdenventaLabel_total}"/>
+                        <h:outputText value="#{ordenventaController.selected.total}" title="#{bundle.ViewOrdenventaTitle_total}"/>
+                        <h:outputText value="#{bundle.ViewOrdenventaLabel_descripcion}"/>
+                        <h:outputText value="#{ordenventaController.selected.descripcion}" title="#{bundle.ViewOrdenventaTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewOrdenventaLabel_clienteid}"/>
+                        <h:outputText value="#{ordenventaController.selected.clienteid}" title="#{bundle.ViewOrdenventaTitle_clienteid}"/>
+                        <h:outputText value="#{bundle.ViewOrdenventaLabel_facturaid}"/>
+                        <h:outputText value="#{ordenventaController.selected.facturaid}" title="#{bundle.ViewOrdenventaTitle_facturaid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="OrdenventaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
