@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="UsuarioswListForm">
-                <p:panel header="#{bundle.ListUsuarioswTitle}">
+                <p:panel header="Módulo Usuarios Web Services">
                     <p:dataTable id="datalist" value="#{usuarioswController.items}" var="item"
                                  selectionMode="single" selection="#{usuarioswController.selected}"
                                  paginator="true"
@@ -29,45 +29,45 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuarioswTitle_usuarioid}"/>
+                                <h:outputText value="#"/>
                             </f:facet>
                             <h:outputText value="#{item.usuarioid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuarioswTitle_usuario}"/>
+                                <h:outputText value="Usuario Web Services"/>
                             </f:facet>
                             <h:outputText value="#{item.usuario}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuarioswTitle_contrasenia}"/>
+                                <h:outputText value="Contraseña"/>
                             </f:facet>
                             <h:outputText value="#{item.contrasenia}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuarioswTitle_activo}"/>
+                                <h:outputText value="Activo"/>
                             </f:facet>
                             <p:selectBooleanCheckbox value="#{item.activo}" disabled="true"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuarioswTitle_empresa}"/>
+                                <h:outputText value="Empresa"/>
                             </f:facet>
                             <h:outputText value="#{item.empresa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuarioswTitle_rfc}"/>
+                                <h:outputText value="RFC"/>
                             </f:facet>
                             <h:outputText value="#{item.rfc}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{usuarioswController.prepareCreate}" update=":UsuarioswCreateForm" oncomplete="PF('UsuarioswCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":UsuarioswViewForm" oncomplete="PF('UsuarioswViewDialog').show()" disabled="#{empty usuarioswController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":UsuarioswEditForm" oncomplete="PF('UsuarioswEditDialog').show()" disabled="#{empty usuarioswController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{usuarioswController.destroy}" update=":growl,datalist" disabled="#{empty usuarioswController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{usuarioswController.prepareCreate}" update=":UsuarioswCreateForm" oncomplete="PF('UsuarioswCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":UsuarioswViewForm" oncomplete="PF('UsuarioswViewDialog').show()" disabled="#{empty usuarioswController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":UsuarioswEditForm" oncomplete="PF('UsuarioswEditDialog').show()" disabled="#{empty usuarioswController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{usuarioswController.destroy}" update=":growl,datalist" disabled="#{empty usuarioswController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

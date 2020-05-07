@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="PagoventaListForm">
-                <p:panel header="#{bundle.ListPagoventaTitle}">
+                <p:panel header="Módulo Pago Venta">
                     <p:dataTable id="datalist" value="#{pagoventaController.items}" var="item"
                                  selectionMode="single" selection="#{pagoventaController.selected}"
                                  paginator="true"
@@ -29,13 +29,13 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagoventaTitle_pagoventaid}"/>
+                                <h:outputText value="#"/>
                             </f:facet>
                             <h:outputText value="#{item.pagoventaid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagoventaTitle_fechaPago}"/>
+                                <h:outputText value="Fecha de Venta"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaPago}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -49,21 +49,21 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagoventaTitle_estado}"/>
+                                <h:outputText value="Estatus"/>
                             </f:facet>
                             <h:outputText value="#{item.estado}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagoventaTitle_tarjetacreditoid}"/>
+                                <h:outputText value="Tarjeta Asociada"/>
                             </f:facet>
                             <h:outputText value="#{item.tarjetacreditoid}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{pagoventaController.prepareCreate}" update=":PagoventaCreateForm" oncomplete="PF('PagoventaCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PagoventaViewForm" oncomplete="PF('PagoventaViewDialog').show()" disabled="#{empty pagoventaController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PagoventaEditForm" oncomplete="PF('PagoventaEditDialog').show()" disabled="#{empty pagoventaController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{pagoventaController.destroy}" update=":growl,datalist" disabled="#{empty pagoventaController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{pagoventaController.prepareCreate}" update=":PagoventaCreateForm" oncomplete="PF('PagoventaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":PagoventaViewForm" oncomplete="PF('PagoventaViewDialog').show()" disabled="#{empty pagoventaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":PagoventaEditForm" oncomplete="PF('PagoventaEditDialog').show()" disabled="#{empty pagoventaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{pagoventaController.destroy}" update=":growl,datalist" disabled="#{empty pagoventaController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

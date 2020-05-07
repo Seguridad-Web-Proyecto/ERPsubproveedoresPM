@@ -8,36 +8,34 @@
 
     <ui:composition>
 
-        <p:dialog id="PersonaViewDlg" widgetVar="PersonaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPersonaTitle}">
+        <p:dialog id="PersonaViewDlg" widgetVar="PersonaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="PersonaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{personaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewPersonaLabel_personaid}"/>
+                        <h:outputText value="#"/>
                         <h:outputText value="#{personaController.selected.personaid}" title="#{bundle.ViewPersonaTitle_personaid}"/>
-                        <h:outputText value="#{bundle.ViewPersonaLabel_nombres}"/>
+                        <h:outputText value="Nombre(s)"/>
                         <h:outputText value="#{personaController.selected.nombres}" title="#{bundle.ViewPersonaTitle_nombres}"/>
-                        <h:outputText value="#{bundle.ViewPersonaLabel_apellidos}"/>
+                        <h:outputText value="Apellid(s)"/>
                         <h:outputText value="#{personaController.selected.apellidos}" title="#{bundle.ViewPersonaTitle_apellidos}"/>
-                        <h:outputText value="#{bundle.ViewPersonaLabel_fechaNacimiento}"/>
+                        <h:outputText value="Fecha de Nacimiento"/>
                         <h:outputText value="#{personaController.selected.fechaNacimiento}" title="#{bundle.ViewPersonaTitle_fechaNacimiento}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewPersonaLabel_telefono}"/>
+                        <h:outputText value="Teléfono"/>
                         <h:outputText value="#{personaController.selected.telefono}" title="#{bundle.ViewPersonaTitle_telefono}"/>
-                        <h:outputText value="#{bundle.ViewPersonaLabel_curp}"/>
+                        <h:outputText value="CURP"/>
                         <h:outputText value="#{personaController.selected.curp}" title="#{bundle.ViewPersonaTitle_curp}"/>
-                        <h:outputText value="#{bundle.ViewPersonaLabel_rfc}"/>
+                        <h:outputText value="RFC"/>
                         <h:outputText value="#{personaController.selected.rfc}" title="#{bundle.ViewPersonaTitle_rfc}"/>
-                        <h:outputText value="#{bundle.ViewPersonaLabel_sexo}"/>
+                        <h:outputText value="Sexo"/>
                         <h:outputText value="#{personaController.selected.sexo}" title="#{bundle.ViewPersonaTitle_sexo}"/>
-                        <h:outputText value="#{bundle.ViewPersonaLabel_residencia}"/>
+                        <h:outputText value="Domicilio"/>
                         <h:outputText value="#{personaController.selected.residencia}" title="#{bundle.ViewPersonaTitle_residencia}"/>
-                        <h:outputText value="#{bundle.ViewPersonaLabel_email}"/>
+                        <h:outputText value="Email"/>
                         <h:outputText value="#{personaController.selected.email}" title="#{bundle.ViewPersonaTitle_email}"/>
-                        <h:outputText value="#{bundle.ViewPersonaLabel_empleado}"/>
-                        <h:outputText value="#{personaController.selected.empleado}" title="#{bundle.ViewPersonaTitle_empleado}"/>
-                    </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="PersonaViewDialog.hide()"/>
+                        </p:panelGrid>
+                    <p:commandButton value="Cerrar" onclick="PersonaViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -8,18 +8,18 @@
 
     <ui:composition>
 
-        <p:dialog id="InventarioViewDlg" widgetVar="InventarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewInventarioTitle}">
+        <p:dialog id="InventarioViewDlg" widgetVar="InventarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="InventarioViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{inventarioController.selected != null}">
-                        <h:outputText value="#{bundle.ViewInventarioLabel_inventarioid}"/>
+                        <h:outputText value="#"/>
                         <h:outputText value="#{inventarioController.selected.inventarioid}" title="#{bundle.ViewInventarioTitle_inventarioid}"/>
-                        <h:outputText value="#{bundle.ViewInventarioLabel_existencias}"/>
+                        <h:outputText value="#Exitencia"/>
                         <h:outputText value="#{inventarioController.selected.existencias}" title="#{bundle.ViewInventarioTitle_existencias}"/>
-                        <h:outputText value="#{bundle.ViewInventarioLabel_productoid}"/>
+                        <h:outputText value="Producto"/>
                         <h:outputText value="#{inventarioController.selected.productoid}" title="#{bundle.ViewInventarioTitle_productoid}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="InventarioViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="InventarioViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

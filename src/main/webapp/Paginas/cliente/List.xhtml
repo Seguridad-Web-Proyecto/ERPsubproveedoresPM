@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="ClienteListForm">
-                <p:panel header="#{bundle.ListClienteTitle}">
+                <p:panel header="Módulo Cliente">
                     <p:dataTable id="datalist" value="#{clienteController.items}" var="item"
                                  selectionMode="single" selection="#{clienteController.selected}"
                                  paginator="true"
@@ -29,69 +29,69 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListClienteTitle_clienteid}"/>
+                                <h:outputText value="#"/>
                             </f:facet>
                             <h:outputText value="#{item.clienteid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListClienteTitle_empresa}"/>
+                                <h:outputText value="Nombre de la Empresa"/>
                             </f:facet>
                             <h:outputText value="#{item.empresa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListClienteTitle_nombreContacto}"/>
+                                <h:outputText value="Nombre de Contacto"/>
                             </f:facet>
                             <h:outputText value="#{item.nombreContacto}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListClienteTitle_area}"/>
+                                <h:outputText value="Area"/>
                             </f:facet>
                             <h:outputText value="#{item.area}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListClienteTitle_telefono}"/>
+                                <h:outputText value="Teléfono"/>
                             </f:facet>
                             <h:outputText value="#{item.telefono}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListClienteTitle_rfc}"/>
+                                <h:outputText value="RFC"/>
                             </f:facet>
                             <h:outputText value="#{item.rfc}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListClienteTitle_email}"/>
+                                <h:outputText value="Email"/>
                             </f:facet>
                             <h:outputText value="#{item.email}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListClienteTitle_activo}"/>
+                                <h:outputText value="Activo"/>
                             </f:facet>
                             <p:selectBooleanCheckbox value="#{item.activo}" disabled="true"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListClienteTitle_paginaWeb}"/>
+                                <h:outputText value="Página Web"/>
                             </f:facet>
                             <h:outputText value="#{item.paginaWeb}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListClienteTitle_domicilioFiscal}"/>
+                                <h:outputText value="Domicilio"/>
                             </f:facet>
                             <h:outputText value="#{item.domicilioFiscal}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{clienteController.prepareCreate}" update=":ClienteCreateForm" oncomplete="PF('ClienteCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ClienteViewForm" oncomplete="PF('ClienteViewDialog').show()" disabled="#{empty clienteController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ClienteEditForm" oncomplete="PF('ClienteEditDialog').show()" disabled="#{empty clienteController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{clienteController.destroy}" update=":growl,datalist" disabled="#{empty clienteController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{clienteController.prepareCreate}" update=":ClienteCreateForm" oncomplete="PF('ClienteCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":ClienteViewForm" oncomplete="PF('ClienteViewDialog').show()" disabled="#{empty clienteController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":ClienteEditForm" oncomplete="PF('ClienteEditDialog').show()" disabled="#{empty clienteController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{clienteController.destroy}" update=":growl,datalist" disabled="#{empty clienteController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

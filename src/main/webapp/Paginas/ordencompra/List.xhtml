@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="OrdencompraListForm">
-                <p:panel header="#{bundle.ListOrdencompraTitle}">
+                <p:panel header="Módulo Orde de Compra">
                     <p:dataTable id="datalist" value="#{ordencompraController.items}" var="item"
                                  selectionMode="single" selection="#{ordencompraController.selected}"
                                  paginator="true"
@@ -29,13 +29,13 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdencompraTitle_ordencompraid}"/>
+                                <h:outputText value="#"/>
                             </f:facet>
                             <h:outputText value="#{item.ordencompraid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdencompraTitle_fechaCompra}"/>
+                                <h:outputText value="Fecha de Compra"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaCompra}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -43,51 +43,51 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdencompraTitle_status}"/>
+                                <h:outputText value="Estatus"/>
                             </f:facet>
                             <h:outputText value="#{item.status}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdencompraTitle_iva}"/>
+                                <h:outputText value="IVA"/>
                             </f:facet>
                             <h:outputText value="#{item.iva}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdencompraTitle_subtotal}"/>
+                                <h:outputText value="Sub Total"/>
                             </f:facet>
                             <h:outputText value="#{item.subtotal}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdencompraTitle_total}"/>
+                                <h:outputText value="Total"/>
                             </f:facet>
                             <h:outputText value="#{item.total}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdencompraTitle_descripcion}"/>
+                                <h:outputText value="Descripción"/>
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdencompraTitle_facturaid}"/>
+                                <h:outputText value="Factura Asociada"/>
                             </f:facet>
                             <h:outputText value="#{item.facturaid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdencompraTitle_proveedorid}"/>
+                                <h:outputText value="Proveedor Asociado"/>
                             </f:facet>
                             <h:outputText value="#{item.proveedorid}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{ordencompraController.prepareCreate}" update=":OrdencompraCreateForm" oncomplete="PF('OrdencompraCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":OrdencompraViewForm" oncomplete="PF('OrdencompraViewDialog').show()" disabled="#{empty ordencompraController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":OrdencompraEditForm" oncomplete="PF('OrdencompraEditDialog').show()" disabled="#{empty ordencompraController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{ordencompraController.destroy}" update=":growl,datalist" disabled="#{empty ordencompraController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{ordencompraController.prepareCreate}" update=":OrdencompraCreateForm" oncomplete="PF('OrdencompraCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":OrdencompraViewForm" oncomplete="PF('OrdencompraViewDialog').show()" disabled="#{empty ordencompraController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":OrdencompraEditForm" oncomplete="PF('OrdencompraEditDialog').show()" disabled="#{empty ordencompraController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{ordencompraController.destroy}" update=":growl,datalist" disabled="#{empty ordencompraController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

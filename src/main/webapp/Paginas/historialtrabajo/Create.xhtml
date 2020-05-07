@@ -8,31 +8,29 @@
 
     <ui:composition>
 
-        <p:dialog id="HistorialtrabajoCreateDlg" widgetVar="HistorialtrabajoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateHistorialtrabajoTitle}">
+        <p:dialog id="HistorialtrabajoCreateDlg" widgetVar="HistorialtrabajoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nuevo Historial de Trabajo">
             <h:form id="HistorialtrabajoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{historialtrabajoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateHistorialtrabajoLabel_historialid}" for="historialid" />
-                        <p:inputText id="historialid" value="#{historialtrabajoController.selected.historialid}" title="#{bundle.CreateHistorialtrabajoTitle_historialid}" required="true" requiredMessage="#{bundle.CreateHistorialtrabajoRequiredMessage_historialid}"/>
-                        <p:outputLabel value="#{bundle.CreateHistorialtrabajoLabel_fechaInicio}" for="fechaInicio" />
+                        <p:outputLabel value="Fecha de Inicio" for="fechaInicio" />
                         <p:calendar id="fechaInicio" pattern="MM/dd/yyyy" value="#{historialtrabajoController.selected.fechaInicio}" title="#{bundle.EditHistorialtrabajoTitle_fechaInicio}" required="true" requiredMessage="#{bundle.EditHistorialtrabajoRequiredMessage_fechaInicio}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateHistorialtrabajoLabel_fechaFin}" for="fechaFin" />
+                        <p:outputLabel value="Fecha Fin" for="fechaFin" />
                         <p:calendar id="fechaFin" pattern="MM/dd/yyyy" value="#{historialtrabajoController.selected.fechaFin}" title="#{bundle.EditHistorialtrabajoTitle_fechaFin}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateHistorialtrabajoLabel_cargoid}" for="cargoid" />
+                        <p:outputLabel value="Cargo" for="cargoid" />
                         <p:selectOneMenu id="cargoid" value="#{historialtrabajoController.selected.cargoid}" required="true" requiredMessage="#{bundle.EditHistorialtrabajoRequiredMessage_cargoid}">
                             <f:selectItems value="#{cargoController.itemsAvailableSelectOne}"
                                            var="cargoidItem"
                                            itemValue="#{cargoidItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateHistorialtrabajoLabel_empleadoid}" for="empleadoid" />
+                        <p:outputLabel value="Empleado" for="empleadoid" />
                         <p:selectOneMenu id="empleadoid" value="#{historialtrabajoController.selected.empleadoid}" required="true" requiredMessage="#{bundle.EditHistorialtrabajoRequiredMessage_empleadoid}">
                             <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"
                                            var="empleadoidItem"
                                            itemValue="#{empleadoidItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{historialtrabajoController.create}" value="#{bundle.Save}" update="display,:HistorialtrabajoListForm:datalist,:growl" oncomplete="handleSubmit(args,'HistorialtrabajoCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="HistorialtrabajoCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{historialtrabajoController.create}" value="Guardar" update="display,:HistorialtrabajoListForm:datalist,:growl" oncomplete="handleSubmit(args,'HistorialtrabajoCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="HistorialtrabajoCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

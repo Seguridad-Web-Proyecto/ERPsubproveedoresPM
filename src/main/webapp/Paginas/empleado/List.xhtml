@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="EmpleadoListForm">
-                <p:panel header="#{bundle.ListEmpleadoTitle}">
+                <p:panel header="Módulo Empleado">
                     <p:dataTable id="datalist" value="#{empleadoController.items}" var="item"
                                  selectionMode="single" selection="#{empleadoController.selected}"
                                  paginator="true"
@@ -29,13 +29,13 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEmpleadoTitle_empleadoid}"/>
+                                <h:outputText value="#"/>
                             </f:facet>
                             <h:outputText value="#{item.empleadoid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEmpleadoTitle_fechaVinculo}"/>
+                                <h:outputText value="Fecha de Vinculo"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaVinculo}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -43,7 +43,7 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEmpleadoTitle_fechaRetiro}"/>
+                                <h:outputText value="Fecha de Retiro"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaRetiro}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -51,15 +51,15 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEmpleadoTitle_persona}"/>
+                                <h:outputText value="Persona"/>
                             </f:facet>
                             <h:outputText value="#{item.persona}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{empleadoController.prepareCreate}" update=":EmpleadoCreateForm" oncomplete="PF('EmpleadoCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EmpleadoViewForm" oncomplete="PF('EmpleadoViewDialog').show()" disabled="#{empty empleadoController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":EmpleadoEditForm" oncomplete="PF('EmpleadoEditDialog').show()" disabled="#{empty empleadoController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{empleadoController.destroy}" update=":growl,datalist" disabled="#{empty empleadoController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{empleadoController.prepareCreate}" update=":EmpleadoCreateForm" oncomplete="PF('EmpleadoCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":EmpleadoViewForm" oncomplete="PF('EmpleadoViewDialog').show()" disabled="#{empty empleadoController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":EmpleadoEditForm" oncomplete="PF('EmpleadoEditDialog').show()" disabled="#{empty empleadoController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{empleadoController.destroy}" update=":growl,datalist" disabled="#{empty empleadoController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

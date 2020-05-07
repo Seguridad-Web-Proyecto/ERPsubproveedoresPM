@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="GananciaListForm">
-                <p:panel header="#{bundle.ListGananciaTitle}">
+                <p:panel header="Módulo Ganancia">
                     <p:dataTable id="datalist" value="#{gananciaController.items}" var="item"
                                  selectionMode="single" selection="#{gananciaController.selected}"
                                  paginator="true"
@@ -29,27 +29,27 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGananciaTitle_gananciaid}"/>
+                                <h:outputText value="#"/>
                             </f:facet>
                             <h:outputText value="#{item.gananciaid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGananciaTitle_porcentaje}"/>
+                                <h:outputText value="Porcentaje de Ganacia"/>
                             </f:facet>
                             <h:outputText value="#{item.porcentaje}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGananciaTitle_productoid}"/>
+                                <h:outputText value="Producto"/>
                             </f:facet>
                             <h:outputText value="#{item.productoid}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{gananciaController.prepareCreate}" update=":GananciaCreateForm" oncomplete="PF('GananciaCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":GananciaViewForm" oncomplete="PF('GananciaViewDialog').show()" disabled="#{empty gananciaController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":GananciaEditForm" oncomplete="PF('GananciaEditDialog').show()" disabled="#{empty gananciaController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{gananciaController.destroy}" update=":growl,datalist" disabled="#{empty gananciaController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{gananciaController.prepareCreate}" update=":GananciaCreateForm" oncomplete="PF('GananciaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":GananciaViewForm" oncomplete="PF('GananciaViewDialog').show()" disabled="#{empty gananciaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":GananciaEditForm" oncomplete="PF('GananciaEditDialog').show()" disabled="#{empty gananciaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{gananciaController.destroy}" update=":growl,datalist" disabled="#{empty gananciaController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

@@ -8,18 +8,18 @@
 
     <ui:composition>
 
-        <p:dialog id="RolViewDlg" widgetVar="RolViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRolTitle}">
+        <p:dialog id="RolViewDlg" widgetVar="RolViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="RolViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{rolController.selected != null}">
-                        <h:outputText value="#{bundle.ViewRolLabel_email}"/>
+                        <h:outputText value="Email"/>
                         <h:outputText value="#{rolController.selected.email}" title="#{bundle.ViewRolTitle_email}"/>
-                        <h:outputText value="#{bundle.ViewRolLabel_nombre}"/>
+                        <h:outputText value="Nombre"/>
                         <h:outputText value="#{rolController.selected.nombre}" title="#{bundle.ViewRolTitle_nombre}"/>
-                        <h:outputText value="#{bundle.ViewRolLabel_usuario}"/>
+                        <h:outputText value="Usuario"/>
                         <h:outputText value="#{rolController.selected.usuario}" title="#{bundle.ViewRolTitle_usuario}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="RolViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="RolViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

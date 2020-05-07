@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="VentadetalleListForm">
-                <p:panel header="#{bundle.ListVentadetalleTitle}">
+                <p:panel header="Módulo de Venta Detalle">
                     <p:dataTable id="datalist" value="#{ventadetalleController.items}" var="item"
                                  selectionMode="single" selection="#{ventadetalleController.selected}"
                                  paginator="true"
@@ -29,39 +29,39 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListVentadetalleTitle_cantidad}"/>
+                                <h:outputText value="Cantidad"/>
                             </f:facet>
                             <h:outputText value="#{item.cantidad}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListVentadetalleTitle_precioUnitario}"/>
+                                <h:outputText value="Precio Unitario"/>
                             </f:facet>
                             <h:outputText value="#{item.precioUnitario}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListVentadetalleTitle_importe}"/>
+                                <h:outputText value="Importe"/>
                             </f:facet>
                             <h:outputText value="#{item.importe}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListVentadetalleTitle_ordenventa}"/>
+                                <h:outputText value="Orden de venta"/>
                             </f:facet>
                             <h:outputText value="#{item.ordenventa}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListVentadetalleTitle_producto}"/>
+                                <h:outputText value="Producto"/>
                             </f:facet>
                             <h:outputText value="#{item.producto}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{ventadetalleController.prepareCreate}" update=":VentadetalleCreateForm" oncomplete="PF('VentadetalleCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":VentadetalleViewForm" oncomplete="PF('VentadetalleViewDialog').show()" disabled="#{empty ventadetalleController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":VentadetalleEditForm" oncomplete="PF('VentadetalleEditDialog').show()" disabled="#{empty ventadetalleController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{ventadetalleController.destroy}" update=":growl,datalist" disabled="#{empty ventadetalleController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{ventadetalleController.prepareCreate}" update=":VentadetalleCreateForm" oncomplete="PF('VentadetalleCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":VentadetalleViewForm" oncomplete="PF('VentadetalleViewDialog').show()" disabled="#{empty ventadetalleController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":VentadetalleEditForm" oncomplete="PF('VentadetalleEditDialog').show()" disabled="#{empty ventadetalleController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{ventadetalleController.destroy}" update=":growl,datalist" disabled="#{empty ventadetalleController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

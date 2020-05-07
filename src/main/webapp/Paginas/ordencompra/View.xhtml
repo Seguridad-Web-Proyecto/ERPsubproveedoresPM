@@ -8,32 +8,32 @@
 
     <ui:composition>
 
-        <p:dialog id="OrdencompraViewDlg" widgetVar="OrdencompraViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewOrdencompraTitle}">
+        <p:dialog id="OrdencompraViewDlg" widgetVar="OrdencompraViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="OrdencompraViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{ordencompraController.selected != null}">
-                        <h:outputText value="#{bundle.ViewOrdencompraLabel_ordencompraid}"/>
+                        <h:outputText value="#"/>
                         <h:outputText value="#{ordencompraController.selected.ordencompraid}" title="#{bundle.ViewOrdencompraTitle_ordencompraid}"/>
-                        <h:outputText value="#{bundle.ViewOrdencompraLabel_fechaCompra}"/>
+                        <h:outputText value="Fecha de Compra"/>
                         <h:outputText value="#{ordencompraController.selected.fechaCompra}" title="#{bundle.ViewOrdencompraTitle_fechaCompra}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewOrdencompraLabel_status}"/>
+                        <h:outputText value="Estatus"/>
                         <h:outputText value="#{ordencompraController.selected.status}" title="#{bundle.ViewOrdencompraTitle_status}"/>
-                        <h:outputText value="#{bundle.ViewOrdencompraLabel_iva}"/>
+                        <h:outputText value="IVA"/>
                         <h:outputText value="#{ordencompraController.selected.iva}" title="#{bundle.ViewOrdencompraTitle_iva}"/>
-                        <h:outputText value="#{bundle.ViewOrdencompraLabel_subtotal}"/>
+                        <h:outputText value="Sub Total"/>
                         <h:outputText value="#{ordencompraController.selected.subtotal}" title="#{bundle.ViewOrdencompraTitle_subtotal}"/>
-                        <h:outputText value="#{bundle.ViewOrdencompraLabel_total}"/>
+                        <h:outputText value="Total"/>
                         <h:outputText value="#{ordencompraController.selected.total}" title="#{bundle.ViewOrdencompraTitle_total}"/>
-                        <h:outputText value="#{bundle.ViewOrdencompraLabel_descripcion}"/>
+                        <h:outputText value="#Descripción"/>
                         <h:outputText value="#{ordencompraController.selected.descripcion}" title="#{bundle.ViewOrdencompraTitle_descripcion}"/>
-                        <h:outputText value="#{bundle.ViewOrdencompraLabel_facturaid}"/>
+                        <h:outputText value="Factura Asociada"/>
                         <h:outputText value="#{ordencompraController.selected.facturaid}" title="#{bundle.ViewOrdencompraTitle_facturaid}"/>
-                        <h:outputText value="#{bundle.ViewOrdencompraLabel_proveedorid}"/>
+                        <h:outputText value="Proveedor Asociado"/>
                         <h:outputText value="#{ordencompraController.selected.proveedorid}" title="#{bundle.ViewOrdencompraTitle_proveedorid}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="OrdencompraViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="OrdencompraViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

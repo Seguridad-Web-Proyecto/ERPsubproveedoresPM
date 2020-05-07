@@ -8,25 +8,23 @@
 
     <ui:composition>
 
-        <p:dialog id="TarjetacreditocompraEditDlg" widgetVar="TarjetacreditocompraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTarjetacreditocompraTitle}">
+        <p:dialog id="TarjetacreditocompraEditDlg" widgetVar="TarjetacreditocompraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Información">
             <h:form id="TarjetacreditocompraEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tarjetacreditocompraController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditTarjetacreditocompraLabel_tarjetacreditocompraid}" for="tarjetacreditocompraid" />
-                        <p:inputText id="tarjetacreditocompraid" value="#{tarjetacreditocompraController.selected.tarjetacreditocompraid}" title="#{bundle.EditTarjetacreditocompraTitle_tarjetacreditocompraid}" required="true" requiredMessage="#{bundle.EditTarjetacreditocompraRequiredMessage_tarjetacreditocompraid}"/>
-                        <p:outputLabel value="#{bundle.EditTarjetacreditocompraLabel_numero}" for="numero" />
+                        <p:outputLabel value="Numéro de Tarjeta" for="numero" />
                         <p:inputText id="numero" value="#{tarjetacreditocompraController.selected.numero}" title="#{bundle.EditTarjetacreditocompraTitle_numero}" required="true" requiredMessage="#{bundle.EditTarjetacreditocompraRequiredMessage_numero}"/>
-                        <p:outputLabel value="#{bundle.EditTarjetacreditocompraLabel_cvc}" for="cvc" />
+                        <p:outputLabel value="CVC" for="cvc" />
                         <p:inputText id="cvc" value="#{tarjetacreditocompraController.selected.cvc}" title="#{bundle.EditTarjetacreditocompraTitle_cvc}" required="true" requiredMessage="#{bundle.EditTarjetacreditocompraRequiredMessage_cvc}"/>
-                        <p:outputLabel value="#{bundle.EditTarjetacreditocompraLabel_nombreTitular}" for="nombreTitular" />
+                        <p:outputLabel value="Nombre del Titular" for="nombreTitular" />
                         <p:inputText id="nombreTitular" value="#{tarjetacreditocompraController.selected.nombreTitular}" title="#{bundle.EditTarjetacreditocompraTitle_nombreTitular}" required="true" requiredMessage="#{bundle.EditTarjetacreditocompraRequiredMessage_nombreTitular}"/>
-                        <p:outputLabel value="#{bundle.EditTarjetacreditocompraLabel_fechaExpiracion}" for="fechaExpiracion" />
+                        <p:outputLabel value="Fecha de Expiración" for="fechaExpiracion" />
                         <p:inputText id="fechaExpiracion" value="#{tarjetacreditocompraController.selected.fechaExpiracion}" title="#{bundle.EditTarjetacreditocompraTitle_fechaExpiracion}" required="true" requiredMessage="#{bundle.EditTarjetacreditocompraRequiredMessage_fechaExpiracion}"/>
-                        <p:outputLabel value="#{bundle.EditTarjetacreditocompraLabel_lugarFacturacion}" for="lugarFacturacion" />
+                        <p:outputLabel value="Lugar de Facturación" for="lugarFacturacion" />
                         <p:inputText id="lugarFacturacion" value="#{tarjetacreditocompraController.selected.lugarFacturacion}" title="#{bundle.EditTarjetacreditocompraTitle_lugarFacturacion}" required="true" requiredMessage="#{bundle.EditTarjetacreditocompraRequiredMessage_lugarFacturacion}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{tarjetacreditocompraController.update}" value="#{bundle.Save}" update="display,:TarjetacreditocompraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TarjetacreditocompraEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="TarjetacreditocompraEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{tarjetacreditocompraController.update}" value="Guardar" update="display,:TarjetacreditocompraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TarjetacreditocompraEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="TarjetacreditocompraEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

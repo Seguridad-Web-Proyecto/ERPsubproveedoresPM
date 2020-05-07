@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="PersonaListForm">
-                <p:panel header="#{bundle.ListPersonaTitle}">
+                <p:panel header="Módulo Persona">
                     <p:dataTable id="datalist" value="#{personaController.items}" var="item"
                                  selectionMode="single" selection="#{personaController.selected}"
                                  paginator="true"
@@ -29,25 +29,25 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_personaid}"/>
+                                <h:outputText value="#"/>
                             </f:facet>
                             <h:outputText value="#{item.personaid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_nombres}"/>
+                                <h:outputText value="Nombre(s)"/>
                             </f:facet>
                             <h:outputText value="#{item.nombres}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_apellidos}"/>
+                                <h:outputText value="Apellido(s)"/>
                             </f:facet>
                             <h:outputText value="#{item.apellidos}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_fechaNacimiento}"/>
+                                <h:outputText value="Fecha de Nacimiento"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaNacimiento}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -55,51 +55,45 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_telefono}"/>
+                                <h:outputText value="Teléfono"/>
                             </f:facet>
                             <h:outputText value="#{item.telefono}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_curp}"/>
+                                <h:outputText value="CURP"/>
                             </f:facet>
                             <h:outputText value="#{item.curp}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_rfc}"/>
+                                <h:outputText value="RFC"/>
                             </f:facet>
                             <h:outputText value="#{item.rfc}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_sexo}"/>
+                                <h:outputText value="Sexo"/>
                             </f:facet>
                             <h:outputText value="#{item.sexo}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_residencia}"/>
+                                <h:outputText value="Domicilio"/>
                             </f:facet>
                             <h:outputText value="#{item.residencia}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_email}"/>
+                                <h:outputText value="Email"/>
                             </f:facet>
                             <h:outputText value="#{item.email}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPersonaTitle_empleado}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.empleado}"/>
-                        </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{personaController.prepareCreate}" update=":PersonaCreateForm" oncomplete="PF('PersonaCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PersonaViewForm" oncomplete="PF('PersonaViewDialog').show()" disabled="#{empty personaController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PersonaEditForm" oncomplete="PF('PersonaEditDialog').show()" disabled="#{empty personaController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{personaController.destroy}" update=":growl,datalist" disabled="#{empty personaController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{personaController.prepareCreate}" update=":PersonaCreateForm" oncomplete="PF('PersonaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":PersonaViewForm" oncomplete="PF('PersonaViewDialog').show()" disabled="#{empty personaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":PersonaEditForm" oncomplete="PF('PersonaEditDialog').show()" disabled="#{empty personaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{personaController.destroy}" update=":growl,datalist" disabled="#{empty personaController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

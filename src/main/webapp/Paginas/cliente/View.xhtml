@@ -8,32 +8,32 @@
 
     <ui:composition>
 
-        <p:dialog id="ClienteViewDlg" widgetVar="ClienteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewClienteTitle}">
+        <p:dialog id="ClienteViewDlg" widgetVar="ClienteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="ClienteViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
-                        <h:outputText value="#{bundle.ViewClienteLabel_clienteid}"/>
+                        <h:outputText value="#"/>
                         <h:outputText value="#{clienteController.selected.clienteid}" title="#{bundle.ViewClienteTitle_clienteid}"/>
-                        <h:outputText value="#{bundle.ViewClienteLabel_empresa}"/>
+                        <h:outputText value="Nombre de la Empresa"/>
                         <h:outputText value="#{clienteController.selected.empresa}" title="#{bundle.ViewClienteTitle_empresa}"/>
-                        <h:outputText value="#{bundle.ViewClienteLabel_nombreContacto}"/>
+                        <h:outputText value="Nombre del contacto"/>
                         <h:outputText value="#{clienteController.selected.nombreContacto}" title="#{bundle.ViewClienteTitle_nombreContacto}"/>
-                        <h:outputText value="#{bundle.ViewClienteLabel_area}"/>
+                        <h:outputText value="Area"/>
                         <h:outputText value="#{clienteController.selected.area}" title="#{bundle.ViewClienteTitle_area}"/>
-                        <h:outputText value="#{bundle.ViewClienteLabel_telefono}"/>
+                        <h:outputText value="Teléfono"/>
                         <h:outputText value="#{clienteController.selected.telefono}" title="#{bundle.ViewClienteTitle_telefono}"/>
-                        <h:outputText value="#{bundle.ViewClienteLabel_rfc}"/>
+                        <h:outputText value="RFC"/>
                         <h:outputText value="#{clienteController.selected.rfc}" title="#{bundle.ViewClienteTitle_rfc}"/>
-                        <h:outputText value="#{bundle.ViewClienteLabel_email}"/>
+                        <h:outputText value="Email"/>
                         <h:outputText value="#{clienteController.selected.email}" title="#{bundle.ViewClienteTitle_email}"/>
-                        <h:outputText value="#{bundle.ViewClienteLabel_activo}"/>
+                        <h:outputText value="Activo"/>
                         <p:selectBooleanCheckbox value="#{clienteController.selected.activo}" disabled="true"/>
-                        <h:outputText value="#{bundle.ViewClienteLabel_paginaWeb}"/>
+                        <h:outputText value="Página Web"/>
                         <h:outputText value="#{clienteController.selected.paginaWeb}" title="#{bundle.ViewClienteTitle_paginaWeb}"/>
-                        <h:outputText value="#{bundle.ViewClienteLabel_domicilioFiscal}"/>
+                        <h:outputText value="Domicilio"/>
                         <h:outputText value="#{clienteController.selected.domicilioFiscal}" title="#{bundle.ViewClienteTitle_domicilioFiscal}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="ClienteViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="ClienteViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

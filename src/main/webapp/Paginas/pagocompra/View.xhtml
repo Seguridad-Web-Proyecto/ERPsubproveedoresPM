@@ -8,24 +8,24 @@
 
     <ui:composition>
 
-        <p:dialog id="PagocompraViewDlg" widgetVar="PagocompraViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPagocompraTitle}">
+        <p:dialog id="PagocompraViewDlg" widgetVar="PagocompraViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Infomación">
             <h:form id="PagocompraViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{pagocompraController.selected != null}">
-                        <h:outputText value="#{bundle.ViewPagocompraLabel_pagocompraid}"/>
+                        <h:outputText value="#"/>
                         <h:outputText value="#{pagocompraController.selected.pagocompraid}" title="#{bundle.ViewPagocompraTitle_pagocompraid}"/>
-                        <h:outputText value="#{bundle.ViewPagocompraLabel_fechaPago}"/>
+                        <h:outputText value="Fecha de Compra"/>
                         <h:outputText value="#{pagocompraController.selected.fechaPago}" title="#{bundle.ViewPagocompraTitle_fechaPago}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewPagocompraLabel_monto}"/>
+                        <h:outputText value="Monto"/>
                         <h:outputText value="#{pagocompraController.selected.monto}" title="#{bundle.ViewPagocompraTitle_monto}"/>
-                        <h:outputText value="#{bundle.ViewPagocompraLabel_estado}"/>
+                        <h:outputText value="Estatus"/>
                         <h:outputText value="#{pagocompraController.selected.estado}" title="#{bundle.ViewPagocompraTitle_estado}"/>
-                        <h:outputText value="#{bundle.ViewPagocompraLabel_tarjetacreditoid}"/>
+                        <h:outputText value="Trajeta de Asociada"/>
                         <h:outputText value="#{pagocompraController.selected.tarjetacreditoid}" title="#{bundle.ViewPagocompraTitle_tarjetacreditoid}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="PagocompraViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="PagocompraViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

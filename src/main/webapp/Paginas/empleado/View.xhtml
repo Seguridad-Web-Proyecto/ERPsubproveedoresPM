@@ -8,24 +8,24 @@
 
     <ui:composition>
 
-        <p:dialog id="EmpleadoViewDlg" widgetVar="EmpleadoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEmpleadoTitle}">
+        <p:dialog id="EmpleadoViewDlg" widgetVar="EmpleadoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="EmpleadoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{empleadoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewEmpleadoLabel_empleadoid}"/>
+                        <h:outputText value="#"/>
                         <h:outputText value="#{empleadoController.selected.empleadoid}" title="#{bundle.ViewEmpleadoTitle_empleadoid}"/>
-                        <h:outputText value="#{bundle.ViewEmpleadoLabel_fechaVinculo}"/>
+                        <h:outputText value="Fecha de Vinculo"/>
                         <h:outputText value="#{empleadoController.selected.fechaVinculo}" title="#{bundle.ViewEmpleadoTitle_fechaVinculo}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewEmpleadoLabel_fechaRetiro}"/>
+                        <h:outputText value="Fecha de Retiro"/>
                         <h:outputText value="#{empleadoController.selected.fechaRetiro}" title="#{bundle.ViewEmpleadoTitle_fechaRetiro}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewEmpleadoLabel_persona}"/>
+                        <h:outputText value="Persona"/>
                         <h:outputText value="#{empleadoController.selected.persona}" title="#{bundle.ViewEmpleadoTitle_persona}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="EmpleadoViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="EmpleadoViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

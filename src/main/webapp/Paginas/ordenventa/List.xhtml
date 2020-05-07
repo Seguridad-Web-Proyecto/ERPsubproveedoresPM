@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="OrdenventaListForm">
-                <p:panel header="#{bundle.ListOrdenventaTitle}">
+                <p:panel header="Módulo Orden de Venta">
                     <p:dataTable id="datalist" value="#{ordenventaController.items}" var="item"
                                  selectionMode="single" selection="#{ordenventaController.selected}"
                                  paginator="true"
@@ -29,13 +29,13 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_ordenventaid}"/>
+                                <h:outputText value="#"/>
                             </f:facet>
                             <h:outputText value="#{item.ordenventaid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_fechaVenta}"/>
+                                <h:outputText value="Fecha de Venta"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaVenta}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -43,51 +43,51 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_status}"/>
+                                <h:outputText value="Estatus"/>
                             </f:facet>
                             <h:outputText value="#{item.status}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_iva}"/>
+                                <h:outputText value="IVA"/>
                             </f:facet>
                             <h:outputText value="#{item.iva}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_subtotal}"/>
+                                <h:outputText value="Sub Total"/>
                             </f:facet>
                             <h:outputText value="#{item.subtotal}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_total}"/>
+                                <h:outputText value="Total"/>
                             </f:facet>
                             <h:outputText value="#{item.total}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_descripcion}"/>
+                                <h:outputText value="Descripción"/>
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_clienteid}"/>
+                                <h:outputText value="Cliente Asociado"/>
                             </f:facet>
                             <h:outputText value="#{item.clienteid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenventaTitle_facturaid}"/>
+                                <h:outputText value="Factura Asociada"/>
                             </f:facet>
                             <h:outputText value="#{item.facturaid}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{ordenventaController.prepareCreate}" update=":OrdenventaCreateForm" oncomplete="PF('OrdenventaCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":OrdenventaViewForm" oncomplete="PF('OrdenventaViewDialog').show()" disabled="#{empty ordenventaController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":OrdenventaEditForm" oncomplete="PF('OrdenventaEditDialog').show()" disabled="#{empty ordenventaController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{ordenventaController.destroy}" update=":growl,datalist" disabled="#{empty ordenventaController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{ordenventaController.prepareCreate}" update=":OrdenventaCreateForm" oncomplete="PF('OrdenventaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":OrdenventaViewForm" oncomplete="PF('OrdenventaViewDialog').show()" disabled="#{empty ordenventaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":OrdenventaEditForm" oncomplete="PF('OrdenventaEditDialog').show()" disabled="#{empty ordenventaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{ordenventaController.destroy}" update=":growl,datalist" disabled="#{empty ordenventaController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

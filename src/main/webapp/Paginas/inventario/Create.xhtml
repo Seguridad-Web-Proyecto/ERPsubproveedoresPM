@@ -8,23 +8,21 @@
 
     <ui:composition>
 
-        <p:dialog id="InventarioCreateDlg" widgetVar="InventarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateInventarioTitle}">
+        <p:dialog id="InventarioCreateDlg" widgetVar="InventarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nuevo Inventario">
             <h:form id="InventarioCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{inventarioController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateInventarioLabel_inventarioid}" for="inventarioid" />
-                        <p:inputText id="inventarioid" value="#{inventarioController.selected.inventarioid}" title="#{bundle.CreateInventarioTitle_inventarioid}" required="true" requiredMessage="#{bundle.CreateInventarioRequiredMessage_inventarioid}"/>
-                        <p:outputLabel value="#{bundle.CreateInventarioLabel_existencias}" for="existencias" />
+                        <p:outputLabel value="Existencia" for="existencias" />
                         <p:inputText id="existencias" value="#{inventarioController.selected.existencias}" title="#{bundle.CreateInventarioTitle_existencias}" required="true" requiredMessage="#{bundle.CreateInventarioRequiredMessage_existencias}"/>
-                        <p:outputLabel value="#{bundle.CreateInventarioLabel_productoid}" for="productoid" />
+                        <p:outputLabel value="Producto" for="productoid" />
                         <p:selectOneMenu id="productoid" value="#{inventarioController.selected.productoid}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_productoid}">
                             <f:selectItems value="#{productoController.itemsAvailableSelectOne}"
                                            var="productoidItem"
                                            itemValue="#{productoidItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{inventarioController.create}" value="#{bundle.Save}" update="display,:InventarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'InventarioCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="InventarioCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{inventarioController.create}" value="Guardar" update="display,:InventarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'InventarioCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="InventarioCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

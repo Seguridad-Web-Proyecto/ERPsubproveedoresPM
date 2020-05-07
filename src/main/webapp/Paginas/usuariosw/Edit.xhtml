@@ -8,25 +8,23 @@
 
     <ui:composition>
 
-        <p:dialog id="UsuarioswEditDlg" widgetVar="UsuarioswEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUsuarioswTitle}">
+        <p:dialog id="UsuarioswEditDlg" widgetVar="UsuarioswEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Información">
             <h:form id="UsuarioswEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usuarioswController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditUsuarioswLabel_usuarioid}" for="usuarioid" />
-                        <p:inputText id="usuarioid" value="#{usuarioswController.selected.usuarioid}" title="#{bundle.EditUsuarioswTitle_usuarioid}" required="true" requiredMessage="#{bundle.EditUsuarioswRequiredMessage_usuarioid}"/>
-                        <p:outputLabel value="#{bundle.EditUsuarioswLabel_usuario}" for="usuario" />
+                        <p:outputLabel value="Usuario" for="usuario" />
                         <p:inputText id="usuario" value="#{usuarioswController.selected.usuario}" title="#{bundle.EditUsuarioswTitle_usuario}" required="true" requiredMessage="#{bundle.EditUsuarioswRequiredMessage_usuario}"/>
-                        <p:outputLabel value="#{bundle.EditUsuarioswLabel_contrasenia}" for="contrasenia" />
+                        <p:outputLabel value="Contraseña" for="contrasenia" />
                         <p:inputText id="contrasenia" value="#{usuarioswController.selected.contrasenia}" title="#{bundle.EditUsuarioswTitle_contrasenia}" required="true" requiredMessage="#{bundle.EditUsuarioswRequiredMessage_contrasenia}"/>
-                        <p:outputLabel value="#{bundle.EditUsuarioswLabel_activo}" for="activo" />
+                        <p:outputLabel value="Activo" for="activo" />
                         <p:selectBooleanCheckbox id="activo" value="#{usuarioswController.selected.activo}" required="true" requiredMessage="#{bundle.EditUsuarioswRequiredMessage_activo}"/>
-                        <p:outputLabel value="#{bundle.EditUsuarioswLabel_empresa}" for="empresa" />
+                        <p:outputLabel value="Empresa" for="empresa" />
                         <p:inputText id="empresa" value="#{usuarioswController.selected.empresa}" title="#{bundle.EditUsuarioswTitle_empresa}" required="true" requiredMessage="#{bundle.EditUsuarioswRequiredMessage_empresa}"/>
-                        <p:outputLabel value="#{bundle.EditUsuarioswLabel_rfc}" for="rfc" />
+                        <p:outputLabel value="RFC" for="rfc" />
                         <p:inputText id="rfc" value="#{usuarioswController.selected.rfc}" title="#{bundle.EditUsuarioswTitle_rfc}" required="true" requiredMessage="#{bundle.EditUsuarioswRequiredMessage_rfc}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{usuarioswController.update}" value="#{bundle.Save}" update="display,:UsuarioswListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsuarioswEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="UsuarioswEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{usuarioswController.update}" value="Guardar" update="display,:UsuarioswListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsuarioswEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="UsuarioswEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

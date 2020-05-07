@@ -8,24 +8,24 @@
 
     <ui:composition>
 
-        <p:dialog id="CompradetalleEditDlg" widgetVar="CompradetalleEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCompradetalleTitle}">
+        <p:dialog id="CompradetalleEditDlg" widgetVar="CompradetalleEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Información">
             <h:form id="CompradetalleEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{compradetalleController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditCompradetalleLabel_cantidad}" for="cantidad" />
+                        <p:outputLabel value="Cantidad" for="cantidad" />
                         <p:inputText id="cantidad" value="#{compradetalleController.selected.cantidad}" title="#{bundle.EditCompradetalleTitle_cantidad}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_cantidad}"/>
-                        <p:outputLabel value="#{bundle.EditCompradetalleLabel_precioUnitario}" for="precioUnitario" />
+                        <p:outputLabel value="Precio Unitario" for="precioUnitario" />
                         <p:inputText id="precioUnitario" value="#{compradetalleController.selected.precioUnitario}" title="#{bundle.EditCompradetalleTitle_precioUnitario}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_precioUnitario}"/>
-                        <p:outputLabel value="#{bundle.EditCompradetalleLabel_importe}" for="importe" />
+                        <p:outputLabel value="Importe" for="importe" />
                         <p:inputText id="importe" value="#{compradetalleController.selected.importe}" title="#{bundle.EditCompradetalleTitle_importe}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_importe}"/>
-                        <p:outputLabel value="#{bundle.EditCompradetalleLabel_ordencompra}" for="ordencompra" />
+                        <p:outputLabel value="Orden de Compra" for="ordencompra" />
                         <p:selectOneMenu id="ordencompra" value="#{compradetalleController.selected.ordencompra}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_ordencompra}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{ordencompraController.itemsAvailableSelectOne}"
                                            var="ordencompraItem"
                                            itemValue="#{ordencompraItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditCompradetalleLabel_producto}" for="producto" />
+                        <p:outputLabel value="Producto" for="producto" />
                         <p:selectOneMenu id="producto" value="#{compradetalleController.selected.producto}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_producto}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{productoController.itemsAvailableSelectOne}"
@@ -33,8 +33,8 @@
                                            itemValue="#{productoItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{compradetalleController.update}" value="#{bundle.Save}" update="display,:CompradetalleListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CompradetalleEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="CompradetalleEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{compradetalleController.update}" value="Guardar" update="display,:CompradetalleListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CompradetalleEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="CompradetalleEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

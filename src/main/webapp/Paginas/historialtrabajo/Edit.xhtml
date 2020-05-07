@@ -8,24 +8,22 @@
 
     <ui:composition>
 
-        <p:dialog id="HistorialtrabajoEditDlg" widgetVar="HistorialtrabajoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditHistorialtrabajoTitle}">
+        <p:dialog id="HistorialtrabajoEditDlg" widgetVar="HistorialtrabajoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Información">
             <h:form id="HistorialtrabajoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{historialtrabajoController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditHistorialtrabajoLabel_historialid}" for="historialid" />
-                        <p:inputText id="historialid" value="#{historialtrabajoController.selected.historialid}" title="#{bundle.EditHistorialtrabajoTitle_historialid}" required="true" requiredMessage="#{bundle.EditHistorialtrabajoRequiredMessage_historialid}"/>
-                        <p:outputLabel value="#{bundle.EditHistorialtrabajoLabel_fechaInicio}" for="fechaInicio" />
+                        <p:outputLabel value="Fecha de Inicio" for="fechaInicio" />
                         <p:calendar id="fechaInicio" pattern="MM/dd/yyyy" value="#{historialtrabajoController.selected.fechaInicio}" title="#{bundle.EditHistorialtrabajoTitle_fechaInicio}" required="true" requiredMessage="#{bundle.EditHistorialtrabajoRequiredMessage_fechaInicio}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditHistorialtrabajoLabel_fechaFin}" for="fechaFin" />
+                        <p:outputLabel value="Fecha Fin" for="fechaFin" />
                         <p:calendar id="fechaFin" pattern="MM/dd/yyyy" value="#{historialtrabajoController.selected.fechaFin}" title="#{bundle.EditHistorialtrabajoTitle_fechaFin}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditHistorialtrabajoLabel_cargoid}" for="cargoid" />
+                        <p:outputLabel value="Cargo" for="cargoid" />
                         <p:selectOneMenu id="cargoid" value="#{historialtrabajoController.selected.cargoid}" required="true" requiredMessage="#{bundle.EditHistorialtrabajoRequiredMessage_cargoid}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{cargoController.itemsAvailableSelectOne}"
                                            var="cargoidItem"
                                            itemValue="#{cargoidItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditHistorialtrabajoLabel_empleadoid}" for="empleadoid" />
+                        <p:outputLabel value="Empleado" for="empleadoid" />
                         <p:selectOneMenu id="empleadoid" value="#{historialtrabajoController.selected.empleadoid}" required="true" requiredMessage="#{bundle.EditHistorialtrabajoRequiredMessage_empleadoid}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"
@@ -33,8 +31,8 @@
                                            itemValue="#{empleadoidItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{historialtrabajoController.update}" value="#{bundle.Save}" update="display,:HistorialtrabajoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'HistorialtrabajoEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="HistorialtrabajoEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{historialtrabajoController.update}" value="Guardar" update="display,:HistorialtrabajoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'HistorialtrabajoEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="HistorialtrabajoEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

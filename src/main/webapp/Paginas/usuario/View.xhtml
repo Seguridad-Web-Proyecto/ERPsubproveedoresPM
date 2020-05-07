@@ -8,24 +8,22 @@
 
     <ui:composition>
 
-        <p:dialog id="UsuarioViewDlg" widgetVar="UsuarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUsuarioTitle}">
+        <p:dialog id="UsuarioViewDlg" widgetVar="UsuarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="UsuarioViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
-                        <h:outputText value="#{bundle.ViewUsuarioLabel_email}"/>
+                        <h:outputText value="Email"/>
                         <h:outputText value="#{usuarioController.selected.email}" title="#{bundle.ViewUsuarioTitle_email}"/>
-                        <h:outputText value="#{bundle.ViewUsuarioLabel_contrasenia}"/>
+                        <h:outputText value="Contraseña"/>
                         <h:outputText value="#{usuarioController.selected.contrasenia}" title="#{bundle.ViewUsuarioTitle_contrasenia}"/>
-                        <h:outputText value="#{bundle.ViewUsuarioLabel_activo}"/>
+                        <h:outputText value="Activo"/>
                         <p:selectBooleanCheckbox value="#{usuarioController.selected.activo}" disabled="true"/>
-                        <h:outputText value="#{bundle.ViewUsuarioLabel_fechaCreacion}"/>
+                        <h:outputText value="Fecha de Creación"/>
                         <h:outputText value="#{usuarioController.selected.fechaCreacion}" title="#{bundle.ViewUsuarioTitle_fechaCreacion}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewUsuarioLabel_rol}"/>
-                        <h:outputText value="#{usuarioController.selected.rol}" title="#{bundle.ViewUsuarioTitle_rol}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="UsuarioViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="UsuarioViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

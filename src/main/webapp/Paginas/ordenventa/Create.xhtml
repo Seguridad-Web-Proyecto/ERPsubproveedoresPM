@@ -8,39 +8,37 @@
 
     <ui:composition>
 
-        <p:dialog id="OrdenventaCreateDlg" widgetVar="OrdenventaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateOrdenventaTitle}">
+        <p:dialog id="OrdenventaCreateDlg" widgetVar="OrdenventaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nueva Orden de Venta">
             <h:form id="OrdenventaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{ordenventaController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateOrdenventaLabel_ordenventaid}" for="ordenventaid" />
-                        <p:inputText id="ordenventaid" value="#{ordenventaController.selected.ordenventaid}" title="#{bundle.CreateOrdenventaTitle_ordenventaid}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_ordenventaid}"/>
-                        <p:outputLabel value="#{bundle.CreateOrdenventaLabel_fechaVenta}" for="fechaVenta" />
+                        <p:outputLabel value="Fecha de Venta" for="fechaVenta" />
                         <p:calendar id="fechaVenta" pattern="MM/dd/yyyy" value="#{ordenventaController.selected.fechaVenta}" title="#{bundle.EditOrdenventaTitle_fechaVenta}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_fechaVenta}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateOrdenventaLabel_status}" for="status" />
+                        <p:outputLabel value="Estatus" for="status" />
                         <p:inputText id="status" value="#{ordenventaController.selected.status}" title="#{bundle.CreateOrdenventaTitle_status}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_status}"/>
-                        <p:outputLabel value="#{bundle.CreateOrdenventaLabel_iva}" for="iva" />
+                        <p:outputLabel value="IVA" for="iva" />
                         <p:inputText id="iva" value="#{ordenventaController.selected.iva}" title="#{bundle.CreateOrdenventaTitle_iva}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_iva}"/>
-                        <p:outputLabel value="#{bundle.CreateOrdenventaLabel_subtotal}" for="subtotal" />
+                        <p:outputLabel value="Sub Total" for="subtotal" />
                         <p:inputText id="subtotal" value="#{ordenventaController.selected.subtotal}" title="#{bundle.CreateOrdenventaTitle_subtotal}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_subtotal}"/>
-                        <p:outputLabel value="#{bundle.CreateOrdenventaLabel_total}" for="total" />
+                        <p:outputLabel value="Total" for="total" />
                         <p:inputText id="total" value="#{ordenventaController.selected.total}" title="#{bundle.CreateOrdenventaTitle_total}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_total}"/>
-                        <p:outputLabel value="#{bundle.CreateOrdenventaLabel_descripcion}" for="descripcion" />
+                        <p:outputLabel value="Descripción" for="descripcion" />
                         <p:inputText id="descripcion" value="#{ordenventaController.selected.descripcion}" title="#{bundle.CreateOrdenventaTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateOrdenventaRequiredMessage_descripcion}"/>
-                        <p:outputLabel value="#{bundle.CreateOrdenventaLabel_clienteid}" for="clienteid" />
+                        <p:outputLabel value="Cliente Asociado" for="clienteid" />
                         <p:selectOneMenu id="clienteid" value="#{ordenventaController.selected.clienteid}" required="true" requiredMessage="#{bundle.EditOrdenventaRequiredMessage_clienteid}">
                             <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
                                            var="clienteidItem"
                                            itemValue="#{clienteidItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateOrdenventaLabel_facturaid}" for="facturaid" />
+                        <p:outputLabel value="Factura Asociada" for="facturaid" />
                         <p:selectOneMenu id="facturaid" value="#{ordenventaController.selected.facturaid}" >
                             <f:selectItems value="#{facturaventaController.itemsAvailableSelectOne}"
                                            var="facturaidItem"
                                            itemValue="#{facturaidItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{ordenventaController.create}" value="#{bundle.Save}" update="display,:OrdenventaListForm:datalist,:growl" oncomplete="handleSubmit(args,'OrdenventaCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="OrdenventaCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{ordenventaController.create}" value="Guardar" update="display,:OrdenventaListForm:datalist,:growl" oncomplete="handleSubmit(args,'OrdenventaCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="OrdenventaCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

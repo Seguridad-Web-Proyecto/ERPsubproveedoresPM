@@ -12,21 +12,19 @@
             <h:form id="UsuarioswCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usuarioswController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateUsuarioswLabel_usuarioid}" for="usuarioid" />
-                        <p:inputText id="usuarioid" value="#{usuarioswController.selected.usuarioid}" title="#{bundle.CreateUsuarioswTitle_usuarioid}" required="true" requiredMessage="#{bundle.CreateUsuarioswRequiredMessage_usuarioid}"/>
-                        <p:outputLabel value="#{bundle.CreateUsuarioswLabel_usuario}" for="usuario" />
+                        <p:outputLabel value="Usuario" for="usuario" />
                         <p:inputText id="usuario" value="#{usuarioswController.selected.usuario}" title="#{bundle.CreateUsuarioswTitle_usuario}" required="true" requiredMessage="#{bundle.CreateUsuarioswRequiredMessage_usuario}"/>
-                        <p:outputLabel value="#{bundle.CreateUsuarioswLabel_contrasenia}" for="contrasenia" />
+                        <p:outputLabel value="Contraseña" for="contrasenia" />
                         <p:inputText id="contrasenia" value="#{usuarioswController.selected.contrasenia}" title="#{bundle.CreateUsuarioswTitle_contrasenia}" required="true" requiredMessage="#{bundle.CreateUsuarioswRequiredMessage_contrasenia}"/>
-                        <p:outputLabel value="#{bundle.CreateUsuarioswLabel_activo}" for="activo" />
+                        <p:outputLabel value="Activo" for="activo" />
                         <p:selectBooleanCheckbox id="activo" value="#{usuarioswController.selected.activo}" required="true" requiredMessage="#{bundle.EditUsuarioswRequiredMessage_activo}"/>
-                        <p:outputLabel value="#{bundle.CreateUsuarioswLabel_empresa}" for="empresa" />
+                        <p:outputLabel value="Empresa" for="empresa" />
                         <p:inputText id="empresa" value="#{usuarioswController.selected.empresa}" title="#{bundle.CreateUsuarioswTitle_empresa}" required="true" requiredMessage="#{bundle.CreateUsuarioswRequiredMessage_empresa}"/>
-                        <p:outputLabel value="#{bundle.CreateUsuarioswLabel_rfc}" for="rfc" />
+                        <p:outputLabel value="RFC" for="rfc" />
                         <p:inputText id="rfc" value="#{usuarioswController.selected.rfc}" title="#{bundle.CreateUsuarioswTitle_rfc}" required="true" requiredMessage="#{bundle.CreateUsuarioswRequiredMessage_rfc}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{usuarioswController.create}" value="#{bundle.Save}" update="display,:UsuarioswListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsuarioswCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="UsuarioswCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{usuarioswController.create}" value="Guardar" update="display,:UsuarioswListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsuarioswCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="UsuarioswCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

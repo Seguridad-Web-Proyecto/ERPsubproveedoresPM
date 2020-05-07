@@ -8,32 +8,32 @@
 
     <ui:composition>
 
-        <p:dialog id="ProveedorViewDlg" widgetVar="ProveedorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProveedorTitle}">
+        <p:dialog id="ProveedorViewDlg" widgetVar="ProveedorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="ProveedorViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{proveedorController.selected != null}">
-                        <h:outputText value="#{bundle.ViewProveedorLabel_proveedorid}"/>
+                        <h:outputText value="#"/>
                         <h:outputText value="#{proveedorController.selected.proveedorid}" title="#{bundle.ViewProveedorTitle_proveedorid}"/>
-                        <h:outputText value="#{bundle.ViewProveedorLabel_empresa}"/>
+                        <h:outputText value="Nombre de la Empresa"/>
                         <h:outputText value="#{proveedorController.selected.empresa}" title="#{bundle.ViewProveedorTitle_empresa}"/>
-                        <h:outputText value="#{bundle.ViewProveedorLabel_nombreContacto}"/>
+                        <h:outputText value="Nombre de Contacto"/>
                         <h:outputText value="#{proveedorController.selected.nombreContacto}" title="#{bundle.ViewProveedorTitle_nombreContacto}"/>
-                        <h:outputText value="#{bundle.ViewProveedorLabel_area}"/>
+                        <h:outputText value="Area"/>
                         <h:outputText value="#{proveedorController.selected.area}" title="#{bundle.ViewProveedorTitle_area}"/>
-                        <h:outputText value="#{bundle.ViewProveedorLabel_telefono}"/>
+                        <h:outputText value="Teléfono"/>
                         <h:outputText value="#{proveedorController.selected.telefono}" title="#{bundle.ViewProveedorTitle_telefono}"/>
-                        <h:outputText value="#{bundle.ViewProveedorLabel_rfc}"/>
+                        <h:outputText value="RFC"/>
                         <h:outputText value="#{proveedorController.selected.rfc}" title="#{bundle.ViewProveedorTitle_rfc}"/>
-                        <h:outputText value="#{bundle.ViewProveedorLabel_email}"/>
+                        <h:outputText value="Email"/>
                         <h:outputText value="#{proveedorController.selected.email}" title="#{bundle.ViewProveedorTitle_email}"/>
-                        <h:outputText value="#{bundle.ViewProveedorLabel_activo}"/>
+                        <h:outputText value="Activo"/>
                         <p:selectBooleanCheckbox value="#{proveedorController.selected.activo}" disabled="true"/>
-                        <h:outputText value="#{bundle.ViewProveedorLabel_paginaWeb}"/>
+                        <h:outputText value="Página Web"/>
                         <h:outputText value="#{proveedorController.selected.paginaWeb}" title="#{bundle.ViewProveedorTitle_paginaWeb}"/>
-                        <h:outputText value="#{bundle.ViewProveedorLabel_domicilioFiscal}"/>
+                        <h:outputText value="Domicilio"/>
                         <h:outputText value="#{proveedorController.selected.domicilioFiscal}" title="#{bundle.ViewProveedorTitle_domicilioFiscal}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="ProveedorViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="ProveedorViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

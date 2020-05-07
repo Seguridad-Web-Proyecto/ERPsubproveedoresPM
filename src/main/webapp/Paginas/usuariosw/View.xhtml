@@ -8,24 +8,24 @@
 
     <ui:composition>
 
-        <p:dialog id="UsuarioswViewDlg" widgetVar="UsuarioswViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUsuarioswTitle}">
+        <p:dialog id="UsuarioswViewDlg" widgetVar="UsuarioswViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="UsuarioswViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usuarioswController.selected != null}">
-                        <h:outputText value="#{bundle.ViewUsuarioswLabel_usuarioid}"/>
+                        <h:outputText value="#"/>
                         <h:outputText value="#{usuarioswController.selected.usuarioid}" title="#{bundle.ViewUsuarioswTitle_usuarioid}"/>
-                        <h:outputText value="#{bundle.ViewUsuarioswLabel_usuario}"/>
+                        <h:outputText value="Usuario Web Services"/>
                         <h:outputText value="#{usuarioswController.selected.usuario}" title="#{bundle.ViewUsuarioswTitle_usuario}"/>
-                        <h:outputText value="#{bundle.ViewUsuarioswLabel_contrasenia}"/>
+                        <h:outputText value="Contraseña"/>
                         <h:outputText value="#{usuarioswController.selected.contrasenia}" title="#{bundle.ViewUsuarioswTitle_contrasenia}"/>
-                        <h:outputText value="#{bundle.ViewUsuarioswLabel_activo}"/>
+                        <h:outputText value="Activo"/>
                         <p:selectBooleanCheckbox value="#{usuarioswController.selected.activo}" disabled="true"/>
-                        <h:outputText value="#{bundle.ViewUsuarioswLabel_empresa}"/>
+                        <h:outputText value="Empresa"/>
                         <h:outputText value="#{usuarioswController.selected.empresa}" title="#{bundle.ViewUsuarioswTitle_empresa}"/>
-                        <h:outputText value="#{bundle.ViewUsuarioswLabel_rfc}"/>
+                        <h:outputText value="RFC"/>
                         <h:outputText value="#{usuarioswController.selected.rfc}" title="#{bundle.ViewUsuarioswTitle_rfc}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="UsuarioswViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="UsuarioswViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

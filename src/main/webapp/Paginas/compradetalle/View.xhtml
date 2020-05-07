@@ -8,22 +8,22 @@
 
     <ui:composition>
 
-        <p:dialog id="CompradetalleViewDlg" widgetVar="CompradetalleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCompradetalleTitle}">
+        <p:dialog id="CompradetalleViewDlg" widgetVar="CompradetalleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="CompradetalleViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{compradetalleController.selected != null}">
-                        <h:outputText value="#{bundle.ViewCompradetalleLabel_cantidad}"/>
+                        <h:outputText value="Cantidad"/>
                         <h:outputText value="#{compradetalleController.selected.cantidad}" title="#{bundle.ViewCompradetalleTitle_cantidad}"/>
-                        <h:outputText value="#{bundle.ViewCompradetalleLabel_precioUnitario}"/>
+                        <h:outputText value="Precio Unitario"/>
                         <h:outputText value="#{compradetalleController.selected.precioUnitario}" title="#{bundle.ViewCompradetalleTitle_precioUnitario}"/>
-                        <h:outputText value="#{bundle.ViewCompradetalleLabel_importe}"/>
+                        <h:outputText value="Importa"/>
                         <h:outputText value="#{compradetalleController.selected.importe}" title="#{bundle.ViewCompradetalleTitle_importe}"/>
-                        <h:outputText value="#{bundle.ViewCompradetalleLabel_ordencompra}"/>
+                        <h:outputText value="Orde de Compra"/>
                         <h:outputText value="#{compradetalleController.selected.ordencompra}" title="#{bundle.ViewCompradetalleTitle_ordencompra}"/>
-                        <h:outputText value="#{bundle.ViewCompradetalleLabel_producto}"/>
+                        <h:outputText value="Producto"/>
                         <h:outputText value="#{compradetalleController.selected.producto}" title="#{bundle.ViewCompradetalleTitle_producto}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="CompradetalleViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="CompradetalleViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

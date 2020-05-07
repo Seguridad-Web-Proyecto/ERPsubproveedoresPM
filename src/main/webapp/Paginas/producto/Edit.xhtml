@@ -8,37 +8,28 @@
 
     <ui:composition>
 
-        <p:dialog id="ProductoEditDlg" widgetVar="ProductoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditProductoTitle}">
+        <p:dialog id="ProductoEditDlg" widgetVar="ProductoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Información">
             <h:form id="ProductoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productoController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditProductoLabel_productoid}" for="productoid" />
-                        <p:inputText id="productoid" value="#{productoController.selected.productoid}" title="#{bundle.EditProductoTitle_productoid}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_productoid}"/>
-                        <p:outputLabel value="#{bundle.EditProductoLabel_nombre}" for="nombre" />
+                        <p:outputLabel value="Nombre" for="nombre" />
                         <p:inputText id="nombre" value="#{productoController.selected.nombre}" title="#{bundle.EditProductoTitle_nombre}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_nombre}"/>
-                        <p:outputLabel value="#{bundle.EditProductoLabel_descripcion}" for="descripcion" />
+                        <p:outputLabel value="Descripción" for="descripcion" />
                         <p:inputText id="descripcion" value="#{productoController.selected.descripcion}" title="#{bundle.EditProductoTitle_descripcion}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_descripcion}"/>
-                        <p:outputLabel value="#{bundle.EditProductoLabel_unidadMedida}" for="unidadMedida" />
+                        <p:outputLabel value="Unidad Medida" for="unidadMedida" />
                         <p:inputText id="unidadMedida" value="#{productoController.selected.unidadMedida}" title="#{bundle.EditProductoTitle_unidadMedida}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_unidadMedida}"/>
-                        <p:outputLabel value="#{bundle.EditProductoLabel_precioUnitario}" for="precioUnitario" />
+                        <p:outputLabel value="Precio Unitario" for="precioUnitario" />
                         <p:inputText id="precioUnitario" value="#{productoController.selected.precioUnitario}" title="#{bundle.EditProductoTitle_precioUnitario}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_precioUnitario}"/>
-                        <p:outputLabel value="#{bundle.EditProductoLabel_categoriaid}" for="categoriaid" />
+                        <p:outputLabel value="Categoría" for="categoriaid" />
                         <p:selectOneMenu id="categoriaid" value="#{productoController.selected.categoriaid}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_categoriaid}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"
                                            var="categoriaidItem"
                                            itemValue="#{categoriaidItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditProductoLabel_ganancia}" for="ganancia" />
-                        <p:selectOneMenu id="ganancia" value="#{productoController.selected.ganancia}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{gananciaController.itemsAvailableSelectOne}"
-                                           var="gananciaItem"
-                                           itemValue="#{gananciaItem}"/>
-                        </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{productoController.update}" value="#{bundle.Save}" update="display,:ProductoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProductoEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="ProductoEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{productoController.update}" value="Guardar" update="display,:ProductoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProductoEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="ProductoEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

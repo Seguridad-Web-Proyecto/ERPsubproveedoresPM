@@ -8,26 +8,26 @@
 
     <ui:composition>
 
-        <p:dialog id="HistorialtrabajoViewDlg" widgetVar="HistorialtrabajoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewHistorialtrabajoTitle}">
+        <p:dialog id="HistorialtrabajoViewDlg" widgetVar="HistorialtrabajoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="HistorialtrabajoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{historialtrabajoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewHistorialtrabajoLabel_historialid}"/>
+                        <h:outputText value="#"/>
                         <h:outputText value="#{historialtrabajoController.selected.historialid}" title="#{bundle.ViewHistorialtrabajoTitle_historialid}"/>
-                        <h:outputText value="#{bundle.ViewHistorialtrabajoLabel_fechaInicio}"/>
+                        <h:outputText value="#Fecha de Inicio"/>
                         <h:outputText value="#{historialtrabajoController.selected.fechaInicio}" title="#{bundle.ViewHistorialtrabajoTitle_fechaInicio}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewHistorialtrabajoLabel_fechaFin}"/>
+                        <h:outputText value="Fecha Fin"/>
                         <h:outputText value="#{historialtrabajoController.selected.fechaFin}" title="#{bundle.ViewHistorialtrabajoTitle_fechaFin}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewHistorialtrabajoLabel_cargoid}"/>
+                        <h:outputText value="Cargo"/>
                         <h:outputText value="#{historialtrabajoController.selected.cargoid}" title="#{bundle.ViewHistorialtrabajoTitle_cargoid}"/>
-                        <h:outputText value="#{bundle.ViewHistorialtrabajoLabel_empleadoid}"/>
+                        <h:outputText value="Empleado"/>
                         <h:outputText value="#{historialtrabajoController.selected.empleadoid}" title="#{bundle.ViewHistorialtrabajoTitle_empleadoid}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="HistorialtrabajoViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="HistorialtrabajoViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

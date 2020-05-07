@@ -8,15 +8,13 @@
 
     <ui:composition>
 
-        <p:dialog id="GananciaEditDlg" widgetVar="GananciaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditGananciaTitle}">
+        <p:dialog id="GananciaEditDlg" widgetVar="GananciaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Información">
             <h:form id="GananciaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{gananciaController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditGananciaLabel_gananciaid}" for="gananciaid" />
-                        <p:inputText id="gananciaid" value="#{gananciaController.selected.gananciaid}" title="#{bundle.EditGananciaTitle_gananciaid}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_gananciaid}"/>
-                        <p:outputLabel value="#{bundle.EditGananciaLabel_porcentaje}" for="porcentaje" />
+                        <p:outputLabel value="Porcentaje de Ganancia" for="porcentaje" />
                         <p:inputText id="porcentaje" value="#{gananciaController.selected.porcentaje}" title="#{bundle.EditGananciaTitle_porcentaje}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_porcentaje}"/>
-                        <p:outputLabel value="#{bundle.EditGananciaLabel_productoid}" for="productoid" />
+                        <p:outputLabel value="Producto" for="productoid" />
                         <p:selectOneMenu id="productoid" value="#{gananciaController.selected.productoid}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_productoid}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{productoController.itemsAvailableSelectOne}"
@@ -24,8 +22,8 @@
                                            itemValue="#{productoidItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{gananciaController.update}" value="#{bundle.Save}" update="display,:GananciaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GananciaEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="GananciaEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{gananciaController.update}" value="Guardar" update="display,:GananciaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GananciaEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="GananciaEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

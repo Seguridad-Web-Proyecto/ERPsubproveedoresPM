@@ -8,11 +8,11 @@
 
     <ui:composition>
 
-        <p:dialog id="CategoriaCreateDlg" widgetVar="CategoriaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Crear Categoría">
+        <p:dialog id="CategoriaCreateDlg" widgetVar="CategoriaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nueva Categoría">
             <h:form id="CategoriaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{categoriaController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateCategoriaLabel_nombre}" for="nombre" />
+                        <p:outputLabel value="Nombre" for="nombre" />
                         <p:inputText id="nombre" value="#{categoriaController.selected.nombre}" title="#{bundle.CreateCategoriaTitle_nombre}" required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_nombre}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{categoriaController.create}" value="Guardar" update="display,:CategoriaListForm:datalist,:growl" oncomplete="handleSubmit(args,'CategoriaCreateDialog');"/>

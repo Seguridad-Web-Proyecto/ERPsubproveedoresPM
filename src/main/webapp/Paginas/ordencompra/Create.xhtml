@@ -8,39 +8,37 @@
 
     <ui:composition>
 
-        <p:dialog id="OrdencompraCreateDlg" widgetVar="OrdencompraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateOrdencompraTitle}">
+        <p:dialog id="OrdencompraCreateDlg" widgetVar="OrdencompraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nueva Orden de Compra">
             <h:form id="OrdencompraCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{ordencompraController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateOrdencompraLabel_ordencompraid}" for="ordencompraid" />
-                        <p:inputText id="ordencompraid" value="#{ordencompraController.selected.ordencompraid}" title="#{bundle.CreateOrdencompraTitle_ordencompraid}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_ordencompraid}"/>
-                        <p:outputLabel value="#{bundle.CreateOrdencompraLabel_fechaCompra}" for="fechaCompra" />
+                        <p:outputLabel value="Fecha de Compra" for="fechaCompra" />
                         <p:calendar id="fechaCompra" pattern="MM/dd/yyyy" value="#{ordencompraController.selected.fechaCompra}" title="#{bundle.EditOrdencompraTitle_fechaCompra}" required="true" requiredMessage="#{bundle.EditOrdencompraRequiredMessage_fechaCompra}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateOrdencompraLabel_status}" for="status" />
+                        <p:outputLabel value="Estatus" for="status" />
                         <p:inputText id="status" value="#{ordencompraController.selected.status}" title="#{bundle.CreateOrdencompraTitle_status}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_status}"/>
-                        <p:outputLabel value="#{bundle.CreateOrdencompraLabel_iva}" for="iva" />
+                        <p:outputLabel value="IVA" for="iva" />
                         <p:inputText id="iva" value="#{ordencompraController.selected.iva}" title="#{bundle.CreateOrdencompraTitle_iva}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_iva}"/>
-                        <p:outputLabel value="#{bundle.CreateOrdencompraLabel_subtotal}" for="subtotal" />
+                        <p:outputLabel value="Sub Total" for="subtotal" />
                         <p:inputText id="subtotal" value="#{ordencompraController.selected.subtotal}" title="#{bundle.CreateOrdencompraTitle_subtotal}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_subtotal}"/>
-                        <p:outputLabel value="#{bundle.CreateOrdencompraLabel_total}" for="total" />
+                        <p:outputLabel value="Total" for="total" />
                         <p:inputText id="total" value="#{ordencompraController.selected.total}" title="#{bundle.CreateOrdencompraTitle_total}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_total}"/>
-                        <p:outputLabel value="#{bundle.CreateOrdencompraLabel_descripcion}" for="descripcion" />
+                        <p:outputLabel value="Descripción" for="descripcion" />
                         <p:inputText id="descripcion" value="#{ordencompraController.selected.descripcion}" title="#{bundle.CreateOrdencompraTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_descripcion}"/>
-                        <p:outputLabel value="#{bundle.CreateOrdencompraLabel_facturaid}" for="facturaid" />
+                        <p:outputLabel value="Factura Asociada" for="facturaid" />
                         <p:selectOneMenu id="facturaid" value="#{ordencompraController.selected.facturaid}" >
                             <f:selectItems value="#{facturacompraController.itemsAvailableSelectOne}"
                                            var="facturaidItem"
                                            itemValue="#{facturaidItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateOrdencompraLabel_proveedorid}" for="proveedorid" />
+                        <p:outputLabel value="Proveedor Asociado" for="proveedorid" />
                         <p:selectOneMenu id="proveedorid" value="#{ordencompraController.selected.proveedorid}" required="true" requiredMessage="#{bundle.EditOrdencompraRequiredMessage_proveedorid}">
                             <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"
                                            var="proveedoridItem"
                                            itemValue="#{proveedoridItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{ordencompraController.create}" value="#{bundle.Save}" update="display,:OrdencompraListForm:datalist,:growl" oncomplete="handleSubmit(args,'OrdencompraCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="OrdencompraCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{ordencompraController.create}" value="Guardar" update="display,:OrdencompraListForm:datalist,:growl" oncomplete="handleSubmit(args,'OrdencompraCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="OrdencompraCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

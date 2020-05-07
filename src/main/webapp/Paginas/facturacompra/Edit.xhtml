@@ -8,19 +8,17 @@
 
     <ui:composition>
 
-        <p:dialog id="FacturacompraEditDlg" widgetVar="FacturacompraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFacturacompraTitle}">
+        <p:dialog id="FacturacompraEditDlg" widgetVar="FacturacompraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Información">
             <h:form id="FacturacompraEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{facturacompraController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditFacturacompraLabel_facturacompraid}" for="facturacompraid" />
-                        <p:inputText id="facturacompraid" value="#{facturacompraController.selected.facturacompraid}" title="#{bundle.EditFacturacompraTitle_facturacompraid}" required="true" requiredMessage="#{bundle.EditFacturacompraRequiredMessage_facturacompraid}"/>
-                        <p:outputLabel value="#{bundle.EditFacturacompraLabel_fechaEmision}" for="fechaEmision" />
+                        <p:outputLabel value="Fecha de Emisión" for="fechaEmision" />
                         <p:calendar id="fechaEmision" pattern="MM/dd/yyyy" value="#{facturacompraController.selected.fechaEmision}" title="#{bundle.EditFacturacompraTitle_fechaEmision}" required="true" requiredMessage="#{bundle.EditFacturacompraRequiredMessage_fechaEmision}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditFacturacompraLabel_fechaVencimientoPago}" for="fechaVencimientoPago" />
+                        <p:outputLabel value="Fecha de Vencimiento" for="fechaVencimientoPago" />
                         <p:calendar id="fechaVencimientoPago" pattern="MM/dd/yyyy" value="#{facturacompraController.selected.fechaVencimientoPago}" title="#{bundle.EditFacturacompraTitle_fechaVencimientoPago}" required="true" requiredMessage="#{bundle.EditFacturacompraRequiredMessage_fechaVencimientoPago}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditFacturacompraLabel_descripcion}" for="descripcion" />
+                        <p:outputLabel value="Descripción" for="descripcion" />
                         <p:inputText id="descripcion" value="#{facturacompraController.selected.descripcion}" title="#{bundle.EditFacturacompraTitle_descripcion}" required="true" requiredMessage="#{bundle.EditFacturacompraRequiredMessage_descripcion}"/>
-                        <p:outputLabel value="#{bundle.EditFacturacompraLabel_pagoid}" for="pagoid" />
+                        <p:outputLabel value="Paso Asociado" for="pagoid" />
                         <p:selectOneMenu id="pagoid" value="#{facturacompraController.selected.pagoid}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{pagocompraController.itemsAvailableSelectOne}"
@@ -28,8 +26,8 @@
                                            itemValue="#{pagoidItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{facturacompraController.update}" value="#{bundle.Save}" update="display,:FacturacompraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FacturacompraEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="FacturacompraEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{facturacompraController.update}" value="Guardar" update="display,:FacturacompraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FacturacompraEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="FacturacompraEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

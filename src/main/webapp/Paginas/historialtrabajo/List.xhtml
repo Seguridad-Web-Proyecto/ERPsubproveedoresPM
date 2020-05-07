@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="HistorialtrabajoListForm">
-                <p:panel header="#{bundle.ListHistorialtrabajoTitle}">
+                <p:panel header="Módulo Historial de Trabajo">
                     <p:dataTable id="datalist" value="#{historialtrabajoController.items}" var="item"
                                  selectionMode="single" selection="#{historialtrabajoController.selected}"
                                  paginator="true"
@@ -29,13 +29,13 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListHistorialtrabajoTitle_historialid}"/>
+                                <h:outputText value="#"/>
                             </f:facet>
                             <h:outputText value="#{item.historialid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListHistorialtrabajoTitle_fechaInicio}"/>
+                                <h:outputText value="Fecha de Inicio"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaInicio}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -43,7 +43,7 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListHistorialtrabajoTitle_fechaFin}"/>
+                                <h:outputText value="Fecha Fin"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaFin}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -51,21 +51,21 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListHistorialtrabajoTitle_cargoid}"/>
+                                <h:outputText value="Cargo"/>
                             </f:facet>
                             <h:outputText value="#{item.cargoid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListHistorialtrabajoTitle_empleadoid}"/>
+                                <h:outputText value="Empleado"/>
                             </f:facet>
                             <h:outputText value="#{item.empleadoid}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{historialtrabajoController.prepareCreate}" update=":HistorialtrabajoCreateForm" oncomplete="PF('HistorialtrabajoCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":HistorialtrabajoViewForm" oncomplete="PF('HistorialtrabajoViewDialog').show()" disabled="#{empty historialtrabajoController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":HistorialtrabajoEditForm" oncomplete="PF('HistorialtrabajoEditDialog').show()" disabled="#{empty historialtrabajoController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{historialtrabajoController.destroy}" update=":growl,datalist" disabled="#{empty historialtrabajoController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{historialtrabajoController.prepareCreate}" update=":HistorialtrabajoCreateForm" oncomplete="PF('HistorialtrabajoCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":HistorialtrabajoViewForm" oncomplete="PF('HistorialtrabajoViewDialog').show()" disabled="#{empty historialtrabajoController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":HistorialtrabajoEditForm" oncomplete="PF('HistorialtrabajoEditDialog').show()" disabled="#{empty historialtrabajoController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{historialtrabajoController.destroy}" update=":growl,datalist" disabled="#{empty historialtrabajoController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

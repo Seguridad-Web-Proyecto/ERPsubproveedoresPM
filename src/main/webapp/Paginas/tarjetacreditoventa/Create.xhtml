@@ -8,25 +8,23 @@
 
     <ui:composition>
 
-        <p:dialog id="TarjetacreditoventaCreateDlg" widgetVar="TarjetacreditoventaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTarjetacreditoventaTitle}">
+        <p:dialog id="TarjetacreditoventaCreateDlg" widgetVar="TarjetacreditoventaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nueva Tarjeta de Venta">
             <h:form id="TarjetacreditoventaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tarjetacreditoventaController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateTarjetacreditoventaLabel_tarjetacreditoventaid}" for="tarjetacreditoventaid" />
-                        <p:inputText id="tarjetacreditoventaid" value="#{tarjetacreditoventaController.selected.tarjetacreditoventaid}" title="#{bundle.CreateTarjetacreditoventaTitle_tarjetacreditoventaid}" required="true" requiredMessage="#{bundle.CreateTarjetacreditoventaRequiredMessage_tarjetacreditoventaid}"/>
-                        <p:outputLabel value="#{bundle.CreateTarjetacreditoventaLabel_numero}" for="numero" />
+                        <p:outputLabel value="Numéro de Tarjeta" for="numero" />
                         <p:inputText id="numero" value="#{tarjetacreditoventaController.selected.numero}" title="#{bundle.CreateTarjetacreditoventaTitle_numero}" required="true" requiredMessage="#{bundle.CreateTarjetacreditoventaRequiredMessage_numero}"/>
-                        <p:outputLabel value="#{bundle.CreateTarjetacreditoventaLabel_cvc}" for="cvc" />
+                        <p:outputLabel value="CVC" for="cvc" />
                         <p:inputText id="cvc" value="#{tarjetacreditoventaController.selected.cvc}" title="#{bundle.CreateTarjetacreditoventaTitle_cvc}" required="true" requiredMessage="#{bundle.CreateTarjetacreditoventaRequiredMessage_cvc}"/>
-                        <p:outputLabel value="#{bundle.CreateTarjetacreditoventaLabel_nombreTitular}" for="nombreTitular" />
+                        <p:outputLabel value="Nombre del Titular" for="nombreTitular" />
                         <p:inputText id="nombreTitular" value="#{tarjetacreditoventaController.selected.nombreTitular}" title="#{bundle.CreateTarjetacreditoventaTitle_nombreTitular}" required="true" requiredMessage="#{bundle.CreateTarjetacreditoventaRequiredMessage_nombreTitular}"/>
-                        <p:outputLabel value="#{bundle.CreateTarjetacreditoventaLabel_fechaExpiracion}" for="fechaExpiracion" />
+                        <p:outputLabel value="Fecha de Expiración" for="fechaExpiracion" />
                         <p:inputText id="fechaExpiracion" value="#{tarjetacreditoventaController.selected.fechaExpiracion}" title="#{bundle.CreateTarjetacreditoventaTitle_fechaExpiracion}" required="true" requiredMessage="#{bundle.CreateTarjetacreditoventaRequiredMessage_fechaExpiracion}"/>
-                        <p:outputLabel value="#{bundle.CreateTarjetacreditoventaLabel_lugarFacturacion}" for="lugarFacturacion" />
+                        <p:outputLabel value="Lugar de Facturación" for="lugarFacturacion" />
                         <p:inputText id="lugarFacturacion" value="#{tarjetacreditoventaController.selected.lugarFacturacion}" title="#{bundle.CreateTarjetacreditoventaTitle_lugarFacturacion}" required="true" requiredMessage="#{bundle.CreateTarjetacreditoventaRequiredMessage_lugarFacturacion}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{tarjetacreditoventaController.create}" value="#{bundle.Save}" update="display,:TarjetacreditoventaListForm:datalist,:growl" oncomplete="handleSubmit(args,'TarjetacreditoventaCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="TarjetacreditoventaCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{tarjetacreditoventaController.create}" value="Guardar" update="display,:TarjetacreditoventaListForm:datalist,:growl" oncomplete="handleSubmit(args,'TarjetacreditoventaCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="TarjetacreditoventaCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

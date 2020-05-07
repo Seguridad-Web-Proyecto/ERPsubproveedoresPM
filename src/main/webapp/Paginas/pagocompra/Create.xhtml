@@ -8,27 +8,25 @@
 
     <ui:composition>
 
-        <p:dialog id="PagocompraCreateDlg" widgetVar="PagocompraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePagocompraTitle}">
+        <p:dialog id="PagocompraCreateDlg" widgetVar="PagocompraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nuevo Pago de Compra">
             <h:form id="PagocompraCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{pagocompraController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreatePagocompraLabel_pagocompraid}" for="pagocompraid" />
-                        <p:inputText id="pagocompraid" value="#{pagocompraController.selected.pagocompraid}" title="#{bundle.CreatePagocompraTitle_pagocompraid}" required="true" requiredMessage="#{bundle.CreatePagocompraRequiredMessage_pagocompraid}"/>
-                        <p:outputLabel value="#{bundle.CreatePagocompraLabel_fechaPago}" for="fechaPago" />
+                        <p:outputLabel value="Fecha de Compra" for="fechaPago" />
                         <p:calendar id="fechaPago" pattern="MM/dd/yyyy" value="#{pagocompraController.selected.fechaPago}" title="#{bundle.EditPagocompraTitle_fechaPago}" required="true" requiredMessage="#{bundle.EditPagocompraRequiredMessage_fechaPago}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreatePagocompraLabel_monto}" for="monto" />
+                        <p:outputLabel value="Monto" for="monto" />
                         <p:inputText id="monto" value="#{pagocompraController.selected.monto}" title="#{bundle.CreatePagocompraTitle_monto}" required="true" requiredMessage="#{bundle.CreatePagocompraRequiredMessage_monto}"/>
-                        <p:outputLabel value="#{bundle.CreatePagocompraLabel_estado}" for="estado" />
+                        <p:outputLabel value="Estatus" for="estado" />
                         <p:inputText id="estado" value="#{pagocompraController.selected.estado}" title="#{bundle.CreatePagocompraTitle_estado}" required="true" requiredMessage="#{bundle.CreatePagocompraRequiredMessage_estado}"/>
-                        <p:outputLabel value="#{bundle.CreatePagocompraLabel_tarjetacreditoid}" for="tarjetacreditoid" />
+                        <p:outputLabel value="Tarjeta Asociada" for="tarjetacreditoid" />
                         <p:selectOneMenu id="tarjetacreditoid" value="#{pagocompraController.selected.tarjetacreditoid}" required="true" requiredMessage="#{bundle.EditPagocompraRequiredMessage_tarjetacreditoid}">
                             <f:selectItems value="#{tarjetacreditocompraController.itemsAvailableSelectOne}"
                                            var="tarjetacreditoidItem"
                                            itemValue="#{tarjetacreditoidItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{pagocompraController.create}" value="#{bundle.Save}" update="display,:PagocompraListForm:datalist,:growl" oncomplete="handleSubmit(args,'PagocompraCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="PagocompraCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{pagocompraController.create}" value="Guardar" update="display,:PagocompraListForm:datalist,:growl" oncomplete="handleSubmit(args,'PagocompraCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="PagocompraCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -8,26 +8,22 @@
 
     <ui:composition>
 
-        <p:dialog id="ProductoViewDlg" widgetVar="ProductoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProductoTitle}">
+        <p:dialog id="ProductoViewDlg" widgetVar="ProductoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="ProductoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewProductoLabel_productoid}"/>
-                        <h:outputText value="#{productoController.selected.productoid}" title="#{bundle.ViewProductoTitle_productoid}"/>
-                        <h:outputText value="#{bundle.ViewProductoLabel_nombre}"/>
+                        <h:outputText value="Nombre"/>
                         <h:outputText value="#{productoController.selected.nombre}" title="#{bundle.ViewProductoTitle_nombre}"/>
-                        <h:outputText value="#{bundle.ViewProductoLabel_descripcion}"/>
+                        <h:outputText value="Descripción"/>
                         <h:outputText value="#{productoController.selected.descripcion}" title="#{bundle.ViewProductoTitle_descripcion}"/>
-                        <h:outputText value="#{bundle.ViewProductoLabel_unidadMedida}"/>
+                        <h:outputText value="Unidad Medida"/>
                         <h:outputText value="#{productoController.selected.unidadMedida}" title="#{bundle.ViewProductoTitle_unidadMedida}"/>
-                        <h:outputText value="#{bundle.ViewProductoLabel_precioUnitario}"/>
+                        <h:outputText value="Precio Unitario"/>
                         <h:outputText value="#{productoController.selected.precioUnitario}" title="#{bundle.ViewProductoTitle_precioUnitario}"/>
-                        <h:outputText value="#{bundle.ViewProductoLabel_categoriaid}"/>
+                        <h:outputText value="Categoría"/>
                         <h:outputText value="#{productoController.selected.categoriaid}" title="#{bundle.ViewProductoTitle_categoriaid}"/>
-                        <h:outputText value="#{bundle.ViewProductoLabel_ganancia}"/>
-                        <h:outputText value="#{productoController.selected.ganancia}" title="#{bundle.ViewProductoTitle_ganancia}"/>
-                    </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="ProductoViewDialog.hide()"/>
+                        </p:panelGrid>
+                    <p:commandButton value="Cerrar" onclick="ProductoViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

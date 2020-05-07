@@ -8,26 +8,26 @@
 
     <ui:composition>
 
-        <p:dialog id="FacturacompraViewDlg" widgetVar="FacturacompraViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFacturacompraTitle}">
+        <p:dialog id="FacturacompraViewDlg" widgetVar="FacturacompraViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="FacturacompraViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{facturacompraController.selected != null}">
-                        <h:outputText value="#{bundle.ViewFacturacompraLabel_facturacompraid}"/>
+                        <h:outputText value="#"/>
                         <h:outputText value="#{facturacompraController.selected.facturacompraid}" title="#{bundle.ViewFacturacompraTitle_facturacompraid}"/>
-                        <h:outputText value="#{bundle.ViewFacturacompraLabel_fechaEmision}"/>
+                        <h:outputText value="Fecha de Emisión"/>
                         <h:outputText value="#{facturacompraController.selected.fechaEmision}" title="#{bundle.ViewFacturacompraTitle_fechaEmision}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewFacturacompraLabel_fechaVencimientoPago}"/>
+                        <h:outputText value="Fecha de Vencimiento"/>
                         <h:outputText value="#{facturacompraController.selected.fechaVencimientoPago}" title="#{bundle.ViewFacturacompraTitle_fechaVencimientoPago}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewFacturacompraLabel_descripcion}"/>
+                        <h:outputText value="Descripción"/>
                         <h:outputText value="#{facturacompraController.selected.descripcion}" title="#{bundle.ViewFacturacompraTitle_descripcion}"/>
-                        <h:outputText value="#{bundle.ViewFacturacompraLabel_pagoid}"/>
+                        <h:outputText value="Pago Asociado"/>
                         <h:outputText value="#{facturacompraController.selected.pagoid}" title="#{bundle.ViewFacturacompraTitle_pagoid}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="FacturacompraViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="FacturacompraViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

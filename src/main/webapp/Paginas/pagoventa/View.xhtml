@@ -8,24 +8,24 @@
 
     <ui:composition>
 
-        <p:dialog id="PagoventaViewDlg" widgetVar="PagoventaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPagoventaTitle}">
+        <p:dialog id="PagoventaViewDlg" widgetVar="PagoventaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="PagoventaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{pagoventaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewPagoventaLabel_pagoventaid}"/>
+                        <h:outputText value="#"/>
                         <h:outputText value="#{pagoventaController.selected.pagoventaid}" title="#{bundle.ViewPagoventaTitle_pagoventaid}"/>
-                        <h:outputText value="#{bundle.ViewPagoventaLabel_fechaPago}"/>
+                        <h:outputText value="Fecha de Venta"/>
                         <h:outputText value="#{pagoventaController.selected.fechaPago}" title="#{bundle.ViewPagoventaTitle_fechaPago}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewPagoventaLabel_monto}"/>
+                        <h:outputText value="Monto"/>
                         <h:outputText value="#{pagoventaController.selected.monto}" title="#{bundle.ViewPagoventaTitle_monto}"/>
-                        <h:outputText value="#{bundle.ViewPagoventaLabel_estado}"/>
+                        <h:outputText value="Estatus"/>
                         <h:outputText value="#{pagoventaController.selected.estado}" title="#{bundle.ViewPagoventaTitle_estado}"/>
-                        <h:outputText value="#{bundle.ViewPagoventaLabel_tarjetacreditoid}"/>
+                        <h:outputText value="Trajeta Asociada"/>
                         <h:outputText value="#{pagoventaController.selected.tarjetacreditoid}" title="#{bundle.ViewPagoventaTitle_tarjetacreditoid}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="PagoventaViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="PagoventaViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

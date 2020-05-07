@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="TarjetacreditocompraListForm">
-                <p:panel header="#{bundle.ListTarjetacreditocompraTitle}">
+                <p:panel header="Módulo Tarjeta Compra">
                     <p:dataTable id="datalist" value="#{tarjetacreditocompraController.items}" var="item"
                                  selectionMode="single" selection="#{tarjetacreditocompraController.selected}"
                                  paginator="true"
@@ -29,45 +29,45 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTarjetacreditocompraTitle_tarjetacreditocompraid}"/>
+                                <h:outputText value="#"/>
                             </f:facet>
                             <h:outputText value="#{item.tarjetacreditocompraid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTarjetacreditocompraTitle_numero}"/>
+                                <h:outputText value="Numéro de Tarjeta"/>
                             </f:facet>
                             <h:outputText value="#{item.numero}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTarjetacreditocompraTitle_cvc}"/>
+                                <h:outputText value="CVC"/>
                             </f:facet>
                             <h:outputText value="#{item.cvc}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTarjetacreditocompraTitle_nombreTitular}"/>
+                                <h:outputText value="Nombre del Titular"/>
                             </f:facet>
                             <h:outputText value="#{item.nombreTitular}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTarjetacreditocompraTitle_fechaExpiracion}"/>
+                                <h:outputText value="Fecha de Expiración"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaExpiracion}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTarjetacreditocompraTitle_lugarFacturacion}"/>
+                                <h:outputText value="Lugar de Facturación"/>
                             </f:facet>
                             <h:outputText value="#{item.lugarFacturacion}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tarjetacreditocompraController.prepareCreate}" update=":TarjetacreditocompraCreateForm" oncomplete="PF('TarjetacreditocompraCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TarjetacreditocompraViewForm" oncomplete="PF('TarjetacreditocompraViewDialog').show()" disabled="#{empty tarjetacreditocompraController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TarjetacreditocompraEditForm" oncomplete="PF('TarjetacreditocompraEditDialog').show()" disabled="#{empty tarjetacreditocompraController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tarjetacreditocompraController.destroy}" update=":growl,datalist" disabled="#{empty tarjetacreditocompraController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{tarjetacreditocompraController.prepareCreate}" update=":TarjetacreditocompraCreateForm" oncomplete="PF('TarjetacreditocompraCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":TarjetacreditocompraViewForm" oncomplete="PF('TarjetacreditocompraViewDialog').show()" disabled="#{empty tarjetacreditocompraController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":TarjetacreditocompraEditForm" oncomplete="PF('TarjetacreditocompraEditDialog').show()" disabled="#{empty tarjetacreditocompraController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{tarjetacreditocompraController.destroy}" update=":growl,datalist" disabled="#{empty tarjetacreditocompraController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

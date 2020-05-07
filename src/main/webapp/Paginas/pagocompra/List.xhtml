@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="PagocompraListForm">
-                <p:panel header="#{bundle.ListPagocompraTitle}">
+                <p:panel header="Módulo Pago de Compra">
                     <p:dataTable id="datalist" value="#{pagocompraController.items}" var="item"
                                  selectionMode="single" selection="#{pagocompraController.selected}"
                                  paginator="true"
@@ -29,13 +29,13 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagocompraTitle_pagocompraid}"/>
+                                <h:outputText value="#"/>
                             </f:facet>
                             <h:outputText value="#{item.pagocompraid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagocompraTitle_fechaPago}"/>
+                                <h:outputText value="Fecha de Pago"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaPago}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -43,27 +43,27 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagocompraTitle_monto}"/>
+                                <h:outputText value="Monto"/>
                             </f:facet>
                             <h:outputText value="#{item.monto}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagocompraTitle_estado}"/>
+                                <h:outputText value="Estatus"/>
                             </f:facet>
                             <h:outputText value="#{item.estado}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPagocompraTitle_tarjetacreditoid}"/>
+                                <h:outputText value="Trajeta Asociada"/>
                             </f:facet>
                             <h:outputText value="#{item.tarjetacreditoid}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{pagocompraController.prepareCreate}" update=":PagocompraCreateForm" oncomplete="PF('PagocompraCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PagocompraViewForm" oncomplete="PF('PagocompraViewDialog').show()" disabled="#{empty pagocompraController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PagocompraEditForm" oncomplete="PF('PagocompraEditDialog').show()" disabled="#{empty pagocompraController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{pagocompraController.destroy}" update=":growl,datalist" disabled="#{empty pagocompraController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{pagocompraController.prepareCreate}" update=":PagocompraCreateForm" oncomplete="PF('PagocompraCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":PagocompraViewForm" oncomplete="PF('PagocompraViewDialog').show()" disabled="#{empty pagocompraController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":PagocompraEditForm" oncomplete="PF('PagocompraEditDialog').show()" disabled="#{empty pagocompraController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{pagocompraController.destroy}" update=":growl,datalist" disabled="#{empty pagocompraController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
