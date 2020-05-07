@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="CargoListForm">
-                <p:panel header="#{bundle.ListCargoTitle}">
+                <p:panel header="MÓDULO CARGO">
                     <p:dataTable id="datalist" value="#{cargoController.items}" var="item"
                                  selectionMode="single" selection="#{cargoController.selected}"
                                  paginator="true"
@@ -29,27 +29,27 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCargoTitle_cargoid}"/>
+                                <h:outputText value="#"/>
                             </f:facet>
                             <h:outputText value="#{item.cargoid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCargoTitle_nombreCargo}"/>
+                                <h:outputText value="Nombre"/>
                             </f:facet>
                             <h:outputText value="#{item.nombreCargo}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCargoTitle_salarioMensual}"/>
+                                <h:outputText value="Salario Mensual"/>
                             </f:facet>
                             <h:outputText value="#{item.salarioMensual}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cargoController.prepareCreate}" update=":CargoCreateForm" oncomplete="PF('CargoCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CargoViewForm" oncomplete="PF('CargoViewDialog').show()" disabled="#{empty cargoController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CargoEditForm" oncomplete="PF('CargoEditDialog').show()" disabled="#{empty cargoController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{cargoController.destroy}" update=":growl,datalist" disabled="#{empty cargoController.selected}"/>
+                            <p:commandButton  id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{cargoController.prepareCreate}" update=":CargoCreateForm" oncomplete="PF('CargoCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":CargoViewForm" oncomplete="PF('CargoViewDialog').show()" disabled="#{empty cargoController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":CargoEditForm" oncomplete="PF('CargoEditDialog').show()" disabled="#{empty cargoController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{cargoController.destroy}" update=":growl,datalist" disabled="#{empty cargoController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

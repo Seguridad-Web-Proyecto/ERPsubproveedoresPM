@@ -8,19 +8,17 @@
 
     <ui:composition>
 
-        <p:dialog id="CargoCreateDlg" widgetVar="CargoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCargoTitle}">
+        <p:dialog id="CargoCreateDlg" widgetVar="CargoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Crear Cargo">
             <h:form id="CargoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{cargoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateCargoLabel_cargoid}" for="cargoid" />
-                        <p:inputText id="cargoid" value="#{cargoController.selected.cargoid}" title="#{bundle.CreateCargoTitle_cargoid}" required="true" requiredMessage="#{bundle.CreateCargoRequiredMessage_cargoid}"/>
-                        <p:outputLabel value="#{bundle.CreateCargoLabel_nombreCargo}" for="nombreCargo" />
+                        <p:outputLabel value="Nombre" for="nombreCargo" />
                         <p:inputText id="nombreCargo" value="#{cargoController.selected.nombreCargo}" title="#{bundle.CreateCargoTitle_nombreCargo}" required="true" requiredMessage="#{bundle.CreateCargoRequiredMessage_nombreCargo}"/>
-                        <p:outputLabel value="#{bundle.CreateCargoLabel_salarioMensual}" for="salarioMensual" />
+                        <p:outputLabel value="Salario Mensual" for="salarioMensual" />
                         <p:inputText id="salarioMensual" value="#{cargoController.selected.salarioMensual}" title="#{bundle.CreateCargoTitle_salarioMensual}" required="true" requiredMessage="#{bundle.CreateCargoRequiredMessage_salarioMensual}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{cargoController.create}" value="#{bundle.Save}" update="display,:CargoListForm:datalist,:growl" oncomplete="handleSubmit(args,'CargoCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="CargoCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{cargoController.create}" value="Guardar" update="display,:CargoListForm:datalist,:growl" oncomplete="handleSubmit(args,'CargoCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="CargoCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
