@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="CategoriaListForm">
-                <p:panel header="#{bundle.ListCategoriaTitle}">
+                <p:panel header="MÓDULO CATEGORÍA">
                     <p:dataTable id="datalist" value="#{categoriaController.items}" var="item"
                                  selectionMode="single" selection="#{categoriaController.selected}"
                                  paginator="true"
@@ -29,21 +29,21 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCategoriaTitle_categoriaid}"/>
+                                <h:outputText value="#"/>
                             </f:facet>
                             <h:outputText value="#{item.categoriaid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCategoriaTitle_nombre}"/>
+                                <h:outputText value="Nombre"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{categoriaController.prepareCreate}" update=":CategoriaCreateForm" oncomplete="PF('CategoriaCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CategoriaViewForm" oncomplete="PF('CategoriaViewDialog').show()" disabled="#{empty categoriaController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CategoriaEditForm" oncomplete="PF('CategoriaEditDialog').show()" disabled="#{empty categoriaController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{categoriaController.destroy}" update=":growl,datalist" disabled="#{empty categoriaController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Crear" actionListener="#{categoriaController.prepareCreate}" update=":CategoriaCreateForm" oncomplete="PF('CategoriaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":CategoriaViewForm" oncomplete="PF('CategoriaViewDialog').show()" disabled="#{empty categoriaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":CategoriaEditForm" oncomplete="PF('CategoriaEditDialog').show()" disabled="#{empty categoriaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{categoriaController.destroy}" update=":growl,datalist" disabled="#{empty categoriaController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

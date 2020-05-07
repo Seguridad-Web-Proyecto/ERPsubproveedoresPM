@@ -8,17 +8,15 @@
 
     <ui:composition>
 
-        <p:dialog id="CategoriaEditDlg" widgetVar="CategoriaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCategoriaTitle}">
+        <p:dialog id="CategoriaEditDlg" widgetVar="CategoriaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Infomación">
             <h:form id="CategoriaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{categoriaController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditCategoriaLabel_categoriaid}" for="categoriaid" />
-                        <p:inputText id="categoriaid" value="#{categoriaController.selected.categoriaid}" title="#{bundle.EditCategoriaTitle_categoriaid}" required="true" requiredMessage="#{bundle.EditCategoriaRequiredMessage_categoriaid}"/>
-                        <p:outputLabel value="#{bundle.EditCategoriaLabel_nombre}" for="nombre" />
+                        <p:outputLabel value="Nombre" for="nombre" />
                         <p:inputText id="nombre" value="#{categoriaController.selected.nombre}" title="#{bundle.EditCategoriaTitle_nombre}" required="true" requiredMessage="#{bundle.EditCategoriaRequiredMessage_nombre}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{categoriaController.update}" value="#{bundle.Save}" update="display,:CategoriaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CategoriaEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="CategoriaEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{categoriaController.update}" value="Guardar" update="display,:CategoriaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CategoriaEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="CategoriaEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

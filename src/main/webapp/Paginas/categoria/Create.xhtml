@@ -8,17 +8,15 @@
 
     <ui:composition>
 
-        <p:dialog id="CategoriaCreateDlg" widgetVar="CategoriaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCategoriaTitle}">
+        <p:dialog id="CategoriaCreateDlg" widgetVar="CategoriaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Crear Categoría">
             <h:form id="CategoriaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{categoriaController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateCategoriaLabel_categoriaid}" for="categoriaid" />
-                        <p:inputText id="categoriaid" value="#{categoriaController.selected.categoriaid}" title="#{bundle.CreateCategoriaTitle_categoriaid}" required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_categoriaid}"/>
                         <p:outputLabel value="#{bundle.CreateCategoriaLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{categoriaController.selected.nombre}" title="#{bundle.CreateCategoriaTitle_nombre}" required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_nombre}"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{categoriaController.create}" value="#{bundle.Save}" update="display,:CategoriaListForm:datalist,:growl" oncomplete="handleSubmit(args,'CategoriaCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="CategoriaCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{categoriaController.create}" value="Guardar" update="display,:CategoriaListForm:datalist,:growl" oncomplete="handleSubmit(args,'CategoriaCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="CategoriaCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

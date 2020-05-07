@@ -8,16 +8,16 @@
 
     <ui:composition>
 
-        <p:dialog id="CategoriaViewDlg" widgetVar="CategoriaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCategoriaTitle}">
+        <p:dialog id="CategoriaViewDlg" widgetVar="CategoriaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Información">
             <h:form id="CategoriaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{categoriaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewCategoriaLabel_categoriaid}"/>
+                        <h:outputText value="#"/>
                         <h:outputText value="#{categoriaController.selected.categoriaid}" title="#{bundle.ViewCategoriaTitle_categoriaid}"/>
                         <h:outputText value="#{bundle.ViewCategoriaLabel_nombre}"/>
                         <h:outputText value="#{categoriaController.selected.nombre}" title="#{bundle.ViewCategoriaTitle_nombre}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="CategoriaViewDialog.hide()"/>
+                    <p:commandButton value="Cerrar" onclick="CategoriaViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
