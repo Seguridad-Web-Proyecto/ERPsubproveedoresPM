@@ -28,9 +28,12 @@ public class ApplicationConfig extends Application {
      * all resources defined in the project.
      * If required, comment out calling this method in getClasses().
      */
-    private void addRestResourceClasses(Set<Class<?>> resources) {
+    private void addRestResourceClasses(Set<Class<?>> resources){
         resources.add(restapplication.HelloRESTController.class);
         resources.add(restapplication.service.CategoriaFacadeREST.class);
+        resources.add(restapplication.service.FacturaventaFacadeREST.class);
+        resources.add(restapplication.service.OrdenventaFacadeREST.class);
+        resources.add(restapplication.service.PagoventaFacadeREST.class);
         resources.add(restapplication.service.ProductoFacadeREST.class);
     }
     

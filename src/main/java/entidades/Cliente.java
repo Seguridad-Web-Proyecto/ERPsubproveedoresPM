@@ -7,6 +7,7 @@ package entidades;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,6 +21,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -39,6 +42,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Cliente.findByActivo", query = "SELECT c FROM Cliente c WHERE c.activo = :activo"),
     @NamedQuery(name = "Cliente.findByPaginaWeb", query = "SELECT c FROM Cliente c WHERE c.paginaWeb = :paginaWeb"),
     @NamedQuery(name = "Cliente.findByDomicilioFiscal", query = "SELECT c FROM Cliente c WHERE c.domicilioFiscal = :domicilioFiscal")})
+@XmlRootElement
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -195,6 +199,8 @@ public class Cliente implements Serializable {
         this.domicilioFiscal = domicilioFiscal;
     }
 
+    @XmlTransient
+    @JsonbTransient
     public Collection<Ordenventa> getOrdenventaCollection() {
         return ordenventaCollection;
     }
@@ -225,7 +231,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Cliente[ clienteid=" + clienteid + " ]";
+        return "Cliente[ id=" + clienteid + " ]";
     }
     
 }

@@ -17,6 +17,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import restapplication.Common;
 
 /**
  *
@@ -38,7 +39,7 @@ public class ProductoFacadeREST extends AbstractFacade<Producto> {
     @Produces(MediaType.APPLICATION_JSON)
     public Producto find(@PathParam("id") Long id) {
         Producto producto = super.find(id);
-        Producto p = aplicarGanancia(producto);
+        Producto p = Common.aplicarGananciaAlProducto(producto);
         return p;
     }
     
@@ -49,7 +50,7 @@ public class ProductoFacadeREST extends AbstractFacade<Producto> {
         List<Producto> productos = super.findAll();
         List<Producto> returnList = new ArrayList<>();
         for(Producto p: productos){
-            p = aplicarGanancia(p);
+            p = Common.aplicarGananciaAlProducto(p);
             returnList.add(p);
         }
         return returnList;
@@ -62,7 +63,7 @@ public class ProductoFacadeREST extends AbstractFacade<Producto> {
         List<Producto> productos = super.findRange(new int[]{from, to});
         List<Producto> returnList = new ArrayList<>();
         for(Producto p: productos){
-            p = aplicarGanancia(p);
+            p = Common.aplicarGananciaAlProducto(p);
             //System.out.println(p);
             returnList.add(p);
         }
@@ -81,14 +82,5 @@ public class ProductoFacadeREST extends AbstractFacade<Producto> {
         return em;
     }
     
-    private Producto aplicarGanancia(Producto producto){
-        int gananciaxproducto = ((int)producto.getGanancia().getPorcentaje())*(int)producto.getPrecioUnitario();
-        gananciaxproducto /= 100;
-        int nuevoPrecio = (int)producto.getPrecioUnitario() + gananciaxproducto;
-        Producto productoQ = new Producto(producto.getProductoid(), producto.getNombre(), 
-                producto.getDescripcion(), producto.getUnidadMedida(), nuevoPrecio);
-        productoQ.setCategoriaid(producto.getCategoriaid());
-        return productoQ;
-    }
     
 }

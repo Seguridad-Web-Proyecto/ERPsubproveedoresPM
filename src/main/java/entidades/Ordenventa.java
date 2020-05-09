@@ -25,6 +25,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -41,6 +42,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Ordenventa.findBySubtotal", query = "SELECT o FROM Ordenventa o WHERE o.subtotal = :subtotal"),
     @NamedQuery(name = "Ordenventa.findByTotal", query = "SELECT o FROM Ordenventa o WHERE o.total = :total"),
     @NamedQuery(name = "Ordenventa.findByDescripcion", query = "SELECT o FROM Ordenventa o WHERE o.descripcion = :descripcion")})
+@XmlRootElement
 public class Ordenventa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -157,7 +159,7 @@ public class Ordenventa implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+    
     public Collection<Ventadetalle> getVentadetalleCollection() {
         return ventadetalleCollection;
     }
@@ -204,7 +206,7 @@ public class Ordenventa implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Ordenventa[ ordenventaid=" + ordenventaid + " ]";
+        return "Orden de venta[ id=" + ordenventaid + " ]";
     }
     
 }
