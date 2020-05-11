@@ -4,8 +4,12 @@ import entidades.Usuario;
 import jsf.clases.util.JsfUtil;
 import jsf.clases.util.JsfUtil.PersistAction;
 import beans.sessions.UsuarioFacade;
+import entidades.Encoding;
+import entidades.Rol;
+import java.io.IOException;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -27,7 +31,8 @@ public class UsuarioController implements Serializable {
     private beans.sessions.UsuarioFacade ejbFacade;
     private List<Usuario> items = null;
     private Usuario selected;
-
+    private String pass2;
+    
     public UsuarioController() {
     }
 
@@ -39,6 +44,16 @@ public class UsuarioController implements Serializable {
         this.selected = selected;
     }
 
+    public String getPass2()
+    {
+        return pass2;
+    }
+
+    public void setPass2(String pass2)
+    {
+        this.pass2 = pass2;
+    }
+    
     protected void setEmbeddableKeys() {
     }
 
@@ -49,6 +64,41 @@ public class UsuarioController implements Serializable {
         return ejbFacade;
     }
 
+    public String registrar() throws IOException
+    {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        selected.setActivo(true);
+        selected.setFechaCreacion(new Date());
+        
+        if (pass2.equals(selected.getContrasenia()))
+        {
+            selected.setContrasenia(Encoding.convertPass(selected.getContrasenia()));
+            selected.setRol(new Rol(selected.getEmail(), "USERS"));
+            
+            if (getUsuario(selected.getEmail())!=null)
+            {
+                JsfUtil.addErrorMessage("El usuario ya existe");
+                return null;
+            }
+
+            create();
+            if (!JsfUtil.isValidationFailed())
+            {
+                JsfUtil.addSuccessMessage("Ok");
+                return "regdone.xhtml";
+                
+            } else
+            {
+                JsfUtil.addErrorMessage("Ocurrió un error");
+              return null;
+            }
+        } else
+        {
+            JsfUtil.addErrorMessage("Las contraseñas no coinciden");
+         return null;  
+        }
+    }
+    
     public Usuario prepareCreate() {
         selected = new Usuario();
         initializeEmbeddableKey();
