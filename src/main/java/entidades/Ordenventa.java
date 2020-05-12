@@ -6,6 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -46,43 +47,53 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Ordenventa implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ordenventaid")
     private Long ordenventaid;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha_venta")
     @Temporal(TemporalType.DATE)
     private Date fechaVenta;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "status")
     private String status;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "iva")
     private short iva;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "subtotal")
     private long subtotal;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "total")
     private long total;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "descripcion")
     private String descripcion;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ordenventa")
-    private Collection<Ventadetalle> ventadetalleCollection;
+    private ArrayList<Ventadetalle> ventadetalleCollection;
+    
     @JoinColumn(name = "clienteid", referencedColumnName = "clienteid")
     @ManyToOne(optional = false)
     private Cliente clienteid;
+    
     @JoinColumn(name = "facturaid", referencedColumnName = "facturaventaid")
     @ManyToOne
     private Facturaventa facturaid;
@@ -164,7 +175,7 @@ public class Ordenventa implements Serializable {
         return ventadetalleCollection;
     }
 
-    public void setVentadetalleCollection(Collection<Ventadetalle> ventadetalleCollection) {
+    public void setVentadetalleCollection(ArrayList<Ventadetalle> ventadetalleCollection) {
         this.ventadetalleCollection = ventadetalleCollection;
     }
 

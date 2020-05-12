@@ -9,6 +9,7 @@ import dao.exceptions.IllegalOrphanException;
 import dao.exceptions.NonexistentEntityException;
 import dao.exceptions.RollbackFailureException;
 import entidades.Cliente;
+import entidades.Cliente_;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -20,7 +21,10 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.UserTransaction;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -220,6 +224,22 @@ public class ClienteJpaController implements Serializable {
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
         } finally {
+            em.close();
+        }
+    }
+    
+    public Cliente findClienteByEmail(@NotNull final String email){
+        EntityManager em = getEntityManager();
+        try {
+            CriteriaBuilder builder = em.getCriteriaBuilder();
+            CriteriaQuery<Cliente> criteria = builder.createQuery(Cliente.class);
+            Root<Cliente> from = criteria.from(Cliente.class);
+            criteria.select(from);
+            criteria.where(builder.equal(from.get(Cliente_.email), email));
+            TypedQuery<Cliente> typed = em.createQuery(criteria);
+            Cliente cliente = typed.getSingleResult();
+            return cliente;
+        }finally{
             em.close();
         }
     }

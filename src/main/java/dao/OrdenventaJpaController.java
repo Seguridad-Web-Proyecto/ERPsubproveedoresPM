@@ -64,7 +64,7 @@ public class OrdenventaJpaController implements Serializable {
                 ventadetalleCollectionVentadetalleToAttach = em.getReference(ventadetalleCollectionVentadetalleToAttach.getClass(), ventadetalleCollectionVentadetalleToAttach.getVentadetallePK());
                 attachedVentadetalleCollection.add(ventadetalleCollectionVentadetalleToAttach);
             }
-            ordenventa.setVentadetalleCollection(attachedVentadetalleCollection);
+            ordenventa.setVentadetalleCollection((ArrayList<Ventadetalle>) attachedVentadetalleCollection);
             em.persist(ordenventa);
             if (clienteid != null) {
                 clienteid.getOrdenventaCollection().add(ordenventa);
@@ -136,7 +136,7 @@ public class OrdenventaJpaController implements Serializable {
                 attachedVentadetalleCollectionNew.add(ventadetalleCollectionNewVentadetalleToAttach);
             }
             ventadetalleCollectionNew = attachedVentadetalleCollectionNew;
-            ordenventa.setVentadetalleCollection(ventadetalleCollectionNew);
+            ordenventa.setVentadetalleCollection((ArrayList<Ventadetalle>) ventadetalleCollectionNew);
             ordenventa = em.merge(ordenventa);
             if (clienteidOld != null && !clienteidOld.equals(clienteidNew)) {
                 clienteidOld.getOrdenventaCollection().remove(ordenventa);

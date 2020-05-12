@@ -64,7 +64,7 @@ public class Common {
         if(ordenventa.getFacturaid()!=null){
             returnOrden.setFacturaid(Common.limpiarFacturaVenta(ordenventa.getFacturaid()));
         }
-        returnOrden.setVentadetalleCollection(ventadetalleList);
+        returnOrden.setVentadetalleCollection((ArrayList<Ventadetalle>) ventadetalleList);
         return returnOrden;
     }
     
