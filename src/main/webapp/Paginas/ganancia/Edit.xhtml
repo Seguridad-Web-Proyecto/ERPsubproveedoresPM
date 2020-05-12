@@ -13,7 +13,9 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{gananciaController.selected != null}">
                         <p:outputLabel value="Porcentaje de Ganancia" for="porcentaje" />
-                        <p:inputText id="porcentaje" value="#{gananciaController.selected.porcentaje}" title="#{bundle.EditGananciaTitle_porcentaje}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_porcentaje}"/>
+                        <p:inputText id="porcentaje" value="#{gananciaController.selected.porcentaje}" title="#{bundle.EditGananciaTitle_porcentaje}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_porcentaje}">
+                              <f:validator validatorId="numerosValidator" />
+                                        </p:inputText>
                         <p:outputLabel value="Producto" for="productoid" />
                         <p:selectOneMenu id="productoid" value="#{gananciaController.selected.productoid}" required="true" requiredMessage="#{bundle.EditGananciaRequiredMessage_productoid}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
