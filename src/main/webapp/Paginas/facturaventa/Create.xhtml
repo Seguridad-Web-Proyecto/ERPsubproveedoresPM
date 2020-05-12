@@ -17,7 +17,9 @@
                         <p:outputLabel value="Fecha de Vencimiento" for="fechaVencimientoPago" />
                         <p:calendar id="fechaVencimientoPago" pattern="MM/dd/yyyy" value="#{facturaventaController.selected.fechaVencimientoPago}" title="#{bundle.EditFacturaventaTitle_fechaVencimientoPago}" required="true" requiredMessage="#{bundle.EditFacturaventaRequiredMessage_fechaVencimientoPago}" showOn="button"/>
                         <p:outputLabel value="Descripción" for="descripcion" />
-                        <p:inputText id="descripcion" value="#{facturaventaController.selected.descripcion}" title="#{bundle.CreateFacturaventaTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateFacturaventaRequiredMessage_descripcion}"/>
+                        <p:inputText id="descripcion" value="#{facturaventaController.selected.descripcion}" title="#{bundle.CreateFacturaventaTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateFacturaventaRequiredMessage_descripcion}">
+                        <f:validator validatorId="letrasValidator" />
+                                  </p:inputText>
                         <p:outputLabel value="Pago Asociado" for="pagoid" />
                         <p:selectOneMenu id="pagoid" value="#{facturaventaController.selected.pagoid}" >
                             <f:selectItems value="#{pagoventaController.itemsAvailableSelectOne}"

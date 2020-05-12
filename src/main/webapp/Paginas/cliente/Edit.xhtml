@@ -15,19 +15,31 @@
                         <p:outputLabel value="Nombre de la empresa" for="empresa" />
                         <p:inputText id="empresa" value="#{clienteController.selected.empresa}" title="#{bundle.EditClienteTitle_empresa}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_empresa}"/>
                         <p:outputLabel value="Nombre del Contacto" for="nombreContacto" />
-                        <p:inputText id="nombreContacto" value="#{clienteController.selected.nombreContacto}" title="#{bundle.EditClienteTitle_nombreContacto}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_nombreContacto}"/>
+                        <p:inputText id="nombreContacto" value="#{clienteController.selected.nombreContacto}" title="#{bundle.EditClienteTitle_nombreContacto}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_nombreContacto}">
+                             <f:validator validatorId="letrasValidator" />
+                                        </p:inputText> 
                         <p:outputLabel value="Area" for="area" />
-                        <p:inputText id="area" value="#{clienteController.selected.area}" title="#{bundle.EditClienteTitle_area}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_area}"/>
+                        <p:inputText id="area" value="#{clienteController.selected.area}" title="#{bundle.EditClienteTitle_area}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_area}">
+                             <f:validator validatorId="letrasValidator" />
+                                        </p:inputText> 
                         <p:outputLabel value="Teléfono" for="telefono" />
-                        <p:inputText id="telefono" value="#{clienteController.selected.telefono}" title="#{bundle.EditClienteTitle_telefono}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_telefono}"/>
+                        <p:inputText id="telefono" value="#{clienteController.selected.telefono}" title="#{bundle.EditClienteTitle_telefono}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_telefono}">
+                               <f:validator validatorId="telefonoValidator" />
+                                        </p:inputText>
                         <p:outputLabel value="RFC" for="rfc" />
-                        <p:inputText id="rfc" value="#{clienteController.selected.rfc}" title="#{bundle.EditClienteTitle_rfc}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_rfc}"/>
+                        <p:inputText id="rfc" value="#{clienteController.selected.rfc}" title="#{bundle.EditClienteTitle_rfc}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_rfc}">
+                               <f:validator validatorId="rfcValidator" />
+                                        </p:inputText>
                         <p:outputLabel value="Email" for="email" />
-                        <p:inputText id="email" value="#{clienteController.selected.email}" title="#{bundle.EditClienteTitle_email}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_email}"/>
+                        <p:inputText id="email" value="#{clienteController.selected.email}" title="#{bundle.EditClienteTitle_email}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_email}">
+                             <f:validator validatorId="emailValidator" />
+                                        </p:inputText>
                         <p:outputLabel value="Ativo" for="activo" />
                         <p:selectBooleanCheckbox id="activo" value="#{clienteController.selected.activo}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_activo}"/>
                         <p:outputLabel value="Página Web" for="paginaWeb" />
-                        <p:inputText id="paginaWeb" value="#{clienteController.selected.paginaWeb}" title="#{bundle.EditClienteTitle_paginaWeb}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_paginaWeb}"/>
+                        <p:inputText id="paginaWeb" value="#{clienteController.selected.paginaWeb}" title="#{bundle.EditClienteTitle_paginaWeb}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_paginaWeb}">
+                              <f:validator validatorId="urlValidator" />
+                                        </p:inputText>
                         <p:outputLabel value="Domicilio" for="domicilioFiscal" />
                         <p:inputText id="domicilioFiscal" value="#{clienteController.selected.domicilioFiscal}" title="#{bundle.EditClienteTitle_domicilioFiscal}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_domicilioFiscal}"/>
                     </p:panelGrid>

@@ -13,7 +13,9 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{inventarioController.selected != null}">
                         <p:outputLabel value="Existencias" for="existencias" />
-                        <p:inputText id="existencias" value="#{inventarioController.selected.existencias}" title="#{bundle.EditInventarioTitle_existencias}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_existencias}"/>
+                        <p:inputText id="existencias" value="#{inventarioController.selected.existencias}" title="#{bundle.EditInventarioTitle_existencias}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_existencias}">
+                                   <f:validator validatorId="numerosValidator" />
+                                        </p:inputText> 
                         <p:outputLabel value="Producto" for="productoid" />
                         <p:selectOneMenu id="productoid" value="#{inventarioController.selected.productoid}" required="true" requiredMessage="#{bundle.EditInventarioRequiredMessage_productoid}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
