@@ -15,15 +15,25 @@
                         <p:outputLabel value="Fecha de Compra" for="fechaCompra" />
                         <p:calendar id="fechaCompra" pattern="MM/dd/yyyy" value="#{ordencompraController.selected.fechaCompra}" title="#{bundle.EditOrdencompraTitle_fechaCompra}" required="true" requiredMessage="#{bundle.EditOrdencompraRequiredMessage_fechaCompra}" showOn="button"/>
                         <p:outputLabel value="Estatus" for="status" />
-                        <p:inputText id="status" value="#{ordencompraController.selected.status}" title="#{bundle.CreateOrdencompraTitle_status}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_status}"/>
+                        <p:inputText id="status" value="#{ordencompraController.selected.status}" title="#{bundle.CreateOrdencompraTitle_status}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_status}">
+                            <f:validator validatorId="letrasValidator" />
+                                        </p:inputText>
                         <p:outputLabel value="IVA" for="iva" />
-                        <p:inputText id="iva" value="#{ordencompraController.selected.iva}" title="#{bundle.CreateOrdencompraTitle_iva}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_iva}"/>
+                        <p:inputText id="iva" value="#{ordencompraController.selected.iva}" title="#{bundle.CreateOrdencompraTitle_iva}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_iva}">
+                               <f:validator validatorId="numerosValidator" />
+                                        </p:inputText>
                         <p:outputLabel value="Sub Total" for="subtotal" />
-                        <p:inputText id="subtotal" value="#{ordencompraController.selected.subtotal}" title="#{bundle.CreateOrdencompraTitle_subtotal}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_subtotal}"/>
+                        <p:inputText id="subtotal" value="#{ordencompraController.selected.subtotal}" title="#{bundle.CreateOrdencompraTitle_subtotal}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_subtotal}">
+                               <f:validator validatorId="numerosValidator" />
+                                        </p:inputText>
                         <p:outputLabel value="Total" for="total" />
-                        <p:inputText id="total" value="#{ordencompraController.selected.total}" title="#{bundle.CreateOrdencompraTitle_total}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_total}"/>
+                        <p:inputText id="total" value="#{ordencompraController.selected.total}" title="#{bundle.CreateOrdencompraTitle_total}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_total}">
+                               <f:validator validatorId="numerosValidator" />
+                                        </p:inputText>
                         <p:outputLabel value="Descripción" for="descripcion" />
-                        <p:inputText id="descripcion" value="#{ordencompraController.selected.descripcion}" title="#{bundle.CreateOrdencompraTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_descripcion}"/>
+                        <p:inputText id="descripcion" value="#{ordencompraController.selected.descripcion}" title="#{bundle.CreateOrdencompraTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateOrdencompraRequiredMessage_descripcion}">
+                            <f:validator validatorId="letrasValidator" />
+                                        </p:inputText>
                         <p:outputLabel value="Factura Asociada" for="facturaid" />
                         <p:selectOneMenu id="facturaid" value="#{ordencompraController.selected.facturaid}" >
                             <f:selectItems value="#{facturacompraController.itemsAvailableSelectOne}"
