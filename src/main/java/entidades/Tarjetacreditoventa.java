@@ -8,6 +8,7 @@ package entidades;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Collection;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,6 +22,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,6 +39,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Tarjetacreditoventa.findByNombreTitular", query = "SELECT t FROM Tarjetacreditoventa t WHERE t.nombreTitular = :nombreTitular"),
     @NamedQuery(name = "Tarjetacreditoventa.findByFechaExpiracion", query = "SELECT t FROM Tarjetacreditoventa t WHERE t.fechaExpiracion = :fechaExpiracion"),
     @NamedQuery(name = "Tarjetacreditoventa.findByLugarFacturacion", query = "SELECT t FROM Tarjetacreditoventa t WHERE t.lugarFacturacion = :lugarFacturacion")})
+@XmlRootElement
 public class Tarjetacreditoventa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -134,6 +138,8 @@ public class Tarjetacreditoventa implements Serializable {
         this.lugarFacturacion = lugarFacturacion;
     }
 
+    @XmlTransient
+    @JsonbTransient
     public Collection<Pagoventa> getPagoventaCollection() {
         return pagoventaCollection;
     }
@@ -164,7 +170,7 @@ public class Tarjetacreditoventa implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Tarjetacreditoventa[ tarjetacreditoventaid=" + tarjetacreditoventaid + " ]";
+        return "Tarjeta de credito Venta[ id=" + tarjetacreditoventaid + " ]";
     }
     
 }

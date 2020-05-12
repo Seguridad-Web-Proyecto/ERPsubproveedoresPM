@@ -19,8 +19,123 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>faces/login.xhtml</welcome-file>
     </welcome-file-list>
+    
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>securityRealm3</realm-name>
+        <form-login-config>
+            <form-login-page>/login.xhtml</form-login-page>
+            <form-error-page>/loginError.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    
+    <security-role>
+        <role-name>ADMINS</role-name>
+    </security-role>
+    <security-role>
+        <role-name>USERS</role-name>
+    </security-role>
+    <security-role>
+        <role-name>COMPRAS</role-name>
+    </security-role>
+    
+    
+    <security-constraint>
+        <display-name>Admin Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected_Admin_Area</web-resource-name>
+            <description/>
+            <url-pattern>/secured/admin/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>PUT</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>POST</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        
+        <auth-constraint>
+            <description>ADMINS</description>
+            <role-name>ADMINS</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    
+    <security-constraint>
+        <display-name>Compras Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected_Compras_Area</web-resource-name>
+            <description/>
+            <url-pattern>/secured/compras/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>PUT</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>POST</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        
+        <auth-constraint>
+            <description>COMPRAS</description>
+            <role-name>COMPRAS</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    
+    <security-constraint>
+        <display-name>User Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected User Area</web-resource-name>
+            <description/>
+            <url-pattern>/secured/user/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>PUT</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>POST</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>USERS</description>
+            <role-name>USERS</role-name>
+        </auth-constraint>
+        
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-constraint>
+        
+    <display-name>Shared Pages</display-name>
+    <web-resource-collection>
+      <web-resource-name>Protected Area</web-resource-name>
+      <description/>
+      <url-pattern>/secured/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>USERS</role-name>
+      <role-name>ADMINS</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Public Area</web-resource-name>
+      <url-pattern>/resources</url-pattern>
+      <url-pattern>/</url-pattern>
+    </web-resource-collection>
+  </security-constraint>
     
     <context-param>
 	<param-name>primefaces.THEME</param-name>

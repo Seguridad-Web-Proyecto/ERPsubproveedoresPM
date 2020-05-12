@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template_login.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="REGISTRO"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <div class="wrapper fadeInDown">
+                <div id="formContent">
+                    <h:form>
+                        <p:messages id="messages" showDetail="false" closable="true"/>
+                        <p:panel header="Registrarse">
+                            <h:panelGroup>
+                                <p:panelGrid id="grid" columns="2" rendered="#{usuarioController.selected != null}">
+                                    <p:outputLabel value="#{bundle.CreateUsuarioLabel_email}" for="email" />
+                                    <p:inputText id="email" value="#{usuarioController.selected.email}" title="#{bundle.CreateUsuarioTitle_email}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_email}"/>
+                                    <h:outputLabel for="pwd1" value="Contraseña: *" />
+                                    <p:password id="pwd1" value="#{usuarioController.selected.contrasenia}" feedback="false" match="pwd2" label="Password 1" required="true"/>
+                                    <h:outputLabel for="pwd2" value="Confirme contraseña: *" />
+                                    <p:password id="pwd2" value="#{usuarioController.pass2}" feedback="false" label="Password 2" required="true"/>
+                                </p:panelGrid>
+                                <p:commandButton action="#{usuarioController.registrar}" value="Rgistrarse" update="grid"/>
+                                
+                            </h:panelGroup>
+                        </p:panel>
+                    </h:form>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>   
+</html>
