@@ -31,10 +31,10 @@ public abstract class AbstractFacade<T> {
 
     protected abstract EntityManager getEntityManager();
 
-    public Response create(T entity) {
-        //getEntityManager().persist(entity);
+    public T create(T entity) {
+        getEntityManager().persist(entity);
         getEntityManager().flush();
-        return Response.ok().entity(entity).build();
+        return entity;
     }
 
     public T edit(T entity) {

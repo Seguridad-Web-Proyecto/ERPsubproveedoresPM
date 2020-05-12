@@ -17,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
@@ -32,6 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Ventadetalle.findByCantidad", query = "SELECT v FROM Ventadetalle v WHERE v.cantidad = :cantidad"),
     @NamedQuery(name = "Ventadetalle.findByPrecioUnitario", query = "SELECT v FROM Ventadetalle v WHERE v.precioUnitario = :precioUnitario"),
     @NamedQuery(name = "Ventadetalle.findByImporte", query = "SELECT v FROM Ventadetalle v WHERE v.importe = :importe")})
+@XmlRootElement
 public class Ventadetalle implements Serializable {
 
     private static final long serialVersionUID = 1L;

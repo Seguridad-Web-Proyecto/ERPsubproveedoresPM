@@ -5,7 +5,7 @@
  */
 package restapplication.service;
 
-import restapplication.AbstractFacade;
+import restapplication.service.AbstractFacade;
 import entidades.Categoria;
 import java.util.List;
 import javax.ejb.Stateless;
