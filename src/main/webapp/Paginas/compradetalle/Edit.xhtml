@@ -13,11 +13,17 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{compradetalleController.selected != null}">
                         <p:outputLabel value="Cantidad" for="cantidad" />
-                        <p:inputText id="cantidad" value="#{compradetalleController.selected.cantidad}" title="#{bundle.EditCompradetalleTitle_cantidad}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_cantidad}"/>
+                        <p:inputText id="cantidad" value="#{compradetalleController.selected.cantidad}" title="#{bundle.EditCompradetalleTitle_cantidad}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_cantidad}">
+                                <f:validator validatorId="numerosValidator" />
+                                        </p:inputText> 
                         <p:outputLabel value="Precio Unitario" for="precioUnitario" />
-                        <p:inputText id="precioUnitario" value="#{compradetalleController.selected.precioUnitario}" title="#{bundle.EditCompradetalleTitle_precioUnitario}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_precioUnitario}"/>
+                        <p:inputText id="precioUnitario" value="#{compradetalleController.selected.precioUnitario}" title="#{bundle.EditCompradetalleTitle_precioUnitario}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_precioUnitario}">
+                                <f:validator validatorId="numerosValidator" />
+                                        </p:inputText> 
                         <p:outputLabel value="Importe" for="importe" />
-                        <p:inputText id="importe" value="#{compradetalleController.selected.importe}" title="#{bundle.EditCompradetalleTitle_importe}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_importe}"/>
+                        <p:inputText id="importe" value="#{compradetalleController.selected.importe}" title="#{bundle.EditCompradetalleTitle_importe}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_importe}">
+                                <f:validator validatorId="numerosValidator" />
+                                        </p:inputText> 
                         <p:outputLabel value="Orden de Compra" for="ordencompra" />
                         <p:selectOneMenu id="ordencompra" value="#{compradetalleController.selected.ordencompra}" required="true" requiredMessage="#{bundle.EditCompradetalleRequiredMessage_ordencompra}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
