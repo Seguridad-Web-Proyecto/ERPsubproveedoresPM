@@ -33,7 +33,6 @@ public abstract class AbstractFacade<T> {
 
     protected abstract EntityManager getEntityManager();
 
-    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public Response create(T entity) {
         getEntityManager().persist(entity);
         getEntityManager().flush();

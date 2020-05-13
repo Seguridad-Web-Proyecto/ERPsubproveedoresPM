@@ -6,6 +6,7 @@
 package beans.sessions;
 
 import entidades.Ordenventa;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -22,7 +23,7 @@ import org.primefaces.model.chart.ChartSeries;
  */
 @Named(value = "ordenventaBean")
 @ViewScoped
-public class ordenventaBean {
+public class ordenventaBean implements Serializable{
 
     @EJB
     private OrdenventaFacade ordenvenFacade;
@@ -32,10 +33,9 @@ public class ordenventaBean {
     public ordenventaBean() {
     }
     public void listar(){
-                listado=ordenvenFacade.Listar();
-                graficar();
-                
-            }
+        listado=ordenvenFacade.Listar();
+        graficar();
+    }
     
       public void graficar(){
                 barra=new BarChartModel();
