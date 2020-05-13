@@ -12,9 +12,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -31,11 +33,11 @@ import restapplication.Common;
  *
  * @author jcami
  */
-@Stateless
+@Stateful
 @Path("pedidos")
 public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
 
-    @PersistenceContext(unitName = "com.mycompany_ERPsubprovee_war_1.0-SNAPSHOTPU")
+    @PersistenceContext(unitName = "com.mycompany_ERPsubprovee_war_1.0-SNAPSHOTPU", type = PersistenceContextType.EXTENDED)
     private EntityManager em;
     
     private ClienteJpaController clienteJpaController = 

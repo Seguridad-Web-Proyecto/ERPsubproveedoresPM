@@ -5,10 +5,20 @@
  */
 package restapplication.api_consumer;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import entidades.Producto;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import org.primefaces.json.JSONArray;
+import org.primefaces.json.JSONObject;
 
 /**
  *
@@ -17,15 +27,44 @@ import java.net.URL;
 class ClienteHTTP {
     
     public static void main(String[] args) {
+        List<Producto> productos = productosProveedor();
+    }
+    
+    public static List<Producto> productosProveedor(){
+        List<Producto> productoList = new ArrayList<>();
         String url = "http://localhost:8080/ERPsubproveedoresPM/webresources/productos";
         String respuesta = "";
         try {
             respuesta = peticionHttpGet(url);
             System.out.println("La respuesta es:\n" + respuesta);
+            String jsonString = new String(respuesta.getBytes("ISO-8859-1"), "UTF-8");
+            //JsonObject jsonObject = new JsonParser().parse(respuesta).getAsJsonObject();
+            /*JSONArray array = new JSONArray(respuesta);
+            Gson gson = new Gson();
+            for(int i=0; i<array.length(); i++){
+                JSONObject jsonObject = array.getJSONObject(i);
+                //System.out.println(jsonObject);
+                Producto producto = gson.fromJson(jsonObject.toString(), Producto.class);
+                System.out.println(producto);
+            }*/
+            ObjectMapper mapper = new ObjectMapper();
+            productoList = mapper.readValue(jsonString, new TypeReference<List<Producto>>(){});
+            for(Producto p: productoList){
+                System.out.println("-------------------");
+                System.out.println("productoid: "+p.getProductoid());
+                System.out.println("nombre: "+p.getNombre());
+                System.out.println("descripcion: "+p.getDescripcion());
+                System.out.println("unidad de medida: "+p.getUnidadMedida());
+                System.out.println("categoría[ ");
+                System.out.println("categoriaid: "+p.getCategoriaid());
+                System.out.println("categoría nombre: "+p.getCategoriaid().getNombre());
+                System.out.println("]\n-------------------");
+            }
         } catch (Exception e) {
             // Manejar excepción
             e.printStackTrace();
         }
+        return productoList;
     }
 
     public static String peticionHttpGet(String urlParaVisitar) throws Exception {
@@ -46,6 +85,7 @@ class ClienteHTTP {
         // Cerrar el BufferedReader
         rd.close();
         // Regresar resultado, pero como cadena, no como StringBuilder
+        
         return resultado.toString();
     }
 }

@@ -6,6 +6,8 @@
 package restapplication.service;
 
 import java.util.List;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -31,6 +33,7 @@ public abstract class AbstractFacade<T> {
 
     protected abstract EntityManager getEntityManager();
 
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public Response create(T entity) {
         getEntityManager().persist(entity);
         getEntityManager().flush();
