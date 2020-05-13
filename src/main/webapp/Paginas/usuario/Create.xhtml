@@ -10,20 +10,22 @@
 
         <p:dialog id="UsuarioCreateDlg" widgetVar="UsuarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nuevo Usuario">
             <h:form id="UsuarioCreateForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
-                        <p:outputLabel value="Email" for="email" />
-                        <p:inputText id="email" value="#{usuarioController.selected.email}" title="#{bundle.CreateUsuarioTitle_email}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_email}"/>
-                        <p:outputLabel value="Contraseña" for="contrasenia" />
-                        <p:inputText id="contrasenia" value="#{usuarioController.selected.contrasenia}" title="#{bundle.CreateUsuarioTitle_contrasenia}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_contrasenia}"/>
-                        <p:outputLabel value="Activo" for="activo" />
-                        <p:selectBooleanCheckbox id="activo" value="#{usuarioController.selected.activo}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_activo}"/>
-                        <p:outputLabel value="Fecha de Creación" for="fechaCreacion" />
-                        <p:calendar id="fechaCreacion" pattern="MM/dd/yyyy" value="#{usuarioController.selected.fechaCreacion}" title="#{bundle.EditUsuarioTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_fechaCreacion}" showOn="button"/>
-                    </p:panelGrid>
-                    <p:commandButton actionListener="#{usuarioController.create}" value="Guardar" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsuarioCreateDialog');"/>
-                    <p:commandButton value="Cancelar" onclick="UsuarioCreateDialog.hide()"/>
-                </h:panelGroup>
+                <p:messages id="messages" showDetail="false" closable="true"/>
+                <p:panel header="Registrarse">
+                    <h:panelGroup>
+                        <p:panelGrid id="grid" columns="2" rendered="#{usuarioController.selected != null}">
+                            <p:outputLabel value="#{bundle.CreateUsuarioLabel_email}" for="email" />
+                            <p:inputText id="email" value="#{usuarioController.selected.email}" title="#{bundle.CreateUsuarioTitle_email}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_email}"/>
+                            <h:outputLabel for="pwd1" value="Contraseña: *" />
+                            <p:password id="pwd1" value="#{usuarioController.selected.contrasenia}" feedback="false" match="pwd2" label="Password 1" required="true"/>
+                            <h:outputLabel for="pwd2" value="Confirme contraseña: *" />
+                            <p:password id="pwd2" value="#{usuarioController.pass2}" feedback="false" label="Password 2" required="true"/>
+                        </p:panelGrid>
+                        <p:commandButton action="#{usuarioController.registrar}" value="Guardar"  oncomplete="handleSubmit(args,'UsuarioCreateDialog');"/>
+                        <p:commandButton class="btn btn-outline-danger" value="Cancelar" onclick="UsuarioCreateDialog.hide()"/>
+                    </h:panelGroup>
+                </p:panel>
+
             </h:form>
         </p:dialog>
 

@@ -6,9 +6,55 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        ADMIN
+        <h1> BIENVENIDO #{login.usuario}</h1>
         <h:form>
-            <h:commandButton action="#{login.logout()}"></h:commandButton>
+            <h:commandButton action="#{login.logout()}" value="LOGOUT"></h:commandButton>
+            <br />
+            <h:link outcome="/Paginas/cargo/List" value="Show All Cargo Items"/>
+        <br />
+        <h:link outcome="/Paginas/categoria/List" value="Show All Categoria Items"/>
+        <br />
+        <h:link outcome="/Paginas/cliente/List" value="Show All Cliente Items"/>
+        <br />
+        <h:link outcome="/Paginas/compradetalle/List" value="Show All Compradetalle Items" />
+        <br />
+        <h:link outcome="/Paginas/empleado/List" value="Show All Empleado Items" />
+        <br />
+        <h:link outcome="/Paginas/facturacompra/List" value="Show All Facturacompra Items" />
+        <br />
+        <h:link outcome="/Paginas/facturaventa/List" value="Show All Facturaventa Items" />
+        <br />
+        <h:link outcome="/Paginas/ganancia/List" value="Show All Ganancia Items" />
+        <br />
+        <h:link outcome="/Paginas/historialtrabajo/List" value="Show All Historialtrabajo Items" />
+        <br />
+        <h:link outcome="/Paginas/inventario/List" value="Show All Inventario Items"/>
+        <br />
+        <h:link outcome="/Paginas/ordencompra/List" value="Show All Ordencompra Items" />
+        <br />
+        <h:link outcome="/Paginas/ordenventa/List" value="Show All Ordenventa Items" />
+        <br />
+        <h:link outcome="/Paginas/pagocompra/List" value="Show All Pagocompra Items"/>
+        <br />
+        <h:link outcome="/Paginas/pagoventa/List" value="Show All Pagoventa Items" />
+        <br />
+        <h:link outcome="/Paginas/persona/List" value="Show All Persona Items" />
+        <br />
+        <h:link outcome="/Paginas/producto/List" value="Show All Producto Items" />
+        <br />
+        <h:link outcome="/Paginas/proveedor/List" value="Show All Proveedor Items" />
+        <br />
+        <h:link outcome="/Paginas/rol/List" value="Show All Rol Items" />
+        <br />
+        <h:link outcome="/Paginas/tarjetacreditocompra/List" value="Show All Tarjetacreditocompra Items" />
+        <br />
+        <h:link outcome="/Paginas/tarjetacreditoventa/List" value="Show All Tarjetacreditoventa Items" />
+        <br />
+        <h:link outcome="/Paginas/usuario/List" value="Show All Usuario Items" />
+        <br />
+        <h:link outcome="/Paginas/usuariosw/List" value="Show All Usuariosw Items" />
+        <br />
+        <h:link outcome="/Paginas/ventadetalle/List" value="Show All Ventadetalle Items" />
         </h:form>
     </h:body>
 </html>
