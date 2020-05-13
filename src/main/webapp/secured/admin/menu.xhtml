@@ -1,61 +1,68 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <h:outputScript name="bootstrap/js/bootstrap.js" />
+        <h:outputScript name="bootstrap/js/bootstrap.min.js"/>
+        <h:outputStylesheet name="bootstrap/css/bootstrap.css"/>
     </h:head>
-    <h:body>
-        <h1> BIENVENIDO #{login.usuario}</h1>
+    <h:body style="background-color: #ECECEC">
+        <br></br>
+        <br></br>
+        <center style="background-color:#F6F6F6 ; color: black"><h1> ¡Bienvenido! #{login.usuario}</h1></center>
+        <br></br>
         <h:form>
-            <h:commandButton action="#{login.logout()}" value="LOGOUT"></h:commandButton>
-            <br />
-            <h:link outcome="/Paginas/cargo/List" value="Show All Cargo Items"/>
-        <br />
-        <h:link outcome="/Paginas/categoria/List" value="Show All Categoria Items"/>
-        <br />
-        <h:link outcome="/Paginas/cliente/List" value="Show All Cliente Items"/>
-        <br />
-        <h:link outcome="/Paginas/compradetalle/List" value="Show All Compradetalle Items" />
-        <br />
-        <h:link outcome="/Paginas/empleado/List" value="Show All Empleado Items" />
-        <br />
-        <h:link outcome="/Paginas/facturacompra/List" value="Show All Facturacompra Items" />
-        <br />
-        <h:link outcome="/Paginas/facturaventa/List" value="Show All Facturaventa Items" />
-        <br />
-        <h:link outcome="/Paginas/ganancia/List" value="Show All Ganancia Items" />
-        <br />
-        <h:link outcome="/Paginas/historialtrabajo/List" value="Show All Historialtrabajo Items" />
-        <br />
-        <h:link outcome="/Paginas/inventario/List" value="Show All Inventario Items"/>
-        <br />
-        <h:link outcome="/Paginas/ordencompra/List" value="Show All Ordencompra Items" />
-        <br />
-        <h:link outcome="/Paginas/ordenventa/List" value="Show All Ordenventa Items" />
-        <br />
-        <h:link outcome="/Paginas/pagocompra/List" value="Show All Pagocompra Items"/>
-        <br />
-        <h:link outcome="/Paginas/pagoventa/List" value="Show All Pagoventa Items" />
-        <br />
-        <h:link outcome="/Paginas/persona/List" value="Show All Persona Items" />
-        <br />
-        <h:link outcome="/Paginas/producto/List" value="Show All Producto Items" />
-        <br />
-        <h:link outcome="/Paginas/proveedor/List" value="Show All Proveedor Items" />
-        <br />
-        <h:link outcome="/Paginas/rol/List" value="Show All Rol Items" />
-        <br />
-        <h:link outcome="/Paginas/tarjetacreditocompra/List" value="Show All Tarjetacreditocompra Items" />
-        <br />
-        <h:link outcome="/Paginas/tarjetacreditoventa/List" value="Show All Tarjetacreditoventa Items" />
-        <br />
-        <h:link outcome="/Paginas/usuario/List" value="Show All Usuario Items" />
-        <br />
-        <h:link outcome="/Paginas/usuariosw/List" value="Show All Usuariosw Items" />
-        <br />
-        <h:link outcome="/Paginas/ventadetalle/List" value="Show All Ventadetalle Items" />
+            
+               <h:commandButton class="btn btn-sm btn-block btn-outline-dark" action="#{login.logout()}" value="Cerrar Sesión"></h:commandButton>
+
+            <br></br>
+            <h5 align="center">Modulos</h5>
+            <table class="table">
+                <tr>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/cargo/List" value="Cargo"/></td>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/categoria/List" value="Categorias"/></td>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/cliente/List" value="Clientes"/></td>
+                </tr>
+                <tr>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/compradetalle/List" value="Detalle de Compras" /></td>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/empleado/List" value="Empleados" /></td>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/facturacompra/List" value="Factura Compras" /></td>
+                </tr>
+                <tr>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/facturaventa/List" value="Factura Ventas" /></td>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/historialtrabajo/List" value="Historial" /></td>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/ordencompra/List" value="Orden Compras" /></td> 
+                </tr>
+                <tr>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/ordenventa/List" value="Orden Venta" /></td>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/pagocompra/List" value="Pago Compras"/></td> 
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/pagoventa/List" value="Pago Ventas" /></td> 
+                </tr>
+                <tr>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/persona/List" value="Personas" /></td>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/producto/List" value="Productos" /></td>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/proveedor/List" value="Proveedores" /></td>
+                </tr>
+                <tr>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/rol/List" value="Roles" /></td>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/tarjetacreditocompra/List" value="Tajetas Compra" /></td>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/tarjetacreditoventa/List" value="Tarjetas Venta" /></td>
+                </tr>
+                <tr>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/usuario/List" value="Usuarios" /></td>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/inventario/List" value="Inventario"/></td>
+                    <td align="center"><h:link class="btn btn-lg btn-block btn-warning" outcome="/Paginas/ventadetalle/List" value="Detalle Ventas" /></td>
+                    
+                </tr>
+            </table>
         </h:form>
     </h:body>
 </html>
+
+
 
