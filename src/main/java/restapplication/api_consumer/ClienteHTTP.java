@@ -7,41 +7,40 @@ package restapplication.api_consumer;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import entidades.Categoria;
 import entidades.Producto;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import org.primefaces.json.JSONArray;
+import org.primefaces.json.JSONObject;
 
 /**
  *
  * @author David Villeda
  */
-class ClienteHTTP {
+public class ClienteHTTP {
+
+    private static final String pathProductos = "http://localhost:8080/ERPsubproveedoresPM/webresources/productos";
+    private static final String pathCategorias = "http://localhost:8080/ERPsubproveedoresPM/webresources/categorias";
+    private static final String USER_AGENT = "Mozilla/5.0";
     
-    public static void main(String[] args) {
-        List<Producto> productos = productosProveedor();
-    }
-    
-    public static List<Producto> productosProveedor(){
+    public static List<Producto> productos(String path){
         List<Producto> productoList = new ArrayList<>();
-        String url = "http://localhost:8080/ERPsubproveedoresPM/webresources/productos";
+        String url = pathProductos+path;
         String respuesta = "";
         try {
             respuesta = peticionHttpGet(url);
             System.out.println("La respuesta es:\n" + respuesta);
             String jsonString = new String(respuesta.getBytes("ISO-8859-1"), "UTF-8");
-            //JsonObject jsonObject = new JsonParser().parse(respuesta).getAsJsonObject();
-            /*JSONArray array = new JSONArray(respuesta);
-            Gson gson = new Gson();
-            for(int i=0; i<array.length(); i++){
-                JSONObject jsonObject = array.getJSONObject(i);
-                //System.out.println(jsonObject);
-                Producto producto = gson.fromJson(jsonObject.toString(), Producto.class);
-                System.out.println(producto);
-            }*/
             ObjectMapper mapper = new ObjectMapper();
             productoList = mapper.readValue(jsonString, new TypeReference<List<Producto>>(){});
             for(Producto p: productoList){
@@ -62,8 +61,8 @@ class ClienteHTTP {
         return productoList;
     }
     
-    public static Producto obtenerProductoXId(String productoid){
-        String url = "http://localhost:8080/ERPsubproveedoresPM/webresources/productos";
+    public static Producto obtenerProductoXId(Long productoid){
+        String url = pathProductos+"/"+productoid.toString();
         String respuesta = "";
         Producto producto= new Producto();
         try {
@@ -87,6 +86,75 @@ class ClienteHTTP {
         }
         return producto;
     }
+    
+    public static List<Categoria> categorias(String path){
+        List<Categoria> categoriaList = new ArrayList<>();
+        String url = pathCategorias+path;
+        String respuesta = "";
+        try {
+            respuesta = peticionHttpGet(url);
+            System.out.println("La respuesta es:\n" + respuesta);
+            String jsonString = new String(respuesta.getBytes("ISO-8859-1"), "UTF-8");
+            ObjectMapper mapper = new ObjectMapper();
+            categoriaList = mapper.readValue(jsonString, new TypeReference<List<Categoria>>(){});
+            for(Categoria categoria: categoriaList){
+                System.out.println("-------------------");
+                System.out.println("categoría[ ");
+                System.out.println("categoriaid: "+categoria.getCategoriaid());
+                System.out.println("categoría nombre: "+categoria.getNombre());
+                System.out.println("]\n-------------------");
+            }
+        } catch (Exception e) {
+            // Manejar excepción
+            e.printStackTrace();
+        }
+        return categoriaList;
+    }
+    
+    public static Categoria obtenerCategoriaXId(Long categoriaid){
+        String url = pathCategorias+"/"+categoriaid.toString();
+        String respuesta = "";
+        Categoria categoria = new Categoria();
+        try {
+            respuesta = peticionHttpGet(url);
+            String jsonString = new String(respuesta.getBytes("ISO-8859-1"), "UTF-8");
+            ObjectMapper mapper = new ObjectMapper();
+            categoria = mapper.readValue(jsonString, new TypeReference<Categoria>(){});
+            System.out.println("-------------------");
+            System.out.println("categoria[ ");
+            System.out.println("categoriaid: "+categoria.getCategoriaid());
+            System.out.println("categoría nombre: "+categoria.getNombre());
+            System.out.println("]\n-------------------");
+        } catch (Exception e) {
+            // Manejar excepción
+            e.printStackTrace();
+        }
+        return categoria;
+    }
+    
+    public static String productosCOUNT(){
+        String url = pathProductos+"/count";
+        String respuesta="";
+        try{
+            respuesta = peticionHttpGet(url);
+        }catch (Exception e) {
+            // Manejar excepción
+            e.printStackTrace();
+        }
+        return respuesta;
+    }
+    
+    public static String categoriasCOUNT(){
+        String url = pathCategorias+"/count";
+        String respuesta="";
+        try{
+            respuesta = peticionHttpGet(url);
+        }catch (Exception e) {
+            // Manejar excepción
+            e.printStackTrace();
+        }
+        return respuesta;
+    }
 
     public static String peticionHttpGet(String urlParaVisitar) throws Exception {
         // Esto es lo que vamos a devolver
@@ -109,4 +177,34 @@ class ClienteHTTP {
         
         return resultado.toString();
     }
+    
+    public static String httpPOST(String url, String jsonInputString) throws Exception{
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        //Set the Request Method
+        con.setRequestMethod("POST");
+        //Set the Request Content-Type Header Parameter
+        con.setRequestProperty("Content-Type", "application/json; utf-8");
+        //Set Response Format Type
+        con.setRequestProperty("Accept", "application/json");
+        //Ensure the Connection Will Be Used to Send Content
+        con.setDoOutput(true);
+        // Create the Request Body
+        try(OutputStream os = con.getOutputStream()) {
+            byte[] input = jsonInputString.getBytes("utf-8");
+            os.write(input, 0, input.length);           
+        }
+        // Read the Response from Input Stream
+        StringBuilder response = new StringBuilder();
+        try(BufferedReader br = new BufferedReader(
+            new InputStreamReader(con.getInputStream(), "utf-8"))) {
+            String responseLine = null;
+            while ((responseLine = br.readLine()) != null) {
+                response.append(responseLine.trim());
+            }
+            System.out.println(response.toString());
+        }
+        return response.toString();
+    }
+    
 }

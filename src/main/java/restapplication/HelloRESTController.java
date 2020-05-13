@@ -24,7 +24,7 @@ public class HelloRESTController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response hello() {
-        return Response.ok("Hola!. Esta es la ruta de servicios web!!!").build();
+        return Response.ok("Hola!. Esta es la ruta de servicios web de subproveedor!!!").build();
     }
     
 }
