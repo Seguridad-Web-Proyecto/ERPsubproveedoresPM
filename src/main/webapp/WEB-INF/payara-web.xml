@@ -17,4 +17,19 @@
     <principal-name>COMPRAS</principal-name>
     <group-name>COMPRAS</group-name>
   </security-role-mapping>
+  <security-role-mapping>
+    <role-name>VENTAS</role-name>
+    <principal-name>VENTAS</principal-name>
+    <group-name>VENTAS</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>RH</role-name>
+    <principal-name>RH</principal-name>
+    <group-name>RH</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>INVENTARIO</role-name>
+    <principal-name>INVENTARIO</principal-name>
+    <group-name>INVENTARIO</group-name>
+  </security-role-mapping>
 </payara-web-app>

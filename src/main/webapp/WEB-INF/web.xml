@@ -40,6 +40,13 @@
     <security-role>
         <role-name>COMPRAS</role-name>
     </security-role>
+    <security-role>
+        <role-name>VENTAS</role-name>
+    </security-role>
+    <security-role>
+        <role-name>RH</role-name>
+    </security-role>
+
     
     
     <security-constraint>
@@ -91,6 +98,78 @@
     </security-constraint>
     
     <security-constraint>
+        <display-name>Ventas Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected_Ventas_Area</web-resource-name>
+            <description/>
+            <url-pattern>/secured/ventas/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>PUT</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>POST</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        
+        <auth-constraint>
+            <description>VENTAS</description>
+            <role-name>VENTAS</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    
+    <security-constraint>
+        <display-name>Inventario Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected_Inventario_Area</web-resource-name>
+            <description/>
+            <url-pattern>/secured/inventario/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>PUT</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>POST</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        
+        <auth-constraint>
+            <description>INVENTARIO</description>
+            <role-name>INVENTARIO</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    
+    <security-constraint>
+        <display-name>Rh Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected_Rh_Area</web-resource-name>
+            <description/>
+            <url-pattern>/secured/rh/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>PUT</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>POST</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        
+        <auth-constraint>
+            <description>RH</description>
+            <role-name>RH</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    
+    <security-constraint>
         <display-name>User Pages</display-name>
         <web-resource-collection>
             <web-resource-name>Protected User Area</web-resource-name>
@@ -113,6 +192,7 @@
             <transport-guarantee>NONE</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+    
     <security-constraint>
         
     <display-name>Shared Pages</display-name>
@@ -124,6 +204,10 @@
     <auth-constraint>
       <role-name>USERS</role-name>
       <role-name>ADMINS</role-name>
+      <role-name>COMPRAS</role-name>
+      <role-name>VENTAS</role-name>
+      <role-name>RH</role-name>
+      <role-name>INVENTARIO</role-name>
     </auth-constraint>
     <user-data-constraint>
       <transport-guarantee>NONE</transport-guarantee>
