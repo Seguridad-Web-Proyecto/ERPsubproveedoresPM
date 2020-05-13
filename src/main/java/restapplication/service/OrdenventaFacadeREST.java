@@ -5,19 +5,26 @@
  */
 package restapplication.service;
 
+import dao.ClienteJpaController;
+import entidades.Cliente;
 import entidades.Ordenventa;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import restapplication.Common;
 
 /**
@@ -30,6 +37,9 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
 
     @PersistenceContext(unitName = "com.mycompany_ERPsubprovee_war_1.0-SNAPSHOTPU")
     private EntityManager em;
+    
+    private ClienteJpaController clienteJpaController = 
+            new ClienteJpaController(super.getUserTransaction(), super.getEntityManagerFactory());
 
     public OrdenventaFacadeREST() {
         super(Ordenventa.class);
@@ -39,8 +49,36 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
     @Override
     //@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Consumes(MediaType.APPLICATION_JSON)
-    public Ordenventa create(Ordenventa entity) {
-        return super.create(entity);
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response create(Ordenventa entity) {
+        // CLIENTE
+        Cliente cliente = clienteJpaController.findClienteByEmail(entity.getClienteid().getEmail());
+        if(cliente==null){
+            return Response.status(Status.BAD_REQUEST).build();
+        }
+        entity.setClienteid(cliente);
+        entity.setSubtotal(0);
+        entity.setTotal(0);
+        entity.setIva((short)16);
+        entity.setFechaVenta(new Date());
+        entity.setStatus("pedido pendiente...");
+        entity.setVentadetalleCollection(null);
+        Ordenventa ordenventaIngresado = null;
+        Response response = super.create(entity);
+        ordenventaIngresado = (Ordenventa) response.getEntity();
+        return response;
+    }
+    
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response realizarPedido(Ordenventa entity){
+        Ordenventa ordenventa = super.find(entity.getOrdenventaid());
+        if(ordenventa==null){
+            return Response.status(Status.BAD_REQUEST).build();
+        }else{
+            ordenventa.setStatus("Pedido realizado");
+            return Response.ok().build();
+        }
     }
 
     @GET

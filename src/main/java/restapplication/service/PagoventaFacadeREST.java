@@ -20,6 +20,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import restapplication.Common;
 
 /**
@@ -41,7 +42,7 @@ public class PagoventaFacadeREST extends AbstractFacade<Pagoventa> {
     @Override
     //@Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Consumes(MediaType.APPLICATION_JSON)
-    public Pagoventa create(Pagoventa entity) {
+    public Response create(Pagoventa entity) {
         return super.create(entity);
     }
 
