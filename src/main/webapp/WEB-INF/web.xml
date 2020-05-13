@@ -46,6 +46,9 @@
     <security-role>
         <role-name>RH</role-name>
     </security-role>
+    <security-role>
+        <role-name>INVENTARIO</role-name>
+    </security-role>
 
     
     
