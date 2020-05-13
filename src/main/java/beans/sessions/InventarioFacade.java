@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package beans.sessions;
-
 import entidades.Inventario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -28,5 +27,5 @@ public class InventarioFacade extends AbstractFacade<Inventario> {
     public InventarioFacade() {
         super(Inventario.class);
     }
-    
+   
 }
