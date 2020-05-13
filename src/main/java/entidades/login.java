@@ -167,52 +167,84 @@ public class login implements Serializable
         }
     }
     
-    public boolean isRolCompras()
+   public boolean isRolCompras()
     {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        
-        return request.isUserInRole("COMPRAS");
+        if (request.isUserInRole("COMPRAS") || request.isUserInRole("ADMINS"))
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+
     }
-    
+
     public boolean isRoUsers()
     {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        
-        return request.isUserInRole("USERS");
+        if (request.isUserInRole("USERS") || request.isUserInRole("ADMINS"))
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+
     }
-    
+
     public boolean isRolAdmin()
     {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        
+
         return request.isUserInRole("ADMINS");
     }
-    
+
     public boolean isRolVentas()
     {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        
-        return request.isUserInRole("VENTAS");
+        if (request.isUserInRole("VENTAS") || request.isUserInRole("ADMINS"))
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+
     }
-    
+
     public boolean isRolRh()
     {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        
-        return request.isUserInRole("RH");
+
+        if (request.isUserInRole("RH") || request.isUserInRole("ADMINS"))
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+
     }
-    
+
     public boolean isRolInventario()
     {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        
-        return request.isUserInRole("INVENTARIO");
+
+        if (request.isUserInRole("INVENTARIO") || request.isUserInRole("ADMINS"))
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+
     }
 
     public String logout()

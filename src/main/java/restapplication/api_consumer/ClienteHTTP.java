@@ -7,9 +7,6 @@ package restapplication.api_consumer;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import entidades.Producto;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -17,8 +14,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import org.primefaces.json.JSONArray;
-import org.primefaces.json.JSONObject;
 
 /**
  *
