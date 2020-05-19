@@ -90,6 +90,21 @@
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{ordenventaController.destroy}" update=":growl,datalist" disabled="#{empty ordenventaController.selected}"/>
                         </f:facet>
                     </p:dataTable>
+                    <br></br>
+                    <center>
+                        <h:panelGrid columns="2">
+                            <p:panel header="Reportes" style="">
+                                <h:commandLink>
+                                    <p:graphicImage value ="../../resources/images/excel.png" width="50"/>
+                                    <p:dataExporter type="csv" target="datalist" fileName="Reporte orden ventas"/>
+                                </h:commandLink>
+                                <h:commandLink>
+                                    <p:graphicImage value ="../../resources/images/pdf.png" width="50"/>
+                                    <p:dataExporter  type="pdf" target="datalist" fileName="Reporte orden ventas"/>
+                                </h:commandLink>
+                            </p:panel>
+                        </h:panelGrid>
+                    </center>    
                 </p:panel>
             </h:form>
 
