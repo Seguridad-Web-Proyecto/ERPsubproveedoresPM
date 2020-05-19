@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -36,10 +37,10 @@ public class SolicitarPedidos {
         cliente.setTelefono("+52-722-098-5670");
         ordenventa.setClienteid(cliente);
         ordenventa.setDescripcion("Esta orden de venta presenta los productos que se están vendiendo a walmart méxico");
-        Ordenventa pedidoIngresado = generarPedido(ordenventa);
-
-        List<Ventadetalle> detalles = new ArrayList<>();
         //agregarDetallesAlPedido(ordenventa, detalles);
+        System.out.println("Realizando pedido...");
+        Response response = APIConsumer.realizarPedido(ordenventa);
+        System.out.println("Respuesta: "+response.getStatus());
     }
     
     public static Ordenventa generarPedido(Ordenventa ordenventa){
