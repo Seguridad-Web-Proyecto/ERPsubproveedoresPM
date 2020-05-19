@@ -44,8 +44,8 @@
                             <p:menuitem value="Usuariosw" outcome="/Paginas/usuariosw/List.xhtml" rendered="#{login.rolAdmin}"/>
                             <p:menuitem value="Ventadetalle" outcome="/Paginas/ventadetalle/List.xhtml" rendered="#{login.rolVentas}"/>
                         </p:submenu>
+                        <p:menuitem action="#{login.logout()}" value="Cerrar Sesión"/>
                     </p:menubar>
-                    <p:menuitem action="#{login.logout()}" value="Cerrar Sesion"/>
                 </h:form>
             </p:layoutUnit>
 
