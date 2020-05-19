@@ -9,6 +9,7 @@ import entidades.Ordenventa;
 import entidades.Producto;
 import entidades.Ventadetalle;
 import entidades.VentadetallePK;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -98,7 +99,13 @@ public class VentadetalleFacadeREST extends AbstractFacade<Ventadetalle> {
                 }
                 Producto p = Common.aplicarGananciaAlProducto(producto);
                 //ORDEN VENTA
-                Ordenventa ordenventa = ordenventaFacade.find(entity.getOrdenventa().getOrdenventaid());
+                // se hace una copia de la orden venta porque de alguna manera el ORM, está cambiando
+                // las órdenes de ventas que están asociadas con los productos
+                Ordenventa ordenventaQuery = ordenventaFacade.find(entity.getOrdenventa().getOrdenventaid());
+                Ordenventa ordenventa = new Ordenventa(ordenventaQuery.getOrdenventaid(), ordenventaQuery.getFechaVenta(),
+                        ordenventaQuery.getStatus(), ordenventaQuery.getIva(), ordenventaQuery.getSubtotal(), 
+                        ordenventaQuery.getTotal(), ordenventaQuery.getStatus());
+                ordenventa.setClienteid(ordenventaQuery.getClienteid());
                 if(ordenventa==null){
                     return Response.status(Status.NOT_FOUND).build();
                 }
@@ -114,10 +121,13 @@ public class VentadetalleFacadeREST extends AbstractFacade<Ventadetalle> {
                 entity.setProducto(p);
                 entity.setOrdenventa(ordenventa);
                 entity.setVentadetallePK(new VentadetallePK(ordenventa.getOrdenventaid(), p.getProductoid()));
-                
                 Response response = super.create(entity);
                 Ventadetalle ventadetalle = (Ventadetalle) response.getEntity();
-                
+                ArrayList<Ventadetalle> detalles = new ArrayList<>();
+                detalles.addAll(ordenventaQuery.getVentadetalleCollection());
+                detalles.add(entity);
+                ordenventa.setVentadetalleCollection(detalles);
+                ordenventaFacade.edit(ordenventa);
             }
             return Response.ok().build();
         }catch(Exception ex){

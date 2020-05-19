@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import entidades.Categoria;
 import entidades.Ordenventa;
 import entidades.Producto;
+import entidades.Ventadetalle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -169,6 +170,23 @@ public class APIConsumer {
         invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.post(
                 Entity.entity(ordenventa, MediaType.APPLICATION_JSON));
+        return response;
+    }
+    
+    public static Response agregarDetallesAlPedido(List<Ventadetalle> detalles){
+        clientHttp = ClientBuilder.newClient();
+        webTarget = clientHttp.target(URL_BASE).path("/pedidos/detalles");
+        invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
+        Response response = invocationBuilder.post(Entity.entity(detalles, 
+                MediaType.APPLICATION_JSON));
+        return response;
+    }
+    
+    public static Response concluirPedido(Ordenventa ordenventa){
+        clientHttp = ClientBuilder.newClient();
+        webTarget = clientHttp.target(URL_BASE).path("/pedidos/request");
+        invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
+        Response response = invocationBuilder.post(Entity.entity(ordenventa, MediaType.APPLICATION_JSON));
         return response;
     }
     

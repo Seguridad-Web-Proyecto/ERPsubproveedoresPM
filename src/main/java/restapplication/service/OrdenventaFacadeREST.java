@@ -11,12 +11,9 @@ import entidades.Ordenventa;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.ejb.EJB;
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -40,7 +37,7 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
     @PersistenceContext(unitName = "com.mycompany_ERPsubprovee_war_1.0-SNAPSHOTPU")
     private EntityManager em;
     
-    private ClienteJpaController clienteJpaController = 
+    private final ClienteJpaController clienteJpaController = 
             new ClienteJpaController(super.getUserTransaction(), super.getEntityManagerFactory());
 
     public OrdenventaFacadeREST() {
@@ -70,14 +67,17 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
         return response;
     }
     
-    @PUT
+    @POST
+    @Path("/request")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response realizarPedido(Ordenventa entity){
         Ordenventa ordenventa = super.find(entity.getOrdenventaid());
         if(ordenventa==null){
             return Response.status(Status.BAD_REQUEST).build();
         }else{
             ordenventa.setStatus("Pedido realizado");
+            Ordenventa pedidoRealizado = super.edit(ordenventa);
             return Response.ok().build();
         }
     }
