@@ -14,9 +14,6 @@ import entidades.Producto;
 import entidades.Ventadetalle;
 import entidades.VentadetallePK;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ws.rs.core.Response;
 
 /**
@@ -24,8 +21,6 @@ import javax.ws.rs.core.Response;
  * @author jcami
  */
 public class SolicitarPedidos {
-    
-    private static final String pathPedidos = "http://localhost:8080/ERPsubproveedoresPM/webresources/pedidos";
 
     public static void main(String[] args) throws JsonProcessingException {
         Ordenventa ordenventa = pruebaGenerarPedido();
