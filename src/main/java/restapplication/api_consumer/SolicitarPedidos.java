@@ -32,7 +32,7 @@ public class SolicitarPedidos {
         System.out.println(ordenventa);
         Response response = pruebaAgregarDetallesAlPedido(ordenventa);
         System.out.println("Solicitando pedido...");
-        Response responseSolicitar = APIConsumer.realizarPedido(ordenventa);
+        Response responseSolicitar = APIConsumer.concluirPedido(ordenventa);
         System.out.println("Respuesta: "+responseSolicitar.getStatus());
     }
     
@@ -56,7 +56,7 @@ public class SolicitarPedidos {
     public static Response pruebaAgregarDetallesAlPedido(Ordenventa ordenventa){
         System.out.println("Haciendo petición POST para insertar los detalles de la orden...");
         ArrayList<Ventadetalle> ventadetalleList = new ArrayList<>();
-        for(long i=7; i<10; i++){
+        for(long i=7; i<9; i++){
             Producto producto = new Producto();
             producto.setProductoid(i);
             Ventadetalle ventadetalle = new Ventadetalle(new VentadetallePK(ordenventa.getOrdenventaid(), producto.getProductoid()));

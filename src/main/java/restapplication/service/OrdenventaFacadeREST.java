@@ -77,7 +77,7 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
         return response;
     }
     
-    @POST
+    @PUT
     @Path("/solicitar")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -87,8 +87,7 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
             return Response.status(Status.BAD_REQUEST).build();
         }else{
             ordenventa.setStatus("Pedido realizado!");
-            Ordenventa pedidoRealizado = super.edit(ordenventa);
-            return Response.ok(pedidoRealizado).build();
+            return Response.ok().build();
         }
     }
     

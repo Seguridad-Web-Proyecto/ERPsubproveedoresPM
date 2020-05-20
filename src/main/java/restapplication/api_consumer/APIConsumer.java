@@ -187,7 +187,7 @@ public class APIConsumer {
         clientHttp = ClientBuilder.newClient();
         webTarget = clientHttp.target(URL_BASE).path("/pedidos/solicitar");
         invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
-        Response response = invocationBuilder.post(Entity.entity(ordenventa, MediaType.APPLICATION_JSON));
+        Response response = invocationBuilder.put(Entity.entity(ordenventa, MediaType.APPLICATION_JSON));
         return response;
     }
     
