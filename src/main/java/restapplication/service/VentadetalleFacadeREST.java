@@ -34,7 +34,7 @@ import restapplication.Common;
  * @author jcami
  */
 @Stateless
-@Path("pedidos/detalles")
+@Path("ventadetalles")
 public class VentadetalleFacadeREST extends AbstractFacade<Ventadetalle> {
 
     @PersistenceContext(unitName = "com.mycompany_ERPsubprovee_war_1.0-SNAPSHOTPU")

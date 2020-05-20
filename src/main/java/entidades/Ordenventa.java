@@ -5,6 +5,7 @@
  */
 package entidades;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -58,6 +59,7 @@ public class Ordenventa implements Serializable {
     @NotNull
     @Column(name = "fecha_venta")
     @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date fechaVenta;
     
     @Basic(optional = false)

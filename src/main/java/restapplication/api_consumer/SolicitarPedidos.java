@@ -10,7 +10,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entidades.Cliente;
 import entidades.Ordenventa;
+import entidades.Producto;
 import entidades.Ventadetalle;
+import entidades.VentadetallePK;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,42 +27,48 @@ public class SolicitarPedidos {
     
     private static final String pathPedidos = "http://localhost:8080/ERPsubproveedoresPM/webresources/pedidos";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonProcessingException {
+        Ordenventa ordenventa = pruebaGenerarPedido();
+        System.out.println(ordenventa);
+        Response response = pruebaAgregarDetallesAlPedido(ordenventa);
+        System.out.println("Solicitando pedido...");
+        Response responseSolicitar = APIConsumer.realizarPedido(ordenventa);
+        System.out.println("Respuesta: "+responseSolicitar.getStatus());
+    }
+    
+    public static Ordenventa pruebaGenerarPedido() {
         Ordenventa ordenventa = new Ordenventa();
         Cliente cliente = new Cliente();
-        cliente.setArea("Inventarios");
-        cliente.setDomicilioFiscal("Nextengo 78 Santa Cruz Acayucan, Azcapotzalco, C.P. 02770, México D.F.");
         cliente.setEmail("compras@walmart.com.mx");
-        cliente.setEmpresa("walmart");
-        cliente.setNombreContacto("Administrador. Federico Gonzales");
-        cliente.setRfc("MELM8305281H0");
-        cliente.setTelefono("+52-722-098-5670");
         ordenventa.setClienteid(cliente);
-        ordenventa.setDescripcion("Esta orden de venta presenta los productos que se están vendiendo a walmart méxico");
+        ordenventa.setDescripcion("Orden de venta realizada a las 7:23pm 19/05/2020");
         //agregarDetallesAlPedido(ordenventa, detalles);
         System.out.println("Realizando pedido...");
-        Response response = APIConsumer.realizarPedido(ordenventa);
-        System.out.println("Respuesta: "+response.getStatus());
-    }
-    
-    public static Ordenventa generarPedido(Ordenventa ordenventa){
-        ObjectMapper mapper = new ObjectMapper();
-        Ordenventa ordenIngresada = new Ordenventa();
-        try { 
-            String jsonStr = mapper.writeValueAsString(ordenventa);
-            System.out.println(jsonStr);
-            String jsonStringResult = ClienteHTTP.httpPOST(pathPedidos, jsonStr);
-            ordenIngresada = mapper.readValue(jsonStringResult, new TypeReference<Ordenventa>(){});
-        } catch (JsonProcessingException ex) {
-            Logger.getLogger(SolicitarPedidos.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(SolicitarPedidos.class.getName()).log(Level.SEVERE, null, ex);
+        Response responseOrdenVenta = APIConsumer.realizarPedido(ordenventa);
+        System.out.println("Respuesta: "+responseOrdenVenta.getStatus());
+        if(responseOrdenVenta.getStatus()!=200){
+            return null;
         }
-        return ordenIngresada;
+        Ordenventa entityResult = responseOrdenVenta.readEntity(Ordenventa.class);
+        return entityResult;
     }
     
-    public static List<Ventadetalle> agregarDetallesAlPedido(Ordenventa ordenventa, List<Ventadetalle> detalles){
-        return null;
+    public static Response pruebaAgregarDetallesAlPedido(Ordenventa ordenventa){
+        System.out.println("Haciendo petición POST para insertar los detalles de la orden...");
+        ArrayList<Ventadetalle> ventadetalleList = new ArrayList<>();
+        for(long i=7; i<10; i++){
+            Producto producto = new Producto();
+            producto.setProductoid(i);
+            Ventadetalle ventadetalle = new Ventadetalle(new VentadetallePK(ordenventa.getOrdenventaid(), producto.getProductoid()));
+            ventadetalle.setOrdenventa(ordenventa);
+            ventadetalle.setProducto(producto);
+            ventadetalle.setCantidad(100);
+            ventadetalleList.add(ventadetalle);
+        }
+        ordenventa.setVentadetalleCollection(ventadetalleList);
+        Response responseDetalles = APIConsumer.agregarDetallesAlPedido(ordenventa);
+        System.out.println("Respuesta: "+responseDetalles.getStatus());
+        return responseDetalles;
     }
     
 }

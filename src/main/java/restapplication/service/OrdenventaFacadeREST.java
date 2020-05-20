@@ -8,9 +8,13 @@ package restapplication.service;
 import dao.ClienteJpaController;
 import entidades.Cliente;
 import entidades.Ordenventa;
+import entidades.Producto;
+import entidades.Ventadetalle;
+import entidades.VentadetallePK;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -39,6 +43,12 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
     
     private final ClienteJpaController clienteJpaController = 
             new ClienteJpaController(super.getUserTransaction(), super.getEntityManagerFactory());
+    
+    @EJB
+    private beans.sessions.ProductoFacade productoFacade;
+    
+    @EJB
+    private beans.sessions.VentadetalleFacade ventaDetalleFacade;
 
     public OrdenventaFacadeREST() {
         super(Ordenventa.class);
@@ -68,7 +78,7 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
     }
     
     @POST
-    @Path("/request")
+    @Path("/solicitar")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response realizarPedido(Ordenventa entity){
@@ -76,12 +86,69 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
         if(ordenventa==null){
             return Response.status(Status.BAD_REQUEST).build();
         }else{
-            ordenventa.setStatus("Pedido realizado");
+            ordenventa.setStatus("Pedido realizado!");
             Ordenventa pedidoRealizado = super.edit(ordenventa);
-            return Response.ok().build();
+            return Response.ok(pedidoRealizado).build();
         }
     }
-
+    
+    @PUT
+    @Path("/detalles")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response agregarDetalles(Ordenventa venta){
+        try{
+            //ORDEN VENTA
+            // se hace una copia de la orden venta porque de alguna manera el ORM, está cambiando
+            // las órdenes de ventas que están asociadas con los productos
+            Ordenventa ordenventaQuery = super.find(venta.getOrdenventaid());
+             if(ordenventaQuery==null){
+                return Response.status(Status.NOT_FOUND).build();
+            }
+            Ordenventa ordenventa = new Ordenventa(ordenventaQuery.getOrdenventaid(), ordenventaQuery.getFechaVenta(),
+                    ordenventaQuery.getStatus(), ordenventaQuery.getIva(), ordenventaQuery.getSubtotal(), 
+                    ordenventaQuery.getTotal(), ordenventaQuery.getStatus());
+            ordenventa.setClienteid(ordenventaQuery.getClienteid());
+                       
+            if(venta.getVentadetalleCollection()==null) return Response.status(Status.BAD_REQUEST).build();
+            
+            ArrayList<Ventadetalle> detalles = new ArrayList<>();
+            detalles.addAll(ordenventaQuery.getVentadetalleCollection());
+            for(Ventadetalle entity: venta.getVentadetalleCollection()){
+                if(entity.getProducto()==null || 
+                        entity.getProducto().getProductoid()==null){
+                    return Response.status(Status.BAD_REQUEST).build();
+                }
+                //PRODUCTO
+                Producto producto = productoFacade.find(entity.getProducto().getProductoid());
+                if(producto==null){
+                    return Response.status(Status.NOT_FOUND).build();
+                }
+                Producto p = Common.aplicarGananciaAlProducto(producto);
+                //VENTA DETALLE
+                entity.setPrecioUnitario(p.getPrecioUnitario());
+                entity.setImporte(p.getPrecioUnitario()*entity.getCantidad());
+                // MODIFICAR SUBTOTAL Y TOTAL DE ORDEN DE VENTA
+                ordenventa.setSubtotal(ordenventa.getSubtotal()+entity.getImporte());
+                long importeIva = (long)16*entity.getImporte()/(long)100;
+                importeIva += entity.getImporte();
+                ordenventa.setTotal(ordenventa.getTotal()+importeIva);
+                // VENTA DETALLE
+                entity.setProducto(p);
+                entity.setOrdenventa(ordenventa);
+                entity.setVentadetallePK(new VentadetallePK(ordenventa.getOrdenventaid(), p.getProductoid()));
+                ventaDetalleFacade.create(entity);
+                detalles.add(entity);
+            }
+            ordenventa.setVentadetalleCollection(detalles);
+            super.edit(ordenventa);
+            return Response.ok().build();
+        }catch(Exception ex){
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    
     @GET
     @Path("{id}")
     //@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})

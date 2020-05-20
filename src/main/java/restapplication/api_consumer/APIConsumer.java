@@ -173,18 +173,19 @@ public class APIConsumer {
         return response;
     }
     
-    public static Response agregarDetallesAlPedido(List<Ventadetalle> detalles){
+    public static Response agregarDetallesAlPedido(Ordenventa ordenventa){
+        if(ordenventa.getVentadetalleCollection()==null) return null;
         clientHttp = ClientBuilder.newClient();
         webTarget = clientHttp.target(URL_BASE).path("/pedidos/detalles");
         invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
-        Response response = invocationBuilder.post(Entity.entity(detalles, 
+        Response response = invocationBuilder.put(Entity.entity(ordenventa, 
                 MediaType.APPLICATION_JSON));
         return response;
     }
     
     public static Response concluirPedido(Ordenventa ordenventa){
         clientHttp = ClientBuilder.newClient();
-        webTarget = clientHttp.target(URL_BASE).path("/pedidos/request");
+        webTarget = clientHttp.target(URL_BASE).path("/pedidos/solicitar");
         invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.post(Entity.entity(ordenventa, MediaType.APPLICATION_JSON));
         return response;
