@@ -88,6 +88,7 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":OrdenventaViewForm" oncomplete="PF('OrdenventaViewDialog').show()" disabled="#{empty ordenventaController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":OrdenventaEditForm" oncomplete="PF('OrdenventaEditDialog').show()" disabled="#{empty ordenventaController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Eliminar" actionListener="#{ordenventaController.destroy}" update=":growl,datalist" disabled="#{empty ordenventaController.selected}"/>
+                             <p:commandButton  class="btn btn-success btn-sm" icon=" fa-bar-chart" value ="Grficar" ajax="true " id="graficar" oncomplete="PF('dlgChart').show()" actionListener="#{ordenventaBean.graficar()}" update="hpgGrafico"/>
                         </f:facet>
                     </p:dataTable>
                     <br></br>
@@ -104,7 +105,12 @@
                                 </h:commandLink>
                             </p:panel>
                         </h:panelGrid>
-                    </center>    
+                    </center>   
+                     <h:panelGrid id="hpgGrafico"> 
+                
+                <p:chart type="bar" model="#{ordenventaBean.barra}" style="width: 400px; height: 500px" rendered="#{ordenventaBean.barra !=null}"/>
+                
+            </h:panelGrid>
                 </p:panel>
             </h:form>
 
