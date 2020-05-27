@@ -218,7 +218,8 @@ public class APIConsumer {
         Response responseDetalles = APIConsumer.agregarDetallesAlPedido(ordenVentaResult);
 
         if(responseDetalles.getStatus()!=200){
-            throw new Exception("Whoops!!. Error al añadir los detalles al pedido!"); 
+            String msg = responseDetalles.readEntity(String.class);
+            throw new Exception("Whoops!!. Error al añadir los detalles al pedido!\n"+msg); 
         }
         // CONLUYENDO PEDIDO Y RECIBIENDO LA FACTURA
         Response responseCompletarPedido = APIConsumer.concluirPedido(ordenVentaResult);
