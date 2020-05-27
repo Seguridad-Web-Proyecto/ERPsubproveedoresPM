@@ -8,10 +8,13 @@ package restapplication.api_consumer;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entidades.Categoria;
+import entidades.Cliente;
+import entidades.Facturaventa;
 import entidades.Ordenventa;
 import entidades.Producto;
 import entidades.Ventadetalle;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.ws.rs.client.Client;
@@ -165,30 +168,65 @@ public class APIConsumer {
     private static Invocation.Builder invocationBuilder;
     
     public static Response realizarPedido(Ordenventa ordenventa){
+        System.out.println("Realizando pedido...");
         clientHttp = ClientBuilder.newClient();
         webTarget = clientHttp.target(URL_BASE).path("/pedidos");
         invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.post(
                 Entity.entity(ordenventa, MediaType.APPLICATION_JSON));
+        System.out.println("Respuesta: "+response.getStatus());
         return response;
     }
     
     public static Response agregarDetallesAlPedido(Ordenventa ordenventa){
         if(ordenventa.getVentadetalleCollection()==null) return null;
+        System.out.println("Agregando detalles al pedido...");
         clientHttp = ClientBuilder.newClient();
         webTarget = clientHttp.target(URL_BASE).path("/pedidos/detalles");
         invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.put(Entity.entity(ordenventa, 
                 MediaType.APPLICATION_JSON));
+        System.out.println("Respuesta: "+response.getStatus());
         return response;
     }
     
     public static Response concluirPedido(Ordenventa ordenventa){
+        System.out.println("Concluyendo pedido...");
         clientHttp = ClientBuilder.newClient();
         webTarget = clientHttp.target(URL_BASE).path("/pedidos/solicitar");
         invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.post(Entity.entity(ordenventa, MediaType.APPLICATION_JSON));
+        System.out.println("Respuesta: "+response.getStatus());
         return response;
+    }
+    
+    public static Facturaventa generarPedidoCompleto(String descripcion, ArrayList<Ventadetalle> ventaDetalleList) throws Exception{
+        Ordenventa ordenventa = new Ordenventa();
+        Cliente cliente = new Cliente();
+        cliente.setEmail("compras@walmart.com.mx");
+        ordenventa.setClienteid(cliente);
+        ordenventa.setDescripcion(descripcion);
+        ordenventa.setVentadetalleCollection(ventaDetalleList);
+        Response responseOrdenVenta = APIConsumer.realizarPedido(ordenventa);
+        if(responseOrdenVenta.getStatus()!=200){
+            String msg = responseOrdenVenta.readEntity(String.class);
+            throw new Exception("Whoops!!. Error al realizar un pedido!\n"+msg);
+        }
+        // DETALLES
+        Ordenventa ordenVentaResult = responseOrdenVenta.readEntity(Ordenventa.class);
+        ordenVentaResult.setVentadetalleCollection(ventaDetalleList);
+        Response responseDetalles = APIConsumer.agregarDetallesAlPedido(ordenVentaResult);
+
+        if(responseDetalles.getStatus()!=200){
+            throw new Exception("Whoops!!. Error al añadir los detalles al pedido!"); 
+        }
+        // CONLUYENDO PEDIDO Y RECIBIENDO LA FACTURA
+        Response responseCompletarPedido = APIConsumer.concluirPedido(ordenVentaResult);
+        Facturaventa facturaVenta = responseCompletarPedido.readEntity(Facturaventa.class);
+        if(responseCompletarPedido.getStatus()!=200){
+            throw new Exception("Whoops!!. Error al concluir el pedido!");
+        }
+        return facturaVenta;
     }
     
 }

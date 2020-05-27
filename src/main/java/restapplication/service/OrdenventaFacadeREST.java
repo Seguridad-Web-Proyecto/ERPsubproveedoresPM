@@ -7,13 +7,14 @@ package restapplication.service;
 
 import dao.ClienteJpaController;
 import entidades.Cliente;
-import entidades.Facturacompra;
 import entidades.Facturaventa;
+import entidades.Inventario;
 import entidades.Ordenventa;
 import entidades.Producto;
 import entidades.Ventadetalle;
 import entidades.VentadetallePK;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -70,7 +71,7 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
             return Response.status(Status.BAD_REQUEST).build();
         }
         if(entity.getVentadetalleCollection()!=null){
-            String msg = WebServicesUtils.verificarDisponibilidadPedido(entity);
+            String msg = verificarDisponibilidadPedido(entity);
             if(!msg.equals("")){
                 return Response.status(Status.BAD_REQUEST).entity(msg).build();
             }
@@ -94,6 +95,10 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
     @Produces(MediaType.APPLICATION_JSON)
     public Response agregarDetalles(Ordenventa venta){
         try{
+            String msg = verificarDisponibilidadPedido(venta);
+            if(!msg.equals("")){
+                return Response.status(Status.BAD_REQUEST).entity(msg).build();
+            }
             //ORDEN VENTA
             // se hace una copia de la orden venta porque de alguna manera el ORM, está cambiando
             // las órdenes de ventas que están asociadas con los productos
@@ -101,13 +106,9 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
              if(ordenventaQuery==null){
                 return Response.status(Status.NOT_FOUND).build();
             }
-            String msg = WebServicesUtils.verificarDisponibilidadPedido(ordenventaQuery);
-            if(!msg.equals("")){
-                return Response.status(Status.BAD_REQUEST).entity(msg).build();
-            }
             Ordenventa ordenventa = new Ordenventa(ordenventaQuery.getOrdenventaid(), ordenventaQuery.getFechaVenta(),
                     ordenventaQuery.getStatus(), ordenventaQuery.getIva(), ordenventaQuery.getSubtotal(), 
-                    ordenventaQuery.getTotal(), ordenventaQuery.getStatus());
+                    ordenventaQuery.getTotal(), ordenventaQuery.getDescripcion());
             ordenventa.setClienteid(ordenventaQuery.getClienteid());
             if(venta.getVentadetalleCollection()==null) return Response.status(Status.BAD_REQUEST).build();
             ArrayList<Ventadetalle> detalles = new ArrayList<>();
@@ -116,13 +117,14 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
                         entity.getProducto().getProductoid()==null){
                     return Response.status(Status.BAD_REQUEST).build();
                 }
-                //PRODUCTO
+                // Consultando el producto
                 Producto producto = productoFacade.find(entity.getProducto().getProductoid());
                 if(producto==null){
                     return Response.status(Status.NOT_FOUND).build();
                 }
+                // Aplicando ganancias al producto
                 Producto p = Common.aplicarGananciaAlProducto(producto);
-                //VENTA DETALLE
+                // creando la ventadetalle y modificando la ordenventa
                 entity.setPrecioUnitario(p.getPrecioUnitario());
                 entity.setImporte(p.getPrecioUnitario()*entity.getCantidad());
                 // MODIFICAR SUBTOTAL Y TOTAL DE ORDEN DE VENTA
@@ -137,10 +139,12 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
                 ventaDetalleFacade.create(entity);
                 detalles.add(entity);
             }
+            //Actualizando orden de venta para que se refleje los cambios en los WS.
             ordenventa.setVentadetalleCollection(detalles);
             super.edit(ordenventa);
             return Response.ok().build();
         }catch(Exception ex){
+            ex.printStackTrace();
             return Response.status(Status.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -150,21 +154,36 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response realizarPedido(Ordenventa entity){
-        Ordenventa ordenventaQuery = super.find(entity.getOrdenventaid());
-        Ordenventa ordenventa = new Ordenventa(ordenventaQuery.getOrdenventaid(), ordenventaQuery.getFechaVenta(),
-                    ordenventaQuery.getStatus(), ordenventaQuery.getIva(), ordenventaQuery.getSubtotal(), 
-                    ordenventaQuery.getTotal(), ordenventaQuery.getStatus());
-        ordenventa.setClienteid(ordenventaQuery.getClienteid());
-        ordenventa.setVentadetalleCollection((ArrayList<Ventadetalle>) ordenventaQuery.getVentadetalleCollection());
-        if(ordenventaQuery==null){
-            return Response.status(Status.BAD_REQUEST).build();
-        }else{
+        try{
+            //Consultando que exista la orden, y haciendo una copia de la orden
+            Ordenventa ordenventaQuery = super.find(entity.getOrdenventaid());
+            Ordenventa ordenventa = new Ordenventa(ordenventaQuery.getOrdenventaid(), ordenventaQuery.getFechaVenta(),
+                        ordenventaQuery.getStatus(), ordenventaQuery.getIva(), ordenventaQuery.getSubtotal(), 
+                        ordenventaQuery.getTotal(), ordenventaQuery.getDescripcion());
+            ordenventa.setClienteid(ordenventaQuery.getClienteid());
+            ordenventa.setVentadetalleCollection((ArrayList<Ventadetalle>) ordenventaQuery.getVentadetalleCollection());
             ordenventa.setStatus("Pedido realizado!");
+            //Creando factura de venta
             Facturaventa facturaventa = WebServicesUtils.emitirFactura(ordenventaQuery);
             Facturaventa facturaCreada = facturaVentaFacade.createEntity(facturaventa);
             ordenventa.setFacturaid(facturaCreada);
+            //Actualizando el inventario
+            for(Ventadetalle ventadetalle: ordenventaQuery.getVentadetalleCollection()){
+                int productosVendidos = ventadetalle.getCantidad();
+                Producto producto = ventadetalle.getProducto();
+                Collection<Inventario> inventarioList = producto.getInventarioCollection();
+                for(Inventario inventario: inventarioList){
+                    productosVendidos-=inventario.getExistencias();
+                    inventario.setExistencias(inventario.getExistencias()-ventadetalle.getCantidad());
+                    if(productosVendidos<=0) break;
+                    System.out.println(inventario);
+                }
+            }
+            //Editando la orden de venta Retornando factura de venta
             super.edit(ordenventa);
             return Response.ok(facturaCreada).build();
+        }catch(Exception ex){
+            return Response.status(Status.BAD_REQUEST).build();
         }
     }
     
@@ -213,6 +232,28 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    private String verificarDisponibilidadPedido(Ordenventa ordenventa){
+        String msg = "";
+        for(Ventadetalle ventadetalle: ordenventa.getVentadetalleCollection()){
+            Long productoId = ventadetalle.getProducto().getProductoid();
+            System.out.println(productoId);
+            Producto producto = productoFacade.find(productoId);
+            if(producto==null){
+                msg= "El producto con id "+producto.getProductoid()+" no existe.\r\n";
+                break;
+            }
+            long numeroProductos = 0;
+            for(Inventario inventario: producto.getInventarioCollection()){
+                numeroProductos+= inventario.getExistencias();
+            }
+            if(numeroProductos<ventadetalle.getCantidad()){
+                msg+= "No hay suficientes existencias para el producto con id "+
+                        producto.getProductoid()+". Solicitadas: "+ventadetalle.getCantidad()+". Disponibles: "+numeroProductos+"\n";
+            }
+        }
+        return msg;
     }
     
 }

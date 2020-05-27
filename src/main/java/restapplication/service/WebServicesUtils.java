@@ -5,7 +5,6 @@
  */
 package restapplication.service;
 
-import entidades.Facturacompra;
 import entidades.Facturaventa;
 import entidades.Inventario;
 import entidades.Ordenventa;
@@ -22,9 +21,6 @@ import javax.ejb.EJB;
  * @author jcami
  */
 public class WebServicesUtils {
-    
-    @EJB
-    private static beans.sessions.ProductoFacade productoFacade;
     
     public static Facturaventa emitirFactura(Ordenventa ordenventa){
         Facturaventa facturaVenta = new Facturaventa();
@@ -46,20 +42,5 @@ public class WebServicesUtils {
         return cal.getTime();
     }
     
-    public static String verificarDisponibilidadPedido(Ordenventa ordenventa){
-        String msg = "";
-        for(Ventadetalle ventadetalle: ordenventa.getVentadetalleCollection()){
-            Producto producto = productoFacade.find(ventadetalle.getProducto().getProductoid());
-            long numeroProductos = 0;
-            for(Inventario inventario: producto.getInventarioCollection()){
-                numeroProductos+= inventario.getExistencias();
-            }
-            if(numeroProductos<ventadetalle.getCantidad()){
-                msg+= "No hay suficientes existencias para el producto con id "+producto.getProductoid()+".\r\n";
-                break;
-            }
-        }
-        return msg;
-    }
     
 }

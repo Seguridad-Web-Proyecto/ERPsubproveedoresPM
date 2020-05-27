@@ -5,6 +5,7 @@
  */
 package entidades;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -64,6 +65,7 @@ public class Persona implements Serializable {
     @NotNull
     @Column(name = "fecha_nacimiento")
     @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date fechaNacimiento;
     @Basic(optional = false)
     @NotNull

@@ -5,6 +5,7 @@
  */
 package entidades;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -58,6 +59,7 @@ public class Usuario implements Serializable {
     @NotNull
     @Column(name = "fecha_creacion")
     @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date fechaCreacion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "email")
     private Collection<Persona> personaCollection;
