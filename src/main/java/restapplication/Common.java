@@ -29,6 +29,9 @@ public class Common {
         Producto productoQ = new Producto(producto.getProductoid(), producto.getNombre(), 
                 producto.getDescripcion(), producto.getUnidadMedida(), nuevoPrecio);
         productoQ.setCategoriaid(producto.getCategoriaid());
+        if(producto.getInventarioCollection()!=null){
+            productoQ.setInventarioCollection(producto.getInventarioCollection());
+        }
         return productoQ;
     }
     
@@ -54,6 +57,7 @@ public class Common {
         List<Ventadetalle> ventadetalleList = new ArrayList<>();
         for(Ventadetalle vd: ordenventa.getVentadetalleCollection()){
             Producto p = Common.aplicarGananciaAlProducto(vd.getProducto());
+            p.setInventarioCollection(null);
             VentadetallePK detallePK = new VentadetallePK(vd.getVentadetallePK().getVentaid(),
                     vd.getVentadetallePK().getProductoid());
             Ventadetalle detalle =  new Ventadetalle(detallePK, vd.getCantidad(), p.getPrecioUnitario(), vd.getCantidad()*p.getPrecioUnitario());

@@ -5,6 +5,7 @@
  */
 package entidades;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Collection;
@@ -61,6 +62,7 @@ public class Tarjetacreditocompra implements Serializable {
     @NotNull
     @Size(min = 1, max = 5)
     @Column(name = "fecha_expiracion")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private String fechaExpiracion;
     @Basic(optional = false)
     @NotNull
