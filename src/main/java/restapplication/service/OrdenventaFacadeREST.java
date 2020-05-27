@@ -7,6 +7,8 @@ package restapplication.service;
 
 import dao.ClienteJpaController;
 import entidades.Cliente;
+import entidades.Facturacompra;
+import entidades.Facturaventa;
 import entidades.Ordenventa;
 import entidades.Producto;
 import entidades.Ventadetalle;
@@ -49,6 +51,9 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
     
     @EJB
     private beans.sessions.VentadetalleFacade ventaDetalleFacade;
+    
+    @EJB
+    private beans.sessions.FacturaventaFacade facturaVentaFacade;
 
     public OrdenventaFacadeREST() {
         super(Ordenventa.class);
@@ -64,6 +69,12 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
         if(cliente==null){
             return Response.status(Status.BAD_REQUEST).build();
         }
+        if(entity.getVentadetalleCollection()!=null){
+            String msg = WebServicesUtils.verificarDisponibilidadPedido(entity);
+            if(!msg.equals("")){
+                return Response.status(Status.BAD_REQUEST).entity(msg).build();
+            }
+        }
         entity.setClienteid(cliente);
         entity.setSubtotal(0);
         entity.setTotal(0);
@@ -75,20 +86,6 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
         Response response = super.create(entity);
         ordenventaIngresado = (Ordenventa) response.getEntity();
         return response;
-    }
-    
-    @PUT
-    @Path("/solicitar")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response realizarPedido(Ordenventa entity){
-        Ordenventa ordenventa = super.find(entity.getOrdenventaid());
-        if(ordenventa==null){
-            return Response.status(Status.BAD_REQUEST).build();
-        }else{
-            ordenventa.setStatus("Pedido realizado!");
-            return Response.ok().build();
-        }
     }
     
     @PUT
@@ -104,15 +101,16 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
              if(ordenventaQuery==null){
                 return Response.status(Status.NOT_FOUND).build();
             }
+            String msg = WebServicesUtils.verificarDisponibilidadPedido(ordenventaQuery);
+            if(!msg.equals("")){
+                return Response.status(Status.BAD_REQUEST).entity(msg).build();
+            }
             Ordenventa ordenventa = new Ordenventa(ordenventaQuery.getOrdenventaid(), ordenventaQuery.getFechaVenta(),
                     ordenventaQuery.getStatus(), ordenventaQuery.getIva(), ordenventaQuery.getSubtotal(), 
                     ordenventaQuery.getTotal(), ordenventaQuery.getStatus());
             ordenventa.setClienteid(ordenventaQuery.getClienteid());
-                       
             if(venta.getVentadetalleCollection()==null) return Response.status(Status.BAD_REQUEST).build();
-            
             ArrayList<Ventadetalle> detalles = new ArrayList<>();
-            detalles.addAll(ordenventaQuery.getVentadetalleCollection());
             for(Ventadetalle entity: venta.getVentadetalleCollection()){
                 if(entity.getProducto()==null || 
                         entity.getProducto().getProductoid()==null){
@@ -144,6 +142,29 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
             return Response.ok().build();
         }catch(Exception ex){
             return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    @POST
+    @Path("/solicitar")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response realizarPedido(Ordenventa entity){
+        Ordenventa ordenventaQuery = super.find(entity.getOrdenventaid());
+        Ordenventa ordenventa = new Ordenventa(ordenventaQuery.getOrdenventaid(), ordenventaQuery.getFechaVenta(),
+                    ordenventaQuery.getStatus(), ordenventaQuery.getIva(), ordenventaQuery.getSubtotal(), 
+                    ordenventaQuery.getTotal(), ordenventaQuery.getStatus());
+        ordenventa.setClienteid(ordenventaQuery.getClienteid());
+        ordenventa.setVentadetalleCollection((ArrayList<Ventadetalle>) ordenventaQuery.getVentadetalleCollection());
+        if(ordenventaQuery==null){
+            return Response.status(Status.BAD_REQUEST).build();
+        }else{
+            ordenventa.setStatus("Pedido realizado!");
+            Facturaventa facturaventa = WebServicesUtils.emitirFactura(ordenventaQuery);
+            Facturaventa facturaCreada = facturaVentaFacade.createEntity(facturaventa);
+            ordenventa.setFacturaid(facturaCreada);
+            super.edit(ordenventa);
+            return Response.ok(facturaCreada).build();
         }
     }
     

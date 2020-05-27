@@ -5,7 +5,6 @@
  */
 package restapplication.service;
 
-import restapplication.service.AbstractFacade;
 import entidades.Producto;
 import java.util.ArrayList;
 import java.util.List;

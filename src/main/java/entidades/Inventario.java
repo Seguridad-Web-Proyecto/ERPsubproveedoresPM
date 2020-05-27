@@ -6,6 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -73,6 +75,8 @@ public class Inventario implements Serializable {
         this.existencias = existencias;
     }
 
+    @XmlTransient
+    @JsonbTransient
     public Producto getProductoid() {
         return productoid;
     }

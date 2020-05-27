@@ -29,6 +29,9 @@ public class Common {
         Producto productoQ = new Producto(producto.getProductoid(), producto.getNombre(), 
                 producto.getDescripcion(), producto.getUnidadMedida(), nuevoPrecio);
         productoQ.setCategoriaid(producto.getCategoriaid());
+        if(producto.getInventarioCollection()!=null){
+            productoQ.setInventarioCollection(producto.getInventarioCollection());
+        }
         return productoQ;
     }
     

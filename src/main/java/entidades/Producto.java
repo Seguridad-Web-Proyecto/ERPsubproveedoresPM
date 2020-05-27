@@ -77,6 +77,7 @@ public class Producto implements Serializable {
     private Ganancia ganancia;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
     private Collection<Ventadetalle> ventadetalleCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoid")
     private Collection<Inventario> inventarioCollection;
 
@@ -173,8 +174,6 @@ public class Producto implements Serializable {
         this.ventadetalleCollection = ventadetalleCollection;
     }
 
-    @XmlTransient
-    @JsonbTransient
     public Collection<Inventario> getInventarioCollection() {
         return inventarioCollection;
     }

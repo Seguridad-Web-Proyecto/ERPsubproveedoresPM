@@ -29,4 +29,10 @@ public class FacturaventaFacade extends AbstractFacade<Facturaventa> {
         super(Facturaventa.class);
     }
     
+    public Facturaventa createEntity(Facturaventa facturaventa){
+        getEntityManager().persist(facturaventa);
+        getEntityManager().flush();
+        return facturaventa;
+    }
+    
 }

@@ -23,20 +23,50 @@ import javax.ws.rs.core.Response;
 public class SolicitarPedidos {
 
     public static void main(String[] args) throws JsonProcessingException {
-        Ordenventa ordenventa = pruebaGenerarPedido();
+        /*Ordenventa ordenventa = pruebaGenerarPedido("Orden de venta realizada a las 7:23pm 19/05/2020");
         System.out.println(ordenventa);
         Response response = pruebaAgregarDetallesAlPedido(ordenventa);
         System.out.println("Solicitando pedido...");
         Response responseSolicitar = APIConsumer.concluirPedido(ordenventa);
-        System.out.println("Respuesta: "+responseSolicitar.getStatus());
+        System.out.println("Respuesta: "+responseSolicitar.getStatus());*/
+        pruebaProductosNoDisponibles();
     }
     
-    public static Ordenventa pruebaGenerarPedido() {
+    public static void pruebaProductosNoDisponibles(){
+        Ordenventa ordenventa = pruebaGenerarPedido("Prueba generar pedido 27/05/2020");
+        ArrayList<Ventadetalle> detallesV1 = new ArrayList<>();
+        for(int i=7; i<9; i++){
+            Producto producto = new Producto(); producto.setProductoid((long)i);
+            Ventadetalle ventadetalle = new Ventadetalle();
+            ventadetalle.setProducto(producto); ventadetalle.setCantidad(2000);
+            detallesV1.add(ventadetalle);
+        }
+        ordenventa.setVentadetalleCollection(detallesV1);
+        System.out.println("Venta detalles primera versión");
+        Response respuestaDetallesV1 = APIConsumer.agregarDetallesAlPedido(ordenventa);
+        System.out.println("Respuesta: "+respuestaDetallesV1.getStatus());
+        ArrayList<Ventadetalle> detallesV2 = new ArrayList<>();
+        for(int i=8; i<10; i++){
+            Producto producto = new Producto(); producto.setProductoid((long)i);
+            Ventadetalle ventadetalle = new Ventadetalle();
+            ventadetalle.setProducto(producto); ventadetalle.setCantidad(100);
+            detallesV2.add(ventadetalle);
+        }
+        ordenventa.setVentadetalleCollection(detallesV2);
+        System.out.println("Venta detalles segunda versión");
+        Response respuestaDetallesV2 = APIConsumer.agregarDetallesAlPedido(ordenventa);
+        System.out.println("Respuesta: "+respuestaDetallesV2.getStatus());
+        System.out.println("Concluyendo pedido");
+        Response respuesta = APIConsumer.concluirPedido(ordenventa);
+        System.out.println("Respuesta: "+respuesta.getStatus());
+    }
+    
+    public static Ordenventa pruebaGenerarPedido(String descripcion) {
         Ordenventa ordenventa = new Ordenventa();
         Cliente cliente = new Cliente();
         cliente.setEmail("compras@walmart.com.mx");
         ordenventa.setClienteid(cliente);
-        ordenventa.setDescripcion("Orden de venta realizada a las 7:23pm 19/05/2020");
+        ordenventa.setDescripcion(descripcion);
         //agregarDetallesAlPedido(ordenventa, detalles);
         System.out.println("Realizando pedido...");
         Response responseOrdenVenta = APIConsumer.realizarPedido(ordenventa);
