@@ -14,7 +14,6 @@ import entidades.Ordenventa;
 import entidades.Producto;
 import entidades.Ventadetalle;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.ws.rs.client.Client;
