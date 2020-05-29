@@ -157,6 +157,9 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
         try{
             //Consultando que exista la orden, y haciendo una copia de la orden
             Ordenventa ordenventaQuery = super.find(entity.getOrdenventaid());
+            if(ordenventaQuery==null){
+                return Response.status(Status.BAD_REQUEST).build();
+            }
             Ordenventa ordenventa = new Ordenventa(ordenventaQuery.getOrdenventaid(), ordenventaQuery.getFechaVenta(),
                         ordenventaQuery.getStatus(), ordenventaQuery.getIva(), ordenventaQuery.getSubtotal(), 
                         ordenventaQuery.getTotal(), ordenventaQuery.getDescripcion());
@@ -165,8 +168,8 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
             ordenventa.setStatus("Pedido realizado!");
             //Creando factura de venta
             Facturaventa facturaventa = WebServicesUtils.emitirFactura(ordenventaQuery);
-            Facturaventa facturaCreada = facturaVentaFacade.createEntity(facturaventa);
-            ordenventa.setFacturaid(facturaCreada);
+            /*Facturaventa facturaCreada = facturaVentaFacade.createEntity(facturaventa);
+            ordenventa.setFacturaid(facturaCreada);*/
             //Actualizando el inventario
             for(Ventadetalle ventadetalle: ordenventaQuery.getVentadetalleCollection()){
                 int productosVendidos = ventadetalle.getCantidad();
@@ -181,8 +184,9 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
             }
             //Editando la orden de venta Retornando factura de venta
             super.edit(ordenventa);
-            return Response.ok(facturaCreada).build();
+            return Response.ok(facturaventa).build();
         }catch(Exception ex){
+            ex.printStackTrace();
             return Response.status(Status.BAD_REQUEST).build();
         }
     }

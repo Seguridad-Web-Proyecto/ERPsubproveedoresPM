@@ -202,7 +202,7 @@ public class APIConsumer {
     public static Facturaventa generarPedidoCompleto(String descripcion, ArrayList<Ventadetalle> ventaDetalleList) throws Exception{
         Ordenventa ordenventa = new Ordenventa();
         Cliente cliente = new Cliente();
-        cliente.setEmail("compras@walmart.com.mx");
+        cliente.setEmail("proveedor@company.mx");
         ordenventa.setClienteid(cliente);
         ordenventa.setDescripcion(descripcion);
         ordenventa.setVentadetalleCollection(ventaDetalleList);
