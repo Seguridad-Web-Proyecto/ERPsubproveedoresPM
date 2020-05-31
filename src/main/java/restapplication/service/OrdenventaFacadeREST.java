@@ -142,7 +142,7 @@ public class OrdenventaFacadeREST extends AbstractFacade<Ordenventa> {
             //Actualizando orden de venta para que se refleje los cambios en los WS.
             ordenventa.setVentadetalleCollection(detalles);
             super.edit(ordenventa);
-            return Response.ok().build();
+            return Response.ok("OK").build();
         }catch(Exception ex){
             ex.printStackTrace();
             return Response.status(Status.INTERNAL_SERVER_ERROR).build();
